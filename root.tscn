@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://b40y5i886yjtt"]
+
+[ext_resource type="Shader" path="res://shader/energy_shield.gdshader" id="1_ft3tv"]
+[ext_resource type="Shader" path="res://shader/shield_hit.gdshader" id="2_m1sg8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0dgx2"]
+shader = ExtResource("1_ft3tv")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_dn0np"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tr1wt"]
+shader = ExtResource("2_m1sg8")
+
+[node name="Root" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_0dgx2")
+offset_right = 512.0
+offset_bottom = 512.0
+texture = SubResource("CanvasTexture_dn0np")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_tr1wt")
+offset_right = 512.0
+offset_bottom = 512.0
+texture = SubResource("CanvasTexture_dn0np")
