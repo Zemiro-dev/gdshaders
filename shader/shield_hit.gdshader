@@ -30,22 +30,5 @@ void fragment() {
 	float hit4 = shieldHit(uv - vec2(.3, 0.0), clock4) * shieldBound;
 	float hit5 = shieldHit(uv + vec2(0.1, 0.5), clock5) * shieldBound;
 	float result = max(max(max(max(hit1, hit2), hit3), hit4), hit5);
-	COLOR = vec4(mix(BLUE, BLUE + .23, pow(result, 25.0)), result);
+	COLOR = vec4(BLUE, result);
 }
-
-//vec4(vec3( step(.3,d) * step(d,.4)),1.0);
-
-
-	
-	//float outer = square(UV, .3);
-	//float outer = circle(uv, .4, 0.01);
-	//float inner = 1.0 - circle(uv, .3, 0.13);
-	
-	//float outer = circle(vec2(UV.x, UV.y), 0.35, 0.01);
-	//
-	//float fade_effect = sin(TIME) * 0.015;
-	//
-	//float inner = 1.0 - circle(vec2(UV.x, UV.y), 0.275, 0.1 - fade_effect );
-	//
-	//COLOR = vec4(vec3(BLUE), 1.0 - (outer + inner));
-	//COLOR.a -= outer + inner;

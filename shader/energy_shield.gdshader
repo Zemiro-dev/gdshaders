@@ -20,3 +20,13 @@ void fragment() {
 	COLOR = vec4(vec3(BLUE), 1.0 - (outer + inner));
 	//COLOR.a -= outer + inner;
 }
+//
+//float shieldHit(vec2 uv, float clock) {
+	//float depth = 0.09;
+	//float d = length(uv - 0.5) * 2.0; //dist from center mapped
+	//float fwdEdge = smoothstep(max(0.0, clock - depth), clock, d);
+	//float wipeOut = step(d, clock);
+	////float wipeOut = smoothstep(d - .05, d, clock);
+	//float result = fwdEdge * wipeOut;
+	//return result;	
+//}
