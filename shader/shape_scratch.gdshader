@@ -27,5 +27,5 @@ void fragment()
 	nv = (pan1 * rotateMatrix * scaleMatrix * pan2) * nv;
 	uv = nv.xy;
 	float poly = polygon(uv, 0.35, 3);
-	COLOR = vec4(vec3(poly), 1.0);
+	COLOR = vec4(vec3(poly), 1.0 - poly);
 }
