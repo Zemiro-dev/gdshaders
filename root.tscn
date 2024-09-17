@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://b40y5i886yjtt"]
+[gd_scene load_steps=15 format=3 uid="uid://b40y5i886yjtt"]
 
 [ext_resource type="Shader" path="res://shader/energy_shield.gdshader" id="1_ft3tv"]
 [ext_resource type="Script" path="res://root.gd" id="1_xn33p"]
 [ext_resource type="Shader" path="res://shader/shield_hit.gdshader" id="2_m1sg8"]
 [ext_resource type="Shader" path="res://shader/shieldv2.gdshader" id="4_froer"]
 [ext_resource type="Shader" path="res://shader/shield_hitv2.gdshader" id="5_5n27c"]
+[ext_resource type="Shader" path="res://shader/shape_scratch.gdshader" id="6_idt4w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0dgx2"]
 shader = ExtResource("1_ft3tv")
@@ -21,6 +22,11 @@ shader = ExtResource("4_froer")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8f3tr"]
 shader = ExtResource("5_5n27c")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6x6xw"]
+shader = ExtResource("6_idt4w")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_0sjfk"]
 
 [node name="Root" type="Node2D"]
 script = ExtResource("1_xn33p")
@@ -40,13 +46,21 @@ offset_bottom = 512.0
 texture = SubResource("CanvasTexture_dn0np")
 
 [node name="Shieldv2" type="TextureRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_ab53v")
 offset_right = 512.0
 offset_bottom = 512.0
 texture = SubResource("CanvasTexture_4qfrb")
 
 [node name="Hit1" type="TextureRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_8f3tr")
 offset_right = 512.0
 offset_bottom = 512.0
 texture = SubResource("CanvasTexture_4qfrb")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_6x6xw")
+offset_right = 512.0
+offset_bottom = 512.0
+texture = SubResource("CanvasTexture_0sjfk")

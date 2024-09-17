@@ -17,6 +17,20 @@ float circle(vec2 uv, float radius, float feather)
 	return smoothstep(radius, radius + feather, length(uv - vec2(0.5)));
 }
 
+
+float polygon(vec2 uv, float width, int sides)
+{
+	uv = uv * 2.0 - 1.0;
+
+	float angle = atan(uv.x, uv.y);
+	float radius = TWO_PI / float(sides);
+	
+	float dist = cos(floor(0.5 + angle / radius) * radius - angle) * length(uv);
+	float poly = step(width, dist);
+	return poly;
+}
+
+
 // util lib
 float random (vec2 uv)
 {
@@ -24,9 +38,26 @@ float random (vec2 uv)
 }
 
 // matrix transforms
-mat2 rotate2d(float _angle){
-    return mat2(vec2(cos(_angle),-sin(_angle)),
-                vec2(sin(_angle),cos(_angle)));
+vec2 rotate(vec2 uv, vec2 pivot, float angle)
+{
+	//modified this from godot shaders to match my alchemy stuff so zero is zero
+	mat2 rotation = mat2(vec2(cos(angle), -sin(angle)),
+						vec2(sin(angle), cos(angle)));
+	
+	uv -= pivot;
+	uv = rotation * uv;
+	uv += pivot;
+	return uv;
+}
+
+vec2 scale(vec2 uv, float x, float y)
+{
+	mat2 scale = mat2(vec2(x, 0.0), vec2(0.0, y));
+	
+	uv -= 0.5;
+	uv = uv * scale;
+	uv += 0.5;
+	return uv;
 }
 
 
