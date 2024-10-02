@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b40y5i886yjtt"]
+[gd_scene load_steps=18 format=3 uid="uid://b40y5i886yjtt"]
 
 [ext_resource type="Shader" path="res://shader/energy_shield.gdshader" id="1_ft3tv"]
 [ext_resource type="Script" path="res://root.gd" id="1_xn33p"]
@@ -6,6 +6,7 @@
 [ext_resource type="Shader" path="res://shader/shieldv2.gdshader" id="4_froer"]
 [ext_resource type="Shader" path="res://shader/shield_hitv2.gdshader" id="5_5n27c"]
 [ext_resource type="Shader" path="res://shader/shape_scratch.gdshader" id="6_idt4w"]
+[ext_resource type="Shader" path="res://shader/unit_triangle.gdshader" id="7_wm6uv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0dgx2"]
 shader = ExtResource("1_ft3tv")
@@ -28,6 +29,11 @@ shader = ExtResource("5_5n27c")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ab53v"]
 shader = ExtResource("4_froer")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_42dd2"]
+shader = ExtResource("7_wm6uv")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_dimtq"]
+
 [node name="Root" type="Node2D"]
 script = ExtResource("1_xn33p")
 
@@ -46,19 +52,37 @@ offset_bottom = 512.0
 texture = SubResource("CanvasTexture_dn0np")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_6x6xw")
 offset_right = 512.0
 offset_bottom = 512.0
 texture = SubResource("CanvasTexture_0sjfk")
 
 [node name="Hit1" type="TextureRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_8f3tr")
 offset_right = 512.0
 offset_bottom = 512.0
 texture = SubResource("CanvasTexture_4qfrb")
 
 [node name="Shieldv2" type="TextureRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_ab53v")
 offset_right = 512.0
 offset_bottom = 512.0
 texture = SubResource("CanvasTexture_4qfrb")
+
+[node name="UnitTriangle" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_42dd2")
+offset_right = 512.0
+offset_bottom = 512.0
+texture = SubResource("CanvasTexture_dimtq")
+
+[node name="UnitTriangle2" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_42dd2")
+offset_left = 670.0
+offset_top = -214.0
+offset_right = 1182.0
+offset_bottom = 298.0
+rotation = 1.04625
+texture = SubResource("CanvasTexture_dimtq")

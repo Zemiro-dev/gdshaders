@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://k8nbtwxisbbw"]
+
+[ext_resource type="Shader" path="res://shader/unit_triangle.gdshader" id="1_a5ce8"]
+[ext_resource type="Script" path="res://player/player_ship.gd" id="1_y4txy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ohyys"]
+shader = ExtResource("1_a5ce8")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_llk3e"]
+
+[node name="PlayerShip" type="CharacterBody2D"]
+script = ExtResource("1_y4txy")
+
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="Pivot"]
+material = SubResource("ShaderMaterial_ohyys")
+offset_left = -64.0
+offset_top = -76.0
+offset_right = 64.0
+offset_bottom = 52.0
+texture = SubResource("CanvasTexture_llk3e")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -76, 64, 35, -64, 35)
