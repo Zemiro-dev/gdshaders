@@ -14,14 +14,23 @@ float polygon(vec2 uv, int sides)
 	return dist;
 }
 
+vec2 scale(vec2 uv, float x, float y)
+{
+	mat2 scale = mat2(vec2(x, 0.0), vec2(0.0, y));
+	
+	uv -= 0.5;
+	uv = uv * scale;
+	uv += 0.5;
+	return uv;
+}
+
 
 void fragment() {
-	vec2 cord =  UV * 2.0 - 1.0;
+	float cockpit = polygon(scale(UV + vec2(0., .25 ), .5, .5), 3);
+	cockpit = 1. - step(.05, cockpit);
+	float ship = polygon(UV + vec2(0., - .078 ), 3);
+	ship = 1. - step(.57735, ship);
+	ship = ship - cockpit;
 	
-	float pct = polygon(UV + vec2(0., - .078 ), 3);
-	pct = step(.57735, pct);
-	
-	pct = 1. - pct;
-	
-	COLOR = vec4(vec3(pct) * BLUE, pct);
+	COLOR = vec4(vec3(ship) * BLUE + vec3(cockpit) * WHITE, ship + cockpit);
 }
