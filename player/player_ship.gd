@@ -1,6 +1,13 @@
 extends CharacterBody2D
 
 
+@onready var main_thrust_texture: TextureRect = $Pivot/MainThrust
+@onready var left_thrust_texture: TextureRect = $Pivot/LeftThrust
+@onready var right_thrust_texture: TextureRect = $Pivot/RightThrust
+@onready var forward_thrust_texture: TextureRect = $Pivot/ForwardThrust
+@onready var rear_left_thrust_texture: TextureRect = $Pivot/RearLeftThrust
+@onready var rear_right_thrust_texture: TextureRect = $Pivot/RearRightThrust
+
 @export var impulse_acceleration: float = 300.0
 @export var impulse_break: float = impulse_acceleration;
 @export var main_thrust_acceleration: float = 1000.0
@@ -9,11 +16,58 @@ const MAX_SPEED := 2000.0;
 
 
 func _physics_process(delta: float) -> void:
-	var impulse: Vector2 = get_impulse()
+	var impulse: Vector2 = get_impulse()	
 	var main_thrust: Vector2 = get_main_thrust()
-	if not impulse.is_zero_approx() or not main_thrust.is_zero_approx():
+	
+	var impulse_on: bool = not impulse.is_zero_approx()
+	var main_thrust_on: bool = not main_thrust.is_zero_approx()
+	
+	if main_thrust_on:
+		main_thrust_texture.visible = true
+	else:
+		main_thrust_texture.visible = false
+		
+	var impulse_up := []
+	var impulse_down := []
+	if impulse_on:
+		var aia = impulse.angle_to(get_facing()) #auto_impulse_angle, lots of .1s help with deadzone
+		print(aia)
+		if aia > -PI/2+.1 and aia < PI/2-.1:
+			impulse_up.append(forward_thrust_texture)
+		else:
+			impulse_down.append(forward_thrust_texture)
+		
+		if aia > .2 and aia < PI-.2:
+			impulse_up.append(left_thrust_texture)
+		else:
+			impulse_down.append(left_thrust_texture)
+		
+		if aia < -.2 and aia > -PI+.2:
+			impulse_up.append(right_thrust_texture)
+		else:
+			impulse_down.append(right_thrust_texture)
+		
+		if aia < -PI/2-.1 or aia > PI/2+.1:
+			impulse_up.append(rear_left_thrust_texture)
+			impulse_up.append(rear_right_thrust_texture)
+		else:
+			impulse_down.append(rear_left_thrust_texture)
+			impulse_down.append(rear_right_thrust_texture)
+			
+	else:
+		impulse_down.append(forward_thrust_texture)
+		impulse_down.append(left_thrust_texture)
+		impulse_down.append(right_thrust_texture)
+		impulse_down.append(rear_left_thrust_texture)
+		impulse_down.append(rear_right_thrust_texture)
+		
+	for texture_rect in impulse_up:
+		texture_rect.visible = true
+	for texture_rect in impulse_down:
+		texture_rect.visible = false
+	
+	if impulse_on or main_thrust_on:
 		var impulse_reverse_multiplier: float = 2 if abs(impulse.angle_to(velocity)) > PI / 2 else 1
-		print(impulse_reverse_multiplier)
 		velocity += impulse * impulse_acceleration * delta * impulse_reverse_multiplier
 		velocity += main_thrust * main_thrust_acceleration * delta
 	else:
@@ -40,4 +94,8 @@ func get_impulse() -> Vector2:
 	return Vector2(Input.get_axis("impulse_left", "impulse_right"), Input.get_axis("impulse_up", "impulse_down"));
 
 func get_main_thrust() -> Vector2:
-	return Vector2.from_angle(rotation - PI/2.0) * Input.get_action_strength("main_thrust")
+	return -1 * get_facing() * Input.get_action_strength("main_thrust")
+
+
+func get_facing() -> Vector2:
+	return Vector2.from_angle(rotation + PI/2.0)

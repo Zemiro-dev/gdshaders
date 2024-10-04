@@ -1,7 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://k8nbtwxisbbw"]
+[gd_scene load_steps=8 format=3 uid="uid://k8nbtwxisbbw"]
 
 [ext_resource type="Shader" path="res://shader/unit_triangle.gdshader" id="1_a5ce8"]
 [ext_resource type="Script" path="res://player/player_ship.gd" id="1_y4txy"]
+[ext_resource type="Shader" path="res://shader/thrust.gdshader" id="3_eo3qa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w5lr4"]
+shader = ExtResource("3_eo3qa")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ql6pc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ohyys"]
 shader = ExtResource("1_a5ce8")
@@ -11,16 +17,96 @@ shader = ExtResource("1_a5ce8")
 [node name="PlayerShip" type="CharacterBody2D"]
 script = ExtResource("1_y4txy")
 
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -76, 64, 35, -64, 35)
+
 [node name="Pivot" type="Node2D" parent="."]
 
-[node name="TextureRect" type="TextureRect" parent="Pivot"]
+[node name="MainThrust" type="TextureRect" parent="Pivot"]
+visible = false
+material = SubResource("ShaderMaterial_w5lr4")
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = 33.0
+offset_right = 32.0
+offset_bottom = 161.0
+grow_horizontal = 2
+texture = SubResource("CanvasTexture_ql6pc")
+
+[node name="LeftThrust" type="TextureRect" parent="Pivot"]
+visible = false
+material = SubResource("ShaderMaterial_w5lr4")
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.0
+offset_top = -12.0
+offset_right = -5.0
+offset_bottom = 52.0
+grow_horizontal = 2
+rotation = 1.5708
+texture = SubResource("CanvasTexture_ql6pc")
+
+[node name="RightThrust" type="TextureRect" parent="Pivot"]
+visible = false
+material = SubResource("ShaderMaterial_w5lr4")
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 37.0
+offset_top = 20.0
+offset_right = 69.0
+offset_bottom = 84.0
+grow_horizontal = 2
+rotation = -1.5708
+texture = SubResource("CanvasTexture_ql6pc")
+
+[node name="ForwardThrust" type="TextureRect" parent="Pivot"]
+visible = false
+material = SubResource("ShaderMaterial_w5lr4")
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 16.0
+offset_top = -46.0
+offset_right = 48.0
+offset_bottom = 18.0
+grow_horizontal = 2
+rotation = 3.14159
+texture = SubResource("CanvasTexture_ql6pc")
+
+[node name="RearLeftThrust" type="TextureRect" parent="Pivot"]
+visible = false
+material = SubResource("ShaderMaterial_w5lr4")
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -65.0
+offset_top = 34.0
+offset_right = -33.0
+offset_bottom = 98.0
+grow_horizontal = 2
+texture = SubResource("CanvasTexture_ql6pc")
+
+[node name="RearRightThrust" type="TextureRect" parent="Pivot"]
+visible = false
+material = SubResource("ShaderMaterial_w5lr4")
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 33.0
+offset_top = 34.0
+offset_right = 65.0
+offset_bottom = 98.0
+grow_horizontal = 2
+texture = SubResource("CanvasTexture_ql6pc")
+
+[node name="ShipBody" type="TextureRect" parent="Pivot"]
 material = SubResource("ShaderMaterial_ohyys")
 offset_left = -64.0
 offset_top = -76.0
 offset_right = 64.0
 offset_bottom = 52.0
 texture = SubResource("CanvasTexture_llk3e")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-visible = false
-polygon = PackedVector2Array(0, -76, 64, 35, -64, 35)
