@@ -15,6 +15,7 @@ shader = ExtResource("1_a5ce8")
 [sub_resource type="CanvasTexture" id="CanvasTexture_llk3e"]
 
 [node name="PlayerShip" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_y4txy")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

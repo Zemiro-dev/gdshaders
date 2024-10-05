@@ -1,8 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7fo2we3emmg2"]
+[gd_scene load_steps=8 format=3 uid="uid://c7fo2we3emmg2"]
 
 [ext_resource type="PackedScene" uid="uid://k8nbtwxisbbw" path="res://player/player_ship.tscn" id="1_apm65"]
 [ext_resource type="PackedScene" uid="uid://kjklqigokfoo" path="res://world/background_grid.tscn" id="1_htvu4"]
 [ext_resource type="Script" path="res://world/test_world.gd" id="1_ss4vj"]
+[ext_resource type="Shader" path="res://shader/space_block.gdshader" id="4_uetue"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kx25j"]
+shader = ExtResource("4_uetue")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_mgp14"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1c3o"]
+size = Vector2(512, 512)
 
 [node name="TestWorld" type="Node2D"]
 script = ExtResource("1_ss4vj")
@@ -31,3 +40,297 @@ z_as_relative = false
 position = Vector2(732, 510)
 
 [node name="Camera2D" type="Camera2D" parent="PlayerShip"]
+
+[node name="BigBlock" type="StaticBody2D" parent="."]
+position = Vector2(1240, 491)
+collision_mask = 6
+
+[node name="TextureRect" type="TextureRect" parent="BigBlock"]
+material = SubResource("ShaderMaterial_kx25j")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_mgp14")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BigBlock"]
+shape = SubResource("RectangleShape2D_v1c3o")
+
+[node name="BigBlock2" type="StaticBody2D" parent="."]
+position = Vector2(247, 637)
+collision_mask = 6
+
+[node name="TextureRect" type="TextureRect" parent="BigBlock2"]
+material = SubResource("ShaderMaterial_kx25j")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_mgp14")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BigBlock2"]
+shape = SubResource("RectangleShape2D_v1c3o")
+
+[node name="BigBlock3" type="StaticBody2D" parent="."]
+position = Vector2(1487, 1849)
+collision_mask = 6
+
+[node name="TextureRect" type="TextureRect" parent="BigBlock3"]
+material = SubResource("ShaderMaterial_kx25j")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_mgp14")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BigBlock3"]
+shape = SubResource("RectangleShape2D_v1c3o")
+
+[node name="BigBlock4" type="StaticBody2D" parent="."]
+position = Vector2(-10, 2776)
+collision_mask = 6
+
+[node name="TextureRect" type="TextureRect" parent="BigBlock4"]
+material = SubResource("ShaderMaterial_kx25j")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_mgp14")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BigBlock4"]
+shape = SubResource("RectangleShape2D_v1c3o")
+
+[node name="BigBlock5" type="StaticBody2D" parent="."]
+position = Vector2(2356, 3104)
+collision_mask = 6
+
+[node name="TextureRect" type="TextureRect" parent="BigBlock5"]
+material = SubResource("ShaderMaterial_kx25j")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_mgp14")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BigBlock5"]
+shape = SubResource("RectangleShape2D_v1c3o")
+
+[node name="BigBlock6" type="StaticBody2D" parent="."]
+position = Vector2(1557, 3104)
+collision_mask = 6
+
+[node name="TextureRect" type="TextureRect" parent="BigBlock6"]
+material = SubResource("ShaderMaterial_kx25j")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_mgp14")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BigBlock6"]
+shape = SubResource("RectangleShape2D_v1c3o")
+
+[node name="BigBlock7" type="StaticBody2D" parent="."]
+position = Vector2(767, 3095)
+collision_mask = 6
+
+[node name="TextureRect" type="TextureRect" parent="BigBlock7"]
+material = SubResource("ShaderMaterial_kx25j")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_mgp14")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BigBlock7"]
+shape = SubResource("RectangleShape2D_v1c3o")
+
+[node name="BigBlock8" type="StaticBody2D" parent="."]
+position = Vector2(-724, 3167)
+collision_mask = 6
+
+[node name="TextureRect" type="TextureRect" parent="BigBlock8"]
+material = SubResource("ShaderMaterial_kx25j")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_mgp14")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BigBlock8"]
+shape = SubResource("RectangleShape2D_v1c3o")
+
+[node name="BigBlock9" type="StaticBody2D" parent="."]
+position = Vector2(12, 1775)
+collision_mask = 6
+
+[node name="TextureRect" type="TextureRect" parent="BigBlock9"]
+material = SubResource("ShaderMaterial_kx25j")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_mgp14")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BigBlock9"]
+shape = SubResource("RectangleShape2D_v1c3o")
+
+[node name="TOP" type="StaticBody2D" parent="."]
+position = Vector2(1008, -741)
+scale = Vector2(10, 1)
+collision_mask = 6
+
+[node name="TextureRect" type="TextureRect" parent="TOP"]
+material = SubResource("ShaderMaterial_kx25j")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_mgp14")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TOP"]
+visible = false
+shape = SubResource("RectangleShape2D_v1c3o")
+
+[node name="BOTTOM" type="StaticBody2D" parent="."]
+position = Vector2(926, 4005)
+scale = Vector2(10, 1)
+collision_mask = 6
+
+[node name="TextureRect" type="TextureRect" parent="BOTTOM"]
+material = SubResource("ShaderMaterial_kx25j")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_mgp14")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BOTTOM"]
+visible = false
+shape = SubResource("RectangleShape2D_v1c3o")
+
+[node name="LEFT" type="StaticBody2D" parent="."]
+position = Vector2(-1406, 1701)
+scale = Vector2(1, 10)
+collision_mask = 6
+
+[node name="TextureRect" type="TextureRect" parent="LEFT"]
+material = SubResource("ShaderMaterial_kx25j")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_mgp14")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LEFT"]
+visible = false
+shape = SubResource("RectangleShape2D_v1c3o")
+
+[node name="RIGHT" type="StaticBody2D" parent="."]
+position = Vector2(3298, 1644)
+scale = Vector2(1, 10)
+collision_mask = 6
+
+[node name="TextureRect" type="TextureRect" parent="RIGHT"]
+material = SubResource("ShaderMaterial_kx25j")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_mgp14")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RIGHT"]
+visible = false
+shape = SubResource("RectangleShape2D_v1c3o")

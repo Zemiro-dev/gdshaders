@@ -11,7 +11,7 @@ void fragment() {
 	vec2 px = floor(offset + (dim * UV));
 	vec2 modPx = mod(px, gridSize);
 	
-	if (modPx.x == 0.0 || modPx.y == 0.0)  {
+	if (modPx.x <= 3.0 || modPx.y <= 3.0  )  {
 		color = WHITE;
 	}	
 	
