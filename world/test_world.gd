@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var player_ship: CharacterBody2D = $PlayerShip
-@onready var background_grid: TextureRect = $Grid/MarginContainer/BackgroundGrid
+@onready var background_grid: TextureRect = $BG/MarginContainer/BackgroundGrid
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

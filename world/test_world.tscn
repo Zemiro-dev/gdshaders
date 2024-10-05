@@ -1,38 +1,51 @@
-[gd_scene load_steps=8 format=3 uid="uid://c7fo2we3emmg2"]
+[gd_scene load_steps=11 format=3 uid="uid://c7fo2we3emmg2"]
 
 [ext_resource type="PackedScene" uid="uid://k8nbtwxisbbw" path="res://player/player_ship.tscn" id="1_apm65"]
 [ext_resource type="PackedScene" uid="uid://kjklqigokfoo" path="res://world/background_grid.tscn" id="1_htvu4"]
 [ext_resource type="Script" path="res://world/test_world.gd" id="1_ss4vj"]
 [ext_resource type="Shader" path="res://shader/space_block.gdshader" id="4_uetue"]
+[ext_resource type="Texture2D" uid="uid://chbtyee7uvte8" path="res://icon.svg" id="5_btkgd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1c3o"]
+size = Vector2(512, 512)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ub0ve"]
+shader = ExtResource("4_uetue")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jd4ht"]
+polygon = PackedVector2Array(59.1, -64, -59, -64, -63.8, -59, -64, 61, -60.3, 64, 59.6, 64, 63.9, 59, 64, -61.1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kx25j"]
 shader = ExtResource("4_uetue")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_mgp14"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1c3o"]
-size = Vector2(512, 512)
-
 [node name="TestWorld" type="Node2D"]
 script = ExtResource("1_ss4vj")
 
-[node name="Grid" type="CanvasLayer" parent="."]
+[node name="BG" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="MarginContainer" type="MarginContainer" parent="Grid"]
+[node name="CanvasModulate" type="CanvasModulate" parent="BG"]
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="BG"]
 z_index = -1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -0.5
 offset_top = -0.5
-offset_right = -0.5
-offset_bottom = -0.5
+offset_right = 0.5
+offset_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BackgroundGrid" parent="Grid/MarginContainer" instance=ExtResource("1_htvu4")]
+[node name="BackgroundGrid" parent="BG/MarginContainer" instance=ExtResource("1_htvu4")]
 layout_mode = 2
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
 
 [node name="PlayerShip" parent="." instance=ExtResource("1_apm65")]
 z_index = 10
@@ -42,48 +55,38 @@ position = Vector2(732, 510)
 [node name="Camera2D" type="Camera2D" parent="PlayerShip"]
 
 [node name="BigBlock" type="StaticBody2D" parent="."]
-position = Vector2(1240, 491)
+position = Vector2(1248, 564)
 collision_mask = 6
-
-[node name="TextureRect" type="TextureRect" parent="BigBlock"]
-material = SubResource("ShaderMaterial_kx25j")
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -256.0
-offset_right = 256.0
-offset_bottom = 256.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CanvasTexture_mgp14")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BigBlock"]
 shape = SubResource("RectangleShape2D_v1c3o")
 
-[node name="BigBlock2" type="StaticBody2D" parent="."]
-position = Vector2(247, 637)
-collision_mask = 6
+[node name="Sprite2D" type="Sprite2D" parent="BigBlock"]
+light_mask = 2
+material = SubResource("ShaderMaterial_ub0ve")
+scale = Vector2(4, 4)
+texture = ExtResource("5_btkgd")
 
-[node name="TextureRect" type="TextureRect" parent="BigBlock2"]
-material = SubResource("ShaderMaterial_kx25j")
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -256.0
-offset_right = 256.0
-offset_bottom = 256.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CanvasTexture_mgp14")
+[node name="LightOccluder2D" type="LightOccluder2D" parent="BigBlock/Sprite2D"]
+show_behind_parent = true
+occluder = SubResource("OccluderPolygon2D_jd4ht")
+
+[node name="BigBlock2" type="StaticBody2D" parent="."]
+position = Vector2(1244, -148)
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BigBlock2"]
 shape = SubResource("RectangleShape2D_v1c3o")
+
+[node name="Sprite2D" type="Sprite2D" parent="BigBlock2"]
+light_mask = 2
+material = SubResource("ShaderMaterial_ub0ve")
+scale = Vector2(4, 4)
+texture = ExtResource("5_btkgd")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="BigBlock2/Sprite2D"]
+show_behind_parent = true
+occluder = SubResource("OccluderPolygon2D_jd4ht")
 
 [node name="BigBlock3" type="StaticBody2D" parent="."]
 position = Vector2(1487, 1849)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://k8nbtwxisbbw"]
+[gd_scene load_steps=9 format=3 uid="uid://k8nbtwxisbbw"]
 
 [ext_resource type="Shader" path="res://shader/unit_triangle.gdshader" id="1_a5ce8"]
 [ext_resource type="Script" path="res://player/player_ship.gd" id="1_y4txy"]
 [ext_resource type="Shader" path="res://shader/thrust.gdshader" id="3_eo3qa"]
+[ext_resource type="Texture2D" uid="uid://bj32yg41s8648" path="res://data/light/point.webp" id="4_lvblp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w5lr4"]
 shader = ExtResource("3_eo3qa")
@@ -111,3 +112,15 @@ offset_top = -76.0
 offset_right = 64.0
 offset_bottom = 52.0
 texture = SubResource("CanvasTexture_llk3e")
+
+[node name="ShadowCaster" type="PointLight2D" parent="Pivot"]
+range_layer_min = -1
+shadow_enabled = true
+texture = ExtResource("4_lvblp")
+texture_scale = 10.0
+
+[node name="NoShadow" type="PointLight2D" parent="Pivot"]
+range_layer_min = -1
+range_item_cull_mask = 2
+texture = ExtResource("4_lvblp")
+texture_scale = 10.0
