@@ -1,5 +1,11 @@
 extends CharacterBody2D
 
+@onready var main_thrust_particles: GPUParticles2D = $Pivot/MainThrustParticles
+@onready var left_thrust_particles: GPUParticles2D = $Pivot/LeftThrustParticles
+@onready var right_thrust_particles: GPUParticles2D = $Pivot/RightThrustParticles
+@onready var forward_thrust_particles: GPUParticles2D = $Pivot/ForwardThrustParticles
+@onready var rear_left_thrust_particles: GPUParticles2D = $Pivot/RearLeftThrustParticles
+@onready var rear_right_thrust_particles: GPUParticles2D = $Pivot/RearRightThrustParticles
 
 @onready var main_thrust_texture: TextureRect = $Pivot/MainThrust
 @onready var left_thrust_texture: TextureRect = $Pivot/LeftThrust
@@ -24,35 +30,49 @@ func _physics_process(delta: float) -> void:
 	
 	if main_thrust_on:
 		main_thrust_texture.visible = true
+		main_thrust_particles.emitting = true
 	else:
 		main_thrust_texture.visible = false
+		main_thrust_particles.emitting = false
 		
 	var impulse_up := []
 	var impulse_down := []
+	var impulse_particles_up := []
+	var impulse_particles_down := []
 	if impulse_on:
 		var aia = impulse.angle_to(get_facing()) #auto_impulse_angle, lots of .1s help with deadzone
 		print(aia)
-		if aia > -PI/2+.1 and aia < PI/2-.1:
+		if aia > -PI/6 and aia < PI/6:
 			impulse_up.append(forward_thrust_texture)
+			impulse_particles_up.append(forward_thrust_particles)
 		else:
 			impulse_down.append(forward_thrust_texture)
+			impulse_particles_down.append(forward_thrust_particles)
 		
 		if aia > .2 and aia < PI-.2:
 			impulse_up.append(left_thrust_texture)
+			impulse_particles_up.append(left_thrust_particles)
 		else:
 			impulse_down.append(left_thrust_texture)
+			impulse_particles_down.append(left_thrust_particles)
 		
 		if aia < -.2 and aia > -PI+.2:
 			impulse_up.append(right_thrust_texture)
+			impulse_particles_up.append(right_thrust_particles)
 		else:
 			impulse_down.append(right_thrust_texture)
+			impulse_particles_down.append(right_thrust_particles)
 		
 		if aia < -PI/2-.1 or aia > PI/2+.1:
 			impulse_up.append(rear_left_thrust_texture)
 			impulse_up.append(rear_right_thrust_texture)
+			impulse_particles_up.append(rear_left_thrust_particles)
+			impulse_particles_up.append(rear_right_thrust_particles)
 		else:
 			impulse_down.append(rear_left_thrust_texture)
 			impulse_down.append(rear_right_thrust_texture)
+			impulse_particles_down.append(rear_left_thrust_particles)
+			impulse_particles_down.append(rear_right_thrust_particles)
 			
 	else:
 		impulse_down.append(forward_thrust_texture)
@@ -60,11 +80,20 @@ func _physics_process(delta: float) -> void:
 		impulse_down.append(right_thrust_texture)
 		impulse_down.append(rear_left_thrust_texture)
 		impulse_down.append(rear_right_thrust_texture)
+		impulse_particles_down.append(forward_thrust_particles)
+		impulse_particles_down.append(left_thrust_particles)
+		impulse_particles_down.append(right_thrust_particles)
+		impulse_particles_down.append(rear_left_thrust_particles)
+		impulse_particles_down.append(rear_right_thrust_particles)
 		
 	for texture_rect in impulse_up:
 		texture_rect.visible = true
 	for texture_rect in impulse_down:
 		texture_rect.visible = false
+	for particles in impulse_particles_up:
+		particles.emitting = true
+	for particles in impulse_particles_down:
+		particles.emitting = false
 	
 	if impulse_on or main_thrust_on:
 		var impulse_reverse_multiplier: float = 2 if abs(impulse.angle_to(velocity)) > PI / 2 else 1
