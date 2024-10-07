@@ -243,7 +243,7 @@ texture = SubResource("CanvasTexture_mgp14")
 shape = SubResource("RectangleShape2D_v1c3o")
 
 [node name="TOP" type="StaticBody2D" parent="."]
-position = Vector2(1008, -741)
+position = Vector2(1044, -1964)
 scale = Vector2(10, 1)
 collision_mask = 6
 

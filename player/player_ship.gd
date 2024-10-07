@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+var basic_bolt = preload("res://player/basic_bolt.tscn")
+
 @onready var main_thrust_particles: GPUParticles2D = $Pivot/MainThrustParticles
 @onready var left_thrust_particles: GPUParticles2D = $Pivot/LeftThrustParticles
 @onready var right_thrust_particles: GPUParticles2D = $Pivot/RightThrustParticles
@@ -13,6 +15,8 @@ extends CharacterBody2D
 @onready var forward_thrust_texture: TextureRect = $Pivot/ForwardThrust
 @onready var rear_left_thrust_texture: TextureRect = $Pivot/RearLeftThrust
 @onready var rear_right_thrust_texture: TextureRect = $Pivot/RearRightThrust
+
+@onready var main_cannon_marker: Marker2D = $Pivot/MainCannonMarker
 
 @export var impulse_acceleration: float = 300.0
 @export var impulse_break: float = impulse_acceleration;
@@ -107,10 +111,15 @@ func _physics_process(delta: float) -> void:
 			normalized_velocity *= - (impulse_break * delta)
 			velocity += normalized_velocity
 		
-	var rotation : float = delta * ANGULAR_SPEED * get_rotation_impulse()
-	rotate(rotation);
+	var new_rotation : float = delta * ANGULAR_SPEED * get_rotation_impulse()
+	rotate(new_rotation);
 	
 	velocity = velocity.min(Vector2(MAX_SPEED, MAX_SPEED)).max(Vector2(-MAX_SPEED, -MAX_SPEED))
+	
+	if Input.is_action_just_pressed("fire"):
+		var bolt_instance = basic_bolt.instantiate()
+		add_child(bolt_instance)
+		bolt_instance.initialize(main_cannon_marker.global_position, -get_facing(), velocity)
 
 	move_and_slide()
 

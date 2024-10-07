@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxp3h3nxdmcht"]
+
+[ext_resource type="Script" path="res://player/basic_bolt.gd" id="1_c34d1"]
+[ext_resource type="Shader" path="res://shader/ship_laser.gdshader" id="1_t32kx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_spck4"]
+shader = ExtResource("1_t32kx")
+shader_parameter/star_rays = 1.0
+shader_parameter/brightness1 = 1.0
+shader_parameter/brightness2 = 0.5
+shader_parameter/brightness3 = 0.5
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_qf4ed"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vu4s1"]
+radius = 44.5533
+
+[node name="BasicBolt" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_c34d1")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_spck4")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_qf4ed")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vu4s1")

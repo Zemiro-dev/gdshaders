@@ -9,6 +9,6 @@ void fragment() {
 	float ship = polygon(UV + vec2(0., - .078 ), 3);
 	ship = 1. - step(.57735, ship);
 	ship = ship - cockpit;
-	
+
 	COLOR = vec4(vec3(ship) * BLUE + vec3(cockpit) * WHITE, ship + cockpit);
 }
