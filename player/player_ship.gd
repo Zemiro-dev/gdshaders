@@ -118,7 +118,7 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("fire"):
 		var bolt_instance = basic_bolt.instantiate()
-		add_child(bolt_instance)
+		get_tree().root.add_child(bolt_instance)
 		bolt_instance.initialize(main_cannon_marker.global_position, -get_facing(), velocity)
 
 	move_and_slide()
