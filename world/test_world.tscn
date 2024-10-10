@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://c7fo2we3emmg2"]
+[gd_scene load_steps=12 format=3 uid="uid://c7fo2we3emmg2"]
 
 [ext_resource type="PackedScene" uid="uid://k8nbtwxisbbw" path="res://player/player_ship.tscn" id="1_apm65"]
 [ext_resource type="PackedScene" uid="uid://kjklqigokfoo" path="res://world/background_grid.tscn" id="1_htvu4"]
 [ext_resource type="Script" path="res://world/test_world.gd" id="1_ss4vj"]
+[ext_resource type="PackedScene" uid="uid://w5m2rs6uhks4" path="res://enemy/basic_turret.tscn" id="4_8rtal"]
 [ext_resource type="Shader" path="res://shader/space_block.gdshader" id="4_uetue"]
 [ext_resource type="Texture2D" uid="uid://chbtyee7uvte8" path="res://icon.svg" id="5_btkgd"]
 
@@ -53,6 +54,9 @@ z_as_relative = false
 position = Vector2(732, 510)
 
 [node name="Camera2D" type="Camera2D" parent="PlayerShip"]
+
+[node name="BasicTurret" parent="." instance=ExtResource("4_8rtal")]
+position = Vector2(1757, 216)
 
 [node name="BigBlock" type="StaticBody2D" parent="."]
 position = Vector2(1248, 564)
