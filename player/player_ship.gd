@@ -44,30 +44,34 @@ func _physics_process(delta: float) -> void:
 	var impulse_particles_up := []
 	var impulse_particles_down := []
 	if impulse_on:
-		var aia = impulse.angle_to(get_facing()) #auto_impulse_angle, lots of .1s help with deadzone
-		print(aia)
-		if aia > -PI/6 and aia < PI/6:
+		var bowToImpulse := (-transform.y).angle_to(impulse)
+		var starboardToImpulse := (transform.x).angle_to(impulse)
+		var base_tolerance := PI/2.0
+		var fbdead = PI/6.0;
+		var lrdead = PI/4.0;
+		
+		if abs(bowToImpulse) > base_tolerance + fbdead:
 			impulse_up.append(forward_thrust_texture)
 			impulse_particles_up.append(forward_thrust_particles)
 		else:
 			impulse_down.append(forward_thrust_texture)
 			impulse_particles_down.append(forward_thrust_particles)
 		
-		if aia > .2 and aia < PI-.2:
+		if abs(starboardToImpulse) < base_tolerance - lrdead:
 			impulse_up.append(left_thrust_texture)
 			impulse_particles_up.append(left_thrust_particles)
 		else:
 			impulse_down.append(left_thrust_texture)
 			impulse_particles_down.append(left_thrust_particles)
 		
-		if aia < -.2 and aia > -PI+.2:
+		if abs(starboardToImpulse) > base_tolerance + lrdead:
 			impulse_up.append(right_thrust_texture)
 			impulse_particles_up.append(right_thrust_particles)
 		else:
 			impulse_down.append(right_thrust_texture)
 			impulse_particles_down.append(right_thrust_particles)
 		
-		if aia < -PI/2-.1 or aia > PI/2+.1:
+		if abs(bowToImpulse) < base_tolerance - fbdead:
 			impulse_up.append(rear_left_thrust_texture)
 			impulse_up.append(rear_right_thrust_texture)
 			impulse_particles_up.append(rear_left_thrust_particles)
@@ -119,7 +123,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("fire"):
 		var bolt_instance = basic_bolt.instantiate()
 		get_tree().root.add_child(bolt_instance)
-		bolt_instance.initialize(main_cannon_marker.global_position, -get_facing(), velocity)
+		bolt_instance.shoot(main_cannon_marker.global_transform)
 
 	move_and_slide()
 
@@ -132,8 +136,4 @@ func get_impulse() -> Vector2:
 	return Vector2(Input.get_axis("impulse_left", "impulse_right"), Input.get_axis("impulse_up", "impulse_down"));
 
 func get_main_thrust() -> Vector2:
-	return -1 * get_facing() * Input.get_action_strength("main_thrust")
-
-
-func get_facing() -> Vector2:
-	return Vector2.from_angle(rotation + PI/2.0)
+	return -transform.y * Input.get_action_strength("main_thrust")

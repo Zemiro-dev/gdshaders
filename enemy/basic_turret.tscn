@@ -17,6 +17,7 @@ radius = 800.0
 
 [node name="BasicTurret" type="CharacterBody2D"]
 light_mask = 2
+collision_layer = 4
 script = ExtResource("1_ucdna")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]

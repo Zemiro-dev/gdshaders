@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxp3h3nxdmcht"]
+[gd_scene load_steps=7 format=3 uid="uid://bxp3h3nxdmcht"]
 
 [ext_resource type="Script" path="res://player/basic_bolt.gd" id="1_c34d1"]
 [ext_resource type="Shader" path="res://shader/ship_laser.gdshader" id="1_t32kx"]
@@ -15,10 +15,12 @@ shader_parameter/brightness3 = 0.5
 [sub_resource type="CircleShape2D" id="CircleShape2D_vu4s1"]
 radius = 44.5533
 
-[node name="BasicBolt" type="RigidBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ocjbh"]
+radius = 100.0
+
+[node name="BasicBolt" type="Area2D"]
 collision_layer = 0
-collision_mask = 0
-gravity_scale = 0.0
+collision_mask = 4
 script = ExtResource("1_c34d1")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
@@ -36,10 +38,17 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("CanvasTexture_qf4ed")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hurtbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vu4s1")
 
 [node name="Lifetime" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 autostart = true
+
+[node name="DetectionZone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionZone"]
+shape = SubResource("CircleShape2D_ocjbh")

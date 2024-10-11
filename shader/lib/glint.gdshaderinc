@@ -5,7 +5,7 @@ const float TWO_PI = 6.28318530718;
 float square(vec2 uv, float width)
 {
 	uv = uv * 2.0 - 1.0;
-	
+
 	vec2 abs_uv = abs(uv.xy);
 	float square = step(width, max(abs_uv.x, abs_uv.y));
 	return square;
@@ -23,7 +23,7 @@ float polygon(vec2 uv, int sides)
 
 	float angle = atan(uv.x, uv.y);
 	float radius = TWO_PI / float(sides);
-	
+
 	float dist = cos(floor(0.5 + angle / radius) * radius - angle) * length(uv);
 	return dist;
 }
@@ -55,7 +55,7 @@ float fbm(vec2 uv, int octaves, float lacunarity, float gain) {
     float amplitude = 0.5;
     float frequency = 1.0;
 	float value = 0.0;
-	
+
     for(int i = 0; i < octaves; i++) {
         value += amplitude * noise(frequency * uv);
         amplitude *= gain;
@@ -73,7 +73,7 @@ mat2 rotate2d(float _angle){
 vec2 rotate(vec2 uv, vec2 pivot, float angle)
 {
 	mat2 rotation = rotate2d(angle);
-	
+
 	uv -= pivot;
 	uv = uv * rotation;
 	uv += pivot;
@@ -83,7 +83,7 @@ vec2 rotate(vec2 uv, vec2 pivot, float angle)
 vec2 scale(vec2 uv, float x, float y)
 {
 	mat2 scale = mat2(vec2(x, 0.0), vec2(0.0, y));
-	
+
 	uv -= 0.5;
 	uv = uv * scale;
 	uv += 0.5;
