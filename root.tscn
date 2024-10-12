@@ -8,7 +8,7 @@
 [ext_resource type="Shader" path="res://shader/shape_scratch.gdshader" id="6_idt4w"]
 [ext_resource type="Shader" path="res://shader/unit_triangle.gdshader" id="7_wm6uv"]
 [ext_resource type="Shader" path="res://shader/ship_laser.gdshader" id="8_k0q7s"]
-[ext_resource type="Shader" path="res://shader/basic_turret.gdshader" id="9_0jbl1"]
+[ext_resource type="Shader" path="res://shader/healthbar.gdshader" id="9_k26bi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0dgx2"]
 shader = ExtResource("1_ft3tv")
@@ -46,8 +46,9 @@ shader_parameter/brightness3 = 0.5
 [sub_resource type="CanvasTexture" id="CanvasTexture_3cfo5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_utd7s"]
-shader = ExtResource("9_0jbl1")
-shader_parameter/barWidth = 0.5
+shader = ExtResource("9_k26bi")
+shader_parameter/remaining = 1.0
+shader_parameter/units = 5.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_sffh7"]
 
@@ -114,8 +115,7 @@ texture = SubResource("CanvasTexture_3cfo5")
 
 [node name="TextureRect3" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_utd7s")
-offset_left = 825.0
-offset_top = 10.0
-offset_right = 1337.0
-offset_bottom = 522.0
+offset_left = 5.0
+offset_right = 1033.0
+offset_bottom = 126.0
 texture = SubResource("CanvasTexture_sffh7")
