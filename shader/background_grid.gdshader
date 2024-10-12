@@ -15,5 +15,5 @@ void fragment() {
 		color = WHITE;
 	}
 
-	COLOR = vec4(color, 1.0);
+	COLOR = vec4(BLACK, 1.0);
 }

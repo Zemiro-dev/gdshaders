@@ -9,13 +9,15 @@ var target: CharacterBody2D = null;
 @export var eject_velocity := Vector2(0.0, -1500.0)
 @export var acceleration := Vector2.ZERO
 @export var max_speed := 1500.0
-@export var steer_force = 20000.0
+@export var steer_force = 2000.0
+@export var spread = PI / 32
+@export var cooldown = .1
 
 var velocity := Vector2.ZERO
 
 func shoot(_global_transform):
 	global_transform = _global_transform
-	velocity = eject_velocity.rotated(eject_velocity.angle_to(-transform.y))
+	velocity = eject_velocity.rotated(eject_velocity.angle_to(-transform.y)).rotated((randf() * spread) - spread / 2)
 	
 	#ttl
 	lifetime.timeout.connect(_on_lifetime_timeout)
@@ -29,7 +31,7 @@ func _physics_process(delta: float) -> void:
 	acceleration += seek()
 	velocity += acceleration * delta
 	velocity = velocity.limit_length(max_speed)
-	rotation = velocity.angle()
+	rotation = velocity.angle() + PI/2.0;
 	position += velocity * delta
 
 func seek():
@@ -50,3 +52,4 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_detection_zone_entered(body: Node2D) -> void:
 	target = body;
+ 

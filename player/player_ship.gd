@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 var basic_bolt = preload("res://player/basic_bolt.tscn")
 
@@ -18,21 +19,29 @@ var basic_bolt = preload("res://player/basic_bolt.tscn")
 
 @onready var main_cannon_marker: Marker2D = $Pivot/MainCannonMarker
 
-@export var impulse_acceleration: float = 300.0
+@export var impulse_acceleration: float = 1000.0
 @export var impulse_break: float = impulse_acceleration;
-@export var main_thrust_acceleration: float = 1000.0
+@export var main_thrust_acceleration: float = 3000.0
+@export var max_speed := 2000.0
 const ANGULAR_SPEED := PI;
-const MAX_SPEED := 2000.0;
+
+var primary_weapon_cooldown = 0.0
+
+
+func _ready() -> void:
+	if has_node("Camera2D"):
+		$Camera2D.player = self
 
 
 func _physics_process(delta: float) -> void:
-	var impulse: Vector2 = get_impulse()	
-	var main_thrust: Vector2 = get_main_thrust()
+	var impulse: Vector2 = get_impulse()
+	var main_thrust: Vector2 = get_main_thrust() * get_facing()
 	
 	var impulse_on: bool = not impulse.is_zero_approx()
 	var main_thrust_on: bool = not main_thrust.is_zero_approx()
 	
 	if main_thrust_on:
+		GlobalSignals.camera_shake_requested.emit(0.2, 250)
 		main_thrust_texture.visible = true
 		main_thrust_particles.emitting = true
 	else:
@@ -44,7 +53,7 @@ func _physics_process(delta: float) -> void:
 	var impulse_particles_up := []
 	var impulse_particles_down := []
 	if impulse_on:
-		var bowToImpulse := (-transform.y).angle_to(impulse)
+		var bowToImpulse := get_facing().angle_to(impulse)
 		var starboardToImpulse := (transform.x).angle_to(impulse)
 		var base_tolerance := PI/2.0
 		var fbdead = PI/6.0;
@@ -104,8 +113,7 @@ func _physics_process(delta: float) -> void:
 		particles.emitting = false
 	
 	if impulse_on or main_thrust_on:
-		var impulse_reverse_multiplier: float = 2 if abs(impulse.angle_to(velocity)) > PI / 2 else 1
-		velocity += impulse * impulse_acceleration * delta * impulse_reverse_multiplier
+		velocity += impulse * impulse_acceleration * delta
 		velocity += main_thrust * main_thrust_acceleration * delta
 	else:
 		if velocity.length() < (impulse_break * delta):
@@ -118,12 +126,17 @@ func _physics_process(delta: float) -> void:
 	var new_rotation : float = delta * ANGULAR_SPEED * get_rotation_impulse()
 	rotate(new_rotation);
 	
-	velocity = velocity.min(Vector2(MAX_SPEED, MAX_SPEED)).max(Vector2(-MAX_SPEED, -MAX_SPEED))
+	if velocity.length() > max_speed:
+		velocity = velocity.normalized() * max_speed
 	
-	if Input.is_action_just_pressed("fire"):
+	if Input.is_action_pressed("fire") and primary_weapon_cooldown <= 0.0:
 		var bolt_instance = basic_bolt.instantiate()
+		primary_weapon_cooldown = bolt_instance.cooldown
 		get_tree().root.add_child(bolt_instance)
 		bolt_instance.shoot(main_cannon_marker.global_transform)
+	
+	if primary_weapon_cooldown > 0.0:
+		primary_weapon_cooldown -= delta
 
 	move_and_slide()
 
@@ -135,5 +148,17 @@ func get_rotation_impulse() -> float:
 func get_impulse() -> Vector2:
 	return Vector2(Input.get_axis("impulse_left", "impulse_right"), Input.get_axis("impulse_up", "impulse_down"));
 
-func get_main_thrust() -> Vector2:
-	return -transform.y * Input.get_action_strength("main_thrust")
+func get_main_thrust() -> float:
+	return Input.get_action_strength("main_thrust")
+	
+
+func get_facing() -> Vector2:
+	return -transform.y
+	
+
+func get_global_facing() -> Vector2:
+	return -global_transform.y
+
+
+func speed_normalized() -> float:
+	return velocity.length() / max_speed;
