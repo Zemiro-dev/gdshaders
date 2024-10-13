@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Entity
 class_name Player
 
 var basic_bolt = preload("res://player/basic_bolt.tscn")
@@ -29,11 +29,13 @@ var primary_weapon_cooldown = 0.0
 
 
 func _ready() -> void:
+	super()
 	if has_node("Camera2D"):
 		$Camera2D.player = self
 
 
 func _physics_process(delta: float) -> void:
+	super(delta)
 	var impulse: Vector2 = get_impulse()
 	var main_thrust: Vector2 = get_main_thrust() * get_facing()
 	

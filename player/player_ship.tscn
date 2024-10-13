@@ -53,6 +53,7 @@ shader = ExtResource("1_a5ce8")
 [node name="PlayerShip" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_y4txy")
+max_health = 5
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, -76, 64, 35, -64, 35)

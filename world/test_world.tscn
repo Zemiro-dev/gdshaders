@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c7fo2we3emmg2"]
+[gd_scene load_steps=17 format=3 uid="uid://c7fo2we3emmg2"]
 
 [ext_resource type="PackedScene" uid="uid://k8nbtwxisbbw" path="res://player/player_ship.tscn" id="1_apm65"]
 [ext_resource type="PackedScene" uid="uid://kjklqigokfoo" path="res://world/background_grid.tscn" id="1_htvu4"]
@@ -8,6 +8,7 @@
 [ext_resource type="Shader" path="res://shader/space_block.gdshader" id="4_uetue"]
 [ext_resource type="Texture2D" uid="uid://chbtyee7uvte8" path="res://icon.svg" id="5_btkgd"]
 [ext_resource type="Shader" path="res://shader/healthbar.gdshader" id="8_doxqx"]
+[ext_resource type="Script" path="res://ui/life_bar.gd" id="9_4cm7t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1c3o"]
 size = Vector2(512, 512)
@@ -364,3 +365,4 @@ offset_left = 5.0
 offset_right = 517.0
 offset_bottom = 64.0
 texture = SubResource("CanvasTexture_8kou0")
+script = ExtResource("9_4cm7t")
