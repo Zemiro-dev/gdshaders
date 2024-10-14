@@ -7,7 +7,6 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	background_grid.player = player_ship
-	player_ship.current_health = 2
 	life_bar.initialize(player_ship)
 
 

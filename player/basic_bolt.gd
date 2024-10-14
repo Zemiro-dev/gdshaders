@@ -5,6 +5,7 @@ var target: CharacterBody2D = null;
 
 @onready var detection_zone: Area2D = $DetectionZone
 @onready var lifetime: Timer = $Lifetime
+@onready var hurtbox: Hurtbox = $Hurtbox
 
 @export var eject_velocity := Vector2(0.0, -1500.0)
 @export var acceleration := Vector2.ZERO
@@ -23,6 +24,7 @@ func shoot(_global_transform):
 	lifetime.timeout.connect(_on_lifetime_timeout)
 	detection_zone.body_entered.connect(_on_detection_zone_entered)
 	body_entered.connect(_on_body_entered)
+	hurtbox.damage_dealt.connect(_on_damage_dealt)
 
 func _physics_process(delta: float) -> void:
 	if target != null:
@@ -51,5 +53,10 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 func _on_detection_zone_entered(body: Node2D) -> void:
-	target = body;
+	if !body.is_dead:
+		target = body;
+
+
+func _on_damage_dealt(body: Node2D) -> void:
+	queue_free()
  

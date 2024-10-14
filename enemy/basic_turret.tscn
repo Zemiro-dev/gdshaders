@@ -9,6 +9,7 @@ radius = 60.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xr5rv"]
 shader = ExtResource("1_6kb45")
 shader_parameter/barWidth = 0.3
+shader_parameter/progress = 0.2
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_35536"]
 
@@ -19,13 +20,14 @@ radius = 800.0
 light_mask = 2
 collision_layer = 4
 script = ExtResource("1_ucdna")
+max_health = 5
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_svmu5")
 
 [node name="Pivot" type="Node2D" parent="."]
 
-[node name="TextureRect" type="TextureRect" parent="Pivot"]
+[node name="Sprite" type="TextureRect" parent="Pivot"]
 material = SubResource("ShaderMaterial_xr5rv")
 anchors_preset = 8
 anchor_left = 0.5
