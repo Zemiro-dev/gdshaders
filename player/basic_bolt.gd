@@ -28,9 +28,9 @@ func shoot(_global_transform):
 
 func _physics_process(delta: float) -> void:
 	if target != null:
-		pass
+		acceleration += seek()
 	
-	acceleration += seek()
+	
 	velocity += acceleration * delta
 	velocity = velocity.limit_length(max_speed)
 	rotation = velocity.angle() + PI/2.0;
@@ -55,7 +55,11 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_detection_zone_entered(body: Node2D) -> void:
 	if !body.is_dead:
 		target = body;
+		target.on_death.connect(_on_target_death)
 
+
+func _on_target_death(entity: Entity):
+	target = null #make null or make bad reference later
 
 func _on_damage_dealt(body: Node2D) -> void:
 	queue_free()

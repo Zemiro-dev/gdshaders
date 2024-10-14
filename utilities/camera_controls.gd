@@ -27,8 +27,8 @@ func _process(delta: float) -> void:
 	var direction = Vector2.ZERO
 	if player != null:
 		direction = player.get_global_facing()
-		if !player.velocity.is_zero_approx():
-			direction += player.get_impulse() + (player.get_main_thrust() * player.get_global_facing())
+		#if !player.velocity.is_zero_approx():
+			#direction += player.get_impulse() + (player.get_main_thrust() * player.get_global_facing())
 		direction = direction.normalized()
 	
 	if not shake_timer.is_stopped():

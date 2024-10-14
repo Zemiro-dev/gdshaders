@@ -1,0 +1,211 @@
+[gd_scene load_steps=12 format=3 uid="uid://k8nbtwxisbbw"]
+
+[ext_resource type="Shader" path="res://shader/unit_triangle.gdshader" id="1_a5ce8"]
+[ext_resource type="Script" path="res://player/player_ship.gd" id="1_y4txy"]
+[ext_resource type="PackedScene" uid="uid://dquv283uvwc4b" path="res://player/test_particles.tscn" id="2_o610h"]
+[ext_resource type="Shader" path="res://shader/thrust.gdshader" id="3_eo3qa"]
+[ext_resource type="Texture2D" uid="uid://bj32yg41s8648" path="res://data/light/point.webp" id="4_lvblp"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8gfpo"]
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 10.0
+flatness = 0.5
+initial_velocity_min = 1024.0
+initial_velocity_max = 1024.0
+angular_velocity_min = 360.0
+angular_velocity_max = 360.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -100.0
+linear_accel_max = -100.0
+radial_accel_min = 89.26
+radial_accel_max = 89.26
+scale_min = 10.0
+scale_max = 10.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w5lr4"]
+shader = ExtResource("3_eo3qa")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ql6pc"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uo36b"]
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 10.0
+flatness = 0.5
+initial_velocity_min = 512.0
+initial_velocity_max = 512.0
+angular_velocity_min = 360.0
+angular_velocity_max = 360.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -100.0
+linear_accel_max = -100.0
+radial_accel_min = 89.26
+radial_accel_max = 89.26
+scale_min = 5.0
+scale_max = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ohyys"]
+shader = ExtResource("1_a5ce8")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_llk3e"]
+
+[node name="PlayerShip" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_y4txy")
+max_health = 5
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -76, 64, 35, -64, 35)
+
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="MainThrustParticles" parent="Pivot" instance=ExtResource("2_o610h")]
+light_mask = 2
+position = Vector2(0, 59)
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_8gfpo")
+lifetime = 0.5
+randomness = 0.1
+
+[node name="MainThrust" type="TextureRect" parent="Pivot"]
+material = SubResource("ShaderMaterial_w5lr4")
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = 33.0
+offset_right = 32.0
+offset_bottom = 161.0
+grow_horizontal = 2
+texture = SubResource("CanvasTexture_ql6pc")
+
+[node name="LeftThrustParticles" parent="Pivot" instance=ExtResource("2_o610h")]
+light_mask = 2
+position = Vector2(-41, 5)
+rotation = 1.5708
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_uo36b")
+lifetime = 0.2
+randomness = 0.1
+
+[node name="LeftThrust" type="TextureRect" parent="Pivot"]
+material = SubResource("ShaderMaterial_w5lr4")
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -13.0
+offset_top = -12.0
+offset_right = 19.0
+offset_bottom = 52.0
+grow_horizontal = 2
+rotation = 1.5708
+texture = SubResource("CanvasTexture_ql6pc")
+
+[node name="RightThrustParticles" parent="Pivot" instance=ExtResource("2_o610h")]
+light_mask = 2
+position = Vector2(44, 5)
+rotation = -1.5708
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_uo36b")
+lifetime = 0.2
+randomness = 0.1
+
+[node name="RightThrust" type="TextureRect" parent="Pivot"]
+material = SubResource("ShaderMaterial_w5lr4")
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 13.0
+offset_top = 20.0
+offset_right = 45.0
+offset_bottom = 84.0
+grow_horizontal = 2
+rotation = -1.5708
+texture = SubResource("CanvasTexture_ql6pc")
+
+[node name="ForwardThrustParticles" parent="Pivot" instance=ExtResource("2_o610h")]
+light_mask = 2
+position = Vector2(0, -71)
+rotation = -3.14159
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_uo36b")
+lifetime = 0.2
+randomness = 0.1
+
+[node name="ForwardThrust" type="TextureRect" parent="Pivot"]
+material = SubResource("ShaderMaterial_w5lr4")
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 16.0
+offset_top = -36.0
+offset_right = 48.0
+offset_bottom = 28.0
+grow_horizontal = 2
+rotation = 3.14159
+texture = SubResource("CanvasTexture_ql6pc")
+
+[node name="RearLeftThrustParticles" parent="Pivot" instance=ExtResource("2_o610h")]
+light_mask = 2
+position = Vector2(-34, 54)
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_uo36b")
+lifetime = 0.2
+randomness = 0.1
+
+[node name="RearLeftThrust" type="TextureRect" parent="Pivot"]
+material = SubResource("ShaderMaterial_w5lr4")
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 24.0
+offset_right = -18.0
+offset_bottom = 88.0
+grow_horizontal = 2
+texture = SubResource("CanvasTexture_ql6pc")
+
+[node name="RearRightThrustParticles" parent="Pivot" instance=ExtResource("2_o610h")]
+light_mask = 2
+position = Vector2(34, 54)
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_uo36b")
+lifetime = 0.2
+randomness = 0.1
+
+[node name="RearRightThrust" type="TextureRect" parent="Pivot"]
+material = SubResource("ShaderMaterial_w5lr4")
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 18.0
+offset_top = 24.0
+offset_right = 50.0
+offset_bottom = 88.0
+grow_horizontal = 2
+texture = SubResource("CanvasTexture_ql6pc")
+
+[node name="ShipBody" type="TextureRect" parent="Pivot"]
+material = SubResource("ShaderMaterial_ohyys")
+offset_left = -64.0
+offset_top = -76.0
+offset_right = 64.0
+offset_bottom = 52.0
+texture = SubResource("CanvasTexture_llk3e")
+
+[node name="ShadowCaster" type="PointLight2D" parent="Pivot"]
+range_layer_min = -1
+shadow_enabled = true
+texture = ExtResource("4_lvblp")
+texture_scale = 10.0
+
+[node name="NoShadow" type="PointLight2D" parent="Pivot"]
+position = Vector2(13, -40)
+range_layer_min = -1
+range_item_cull_mask = 2
+texture = ExtResource("4_lvblp")
+texture_scale = 10.0
+
+[node name="MainCannonMarker" type="Marker2D" parent="Pivot"]
+position = Vector2(0, -76)

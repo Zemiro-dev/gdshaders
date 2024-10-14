@@ -1,6 +1,7 @@
 extends Entity
 class_name Player
 
+
 var basic_bolt = preload("res://player/basic_bolt.tscn")
 
 @onready var main_thrust_particles: GPUParticles2D = $Pivot/MainThrustParticles
@@ -20,7 +21,8 @@ var basic_bolt = preload("res://player/basic_bolt.tscn")
 @onready var main_cannon_marker: Marker2D = $Pivot/MainCannonMarker
 
 @export var impulse_acceleration: float = 1000.0
-@export var impulse_break: float = impulse_acceleration;
+@export var drag: float = 200.0
+@export var handling_multiplier: float = 3.0
 @export var main_thrust_acceleration: float = 3000.0
 @export var max_speed := 2000.0
 const ANGULAR_SPEED := PI;
@@ -115,14 +117,20 @@ func _physics_process(delta: float) -> void:
 		particles.emitting = false
 	
 	if impulse_on or main_thrust_on:
-		velocity += impulse * impulse_acceleration * delta
-		velocity += main_thrust * main_thrust_acceleration * delta
-	else:
-		if velocity.length() < (impulse_break * delta):
+		var impulse_velocity = impulse * impulse_acceleration * delta
+		var main_thrust_velocity = main_thrust * main_thrust_acceleration * delta
+		var velocity_to_apply = impulse_velocity + main_thrust_velocity
+		if (sign(velocity_to_apply.x) != sign(velocity.x)):
+			velocity_to_apply.x *= handling_multiplier
+		if (sign(velocity_to_apply.y) != sign(velocity.y)):
+			velocity_to_apply.y *= handling_multiplier
+		velocity += velocity_to_apply
+	elif !velocity.is_zero_approx() :
+		if velocity.length() < (drag * delta):
 			velocity = Vector2.ZERO
 		else:
 			var normalized_velocity = velocity.normalized()
-			normalized_velocity *= - (impulse_break * delta)
+			normalized_velocity *= - (drag * delta)
 			velocity += normalized_velocity
 		
 	var new_rotation : float = delta * ANGULAR_SPEED * get_rotation_impulse()
@@ -150,13 +158,16 @@ func get_rotation_impulse() -> float:
 func get_impulse() -> Vector2:
 	return Vector2(Input.get_axis("impulse_left", "impulse_right"), Input.get_axis("impulse_up", "impulse_down"));
 
+
 func get_main_thrust() -> float:
 	return Input.get_action_strength("main_thrust")
 	
 
+
 func get_facing() -> Vector2:
 	return -transform.y
 	
+
 
 func get_global_facing() -> Vector2:
 	return -global_transform.y
