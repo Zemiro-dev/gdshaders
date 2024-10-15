@@ -12,6 +12,6 @@ void fragment() {
 	
 	float glow = (1. - circle(UV, .18 , .3 )) * (1. - inner_shell) * (1. - outer_shell);
 	vec3 glow_color = mix(WHITE, RED, .7) * glow;
-	glow = glow / 2.0;
+	glow = glow / (2.0 + sin(TIME*2.) * .5);
 	COLOR = vec4(outer_shell_color + inner_shell_color + glow_color, inner_shell + outer_shell + glow);
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b40y5i886yjtt"]
+[gd_scene load_steps=26 format=3 uid="uid://b40y5i886yjtt"]
 
 [ext_resource type="Shader" path="res://shader/energy_shield.gdshader" id="1_ft3tv"]
 [ext_resource type="Script" path="res://root.gd" id="1_xn33p"]
@@ -9,6 +9,7 @@
 [ext_resource type="Shader" path="res://shader/red_orb.gdshader" id="8_hq7tk"]
 [ext_resource type="Shader" path="res://shader/basic_bolt.gdshader" id="8_k0q7s"]
 [ext_resource type="Shader" path="res://shader/healthbar.gdshader" id="9_k26bi"]
+[ext_resource type="Shader" path="res://shader/world/dark_monolith_1.gdshader" id="10_2new3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0dgx2"]
 shader = ExtResource("1_ft3tv")
@@ -49,6 +50,11 @@ shader_parameter/remaining = 1.0
 shader_parameter/units = 5.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_sffh7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_688j3"]
+shader = ExtResource("10_2new3")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_h5ivo"]
 
 [node name="Root" type="Node2D"]
 script = ExtResource("1_xn33p")
@@ -116,3 +122,11 @@ offset_left = 5.0
 offset_right = 1033.0
 offset_bottom = 126.0
 texture = SubResource("CanvasTexture_sffh7")
+
+[node name="Monolith1" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_688j3")
+offset_left = 1204.0
+offset_top = 54.0
+offset_right = 1716.0
+offset_bottom = 566.0
+texture = SubResource("CanvasTexture_h5ivo")
