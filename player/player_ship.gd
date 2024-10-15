@@ -27,7 +27,7 @@ var basic_bolt = preload("res://player/basic_bolt.tscn")
 @export var max_speed := 2000.0
 const ANGULAR_SPEED := PI;
 
-var primary_weapon_cooldown = 0.0
+var primary_weapon_cooldown := 0.0
 
 
 func _ready() -> void:

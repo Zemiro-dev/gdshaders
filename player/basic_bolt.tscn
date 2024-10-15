@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bxp3h3nxdmcht"]
 
 [ext_resource type="Script" path="res://player/basic_bolt.gd" id="1_c34d1"]
-[ext_resource type="Shader" path="res://shader/ship_laser.gdshader" id="1_t32kx"]
+[ext_resource type="Shader" path="res://shader/basic_bolt.gdshader" id="1_t32kx"]
 [ext_resource type="PackedScene" uid="uid://ba0ggrxjujuhf" path="res://entities/hurtbox.tscn" id="3_xb3cc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_spck4"]

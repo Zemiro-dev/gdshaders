@@ -10,6 +10,7 @@ radius = 60.0
 shader = ExtResource("1_6kb45")
 shader_parameter/barWidth = 0.3
 shader_parameter/progress = 0.2
+shader_parameter/is_grayscale = false
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_35536"]
 
@@ -41,6 +42,9 @@ offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("CanvasTexture_35536")
+
+[node name="MainCannonMarker" type="Marker2D" parent="Pivot"]
+position = Vector2(0, -80)
 
 [node name="DetectionZone" type="Area2D" parent="."]
 visible = false

@@ -5,6 +5,21 @@ shader_type canvas_item;
 
 uniform float barWidth : hint_range(0.0, 1.0) = 0.3;
 uniform float progress : hint_range(0.0, 1.0) = 0.2;
+uniform bool is_grayscale = false;
+
+
+float convert_to_grayscale(vec3 rgb) {
+	float gray = dot(rgb, vec3(0.2126, 0.7152, 0.0722));
+	return gray;
+}
+
+vec3 convert_color(vec3 rgb) {
+	if (is_grayscale) {
+		return vec3(convert_to_grayscale(rgb));
+	}
+	return rgb;
+}
+
 
 void fragment() {
 	//float progress = fract(TIME/3.0);
@@ -21,9 +36,9 @@ void fragment() {
 	rightEye = 1. - step(.05, rightEye);
 	float eye = leftEye + rightEye;
 	
-	vec3 progressBarColor = RED * progressBar;
-	vec3 eyeColor = eye * mix(YELLOW, RED, progress);
-	vec3 bodyColor = mix(BLUE, RED, .58) * feathered_body * (1.0-bar) * (1.0-eye);
-	vec3 barColor = mix(RED, YELLOW, .5) * (bar - progressBar);
+	vec3 progressBarColor = convert_color(RED) * progressBar;
+	vec3 eyeColor = eye * convert_color(mix(YELLOW, RED, progress));
+	vec3 bodyColor = convert_color(mix(BLUE, RED, .58)) * feathered_body * (1.0-bar) * (1.0-eye);
+	vec3 barColor = convert_color(mix(RED, YELLOW, .5)) * (bar - progressBar);
 	COLOR = vec4(progressBarColor + bodyColor + barColor + eyeColor, progressBar + feathered_body);
 }
