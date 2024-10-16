@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c7fo2we3emmg2"]
+[gd_scene load_steps=20 format=3 uid="uid://c7fo2we3emmg2"]
 
 [ext_resource type="PackedScene" uid="uid://k8nbtwxisbbw" path="res://player/player_ship.tscn" id="1_apm65"]
 [ext_resource type="PackedScene" uid="uid://kjklqigokfoo" path="res://world/background_grid.tscn" id="1_htvu4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://utilities/camera_controls.gd" id="4_kdbjg"]
 [ext_resource type="Shader" path="res://shader/space_block.gdshader" id="4_uetue"]
 [ext_resource type="Texture2D" uid="uid://chbtyee7uvte8" path="res://icon.svg" id="5_btkgd"]
+[ext_resource type="Shader" path="res://shader/world/dark_monolith_1.gdshader" id="5_lfufx"]
 [ext_resource type="Shader" path="res://shader/healthbar.gdshader" id="8_doxqx"]
 [ext_resource type="Script" path="res://ui/life_bar.gd" id="9_4cm7t"]
 
@@ -23,6 +24,11 @@ polygon = PackedVector2Array(59.1, -64, -59, -64, -63.8, -59, -64, 61, -60.3, 64
 shader = ExtResource("4_uetue")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_mgp14"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e5of4"]
+shader = ExtResource("5_lfufx")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_02xa6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3qa5j"]
 shader = ExtResource("8_doxqx")
@@ -355,6 +361,14 @@ texture = SubResource("CanvasTexture_mgp14")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RIGHT"]
 visible = false
 shape = SubResource("RectangleShape2D_v1c3o")
+
+[node name="Monolith1" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_e5of4")
+offset_left = 447.0
+offset_top = 755.0
+offset_right = 959.0
+offset_bottom = 1011.0
+texture = SubResource("CanvasTexture_02xa6")
 
 [node name="UI" type="CanvasLayer" parent="."]
 

@@ -15,5 +15,5 @@ void fragment() {
 		color = WHITE;
 	}
 
-	COLOR = vec4(BLACK, 1.0);
+	COLOR = vec4(mix(MONOLITH_BLACK, PURPLE, .2), 1.0);
 }

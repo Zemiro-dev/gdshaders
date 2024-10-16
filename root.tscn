@@ -125,8 +125,8 @@ texture = SubResource("CanvasTexture_sffh7")
 
 [node name="Monolith1" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_688j3")
-offset_left = 1204.0
-offset_top = 54.0
-offset_right = 1716.0
-offset_bottom = 566.0
+offset_left = 1323.0
+offset_top = 90.0
+offset_right = 1835.0
+offset_bottom = 346.0
 texture = SubResource("CanvasTexture_h5ivo")
