@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://utilities/camera_controls.gd" id="4_kdbjg"]
 [ext_resource type="Shader" path="res://shader/space_block.gdshader" id="4_uetue"]
 [ext_resource type="Shader" path="res://shader/world/dark_monolith_1.gdshader" id="5_lfufx"]
-[ext_resource type="PackedScene" uid="uid://b6p2rd8ul4uet" path="res://world/space_block.tscn" id="6_s4txw"]
+[ext_resource type="PackedScene" path="res://world/space_block.tscn" id="6_s4txw"]
 [ext_resource type="Texture2D" uid="uid://7nknufbr1enf" path="res://icon_sq.svg" id="7_lss8f"]
 [ext_resource type="Shader" path="res://shader/healthbar.gdshader" id="8_doxqx"]
 [ext_resource type="Script" path="res://ui/life_bar.gd" id="9_4cm7t"]
