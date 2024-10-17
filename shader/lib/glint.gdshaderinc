@@ -34,7 +34,7 @@ float random (vec2 uv)
     return fract(sin(dot(uv.xy, vec2(12.9898,78.233))) * 43758.5453123);
 }
 
-float noise(vec2 uv) {
+float noisey(vec2 uv) {
     vec2 uv_index = floor(uv);
     vec2 uv_fract = fract(uv);
 
@@ -57,7 +57,7 @@ float fbm(vec2 uv, int octaves, float lacunarity, float gain) {
 	float value = 0.0;
 
     for(int i = 0; i < octaves; i++) {
-        value += amplitude * noise(frequency * uv);
+        value += amplitude * noisey(frequency * uv);
         amplitude *= gain;
         frequency *= lacunarity;
     }

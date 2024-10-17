@@ -3,7 +3,7 @@ extends Entity
 var player: CharacterBody2D = null
 
 @onready var detection_zone: Area2D = $DetectionZone
-@onready var sprite: TextureRect = $Pivot/Sprite
+@onready var sprite: Sprite2D = $Pivot/Sprite
 @onready var main_cannon_marker: Marker2D = $Pivot/MainCannonMarker
 
 @export var ignore_range := 1000

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c7fo2we3emmg2"]
+[gd_scene load_steps=25 format=3 uid="uid://c7fo2we3emmg2"]
 
 [ext_resource type="PackedScene" uid="uid://k8nbtwxisbbw" path="res://player/player_ship.tscn" id="1_apm65"]
 [ext_resource type="PackedScene" uid="uid://kjklqigokfoo" path="res://world/background_grid.tscn" id="1_htvu4"]
@@ -6,24 +6,44 @@
 [ext_resource type="PackedScene" uid="uid://w5m2rs6uhks4" path="res://enemy/basic_turret.tscn" id="4_8rtal"]
 [ext_resource type="Script" path="res://utilities/camera_controls.gd" id="4_kdbjg"]
 [ext_resource type="Shader" path="res://shader/space_block.gdshader" id="4_uetue"]
-[ext_resource type="Texture2D" uid="uid://chbtyee7uvte8" path="res://icon.svg" id="5_btkgd"]
 [ext_resource type="Shader" path="res://shader/world/dark_monolith_1.gdshader" id="5_lfufx"]
+[ext_resource type="PackedScene" uid="uid://b6p2rd8ul4uet" path="res://world/space_block.tscn" id="6_s4txw"]
+[ext_resource type="Texture2D" uid="uid://7nknufbr1enf" path="res://icon_sq.svg" id="7_lss8f"]
 [ext_resource type="Shader" path="res://shader/healthbar.gdshader" id="8_doxqx"]
 [ext_resource type="Script" path="res://ui/life_bar.gd" id="9_4cm7t"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1c3o"]
-size = Vector2(512, 512)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ub0ve"]
-shader = ExtResource("4_uetue")
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jd4ht"]
-polygon = PackedVector2Array(59.1, -64, -59, -64, -63.8, -59, -64, 61, -60.3, 64, 59.6, 64, 63.9, 59, 64, -61.1)
+[ext_resource type="Shader" path="res://shader/randomness.gdshader" id="11_0jx18"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kx25j"]
 shader = ExtResource("4_uetue")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_mgp14"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1c3o"]
+size = Vector2(512, 512)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_esv7j"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_l0rto"]
+seamless = true
+noise = SubResource("FastNoiseLite_esv7j")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_q5kgo"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uy12w"]
+seamless = true
+noise = SubResource("FastNoiseLite_q5kgo")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l1tom"]
+shader = ExtResource("11_0jx18")
+shader_parameter/scroll1 = Vector2(0.05, 0.05)
+shader_parameter/scroll2 = Vector2(0.195, -0.05)
+shader_parameter/distortion_strength = 0.2
+shader_parameter/tone_color = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/top_color = Color(0.737255, 0.662745, 0.733333, 1)
+shader_parameter/light_start = 0.37
+shader_parameter/light_end = 0.95
+shader_parameter/_noise1 = SubResource("NoiseTexture2D_l0rto")
+shader_parameter/_noise2 = SubResource("NoiseTexture2D_uy12w")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e5of4"]
 shader = ExtResource("5_lfufx")
@@ -65,7 +85,6 @@ layout_mode = 2
 color = Color(0, 0, 0, 1)
 
 [node name="PlayerShip" parent="." instance=ExtResource("1_apm65")]
-z_index = 10
 z_as_relative = false
 position = Vector2(732, 510)
 
@@ -78,193 +97,62 @@ one_shot = true
 [node name="BasicTurret" parent="." instance=ExtResource("4_8rtal")]
 position = Vector2(1757, 216)
 
-[node name="BigBlock" type="StaticBody2D" parent="."]
-position = Vector2(1248, 564)
-collision_mask = 6
+[node name="BasicTurret3" parent="." instance=ExtResource("4_8rtal")]
+position = Vector2(1629, 2123)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BigBlock"]
-shape = SubResource("RectangleShape2D_v1c3o")
+[node name="BasicTurret4" parent="." instance=ExtResource("4_8rtal")]
+position = Vector2(1395, 2289)
 
-[node name="Sprite2D" type="Sprite2D" parent="BigBlock"]
-light_mask = 2
-material = SubResource("ShaderMaterial_ub0ve")
-scale = Vector2(4, 4)
-texture = ExtResource("5_btkgd")
+[node name="BasicTurret5" parent="." instance=ExtResource("4_8rtal")]
+position = Vector2(991, 2682)
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="BigBlock/Sprite2D"]
-show_behind_parent = true
-occluder = SubResource("OccluderPolygon2D_jd4ht")
+[node name="BasicTurret6" parent="." instance=ExtResource("4_8rtal")]
+position = Vector2(2037, 1655)
 
-[node name="BigBlock2" type="StaticBody2D" parent="."]
-position = Vector2(1244, -148)
-collision_mask = 6
+[node name="BasicTurret7" parent="." instance=ExtResource("4_8rtal")]
+position = Vector2(2007, 2044)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BigBlock2"]
-shape = SubResource("RectangleShape2D_v1c3o")
+[node name="BasicTurret8" parent="." instance=ExtResource("4_8rtal")]
+position = Vector2(1320, 2641)
 
-[node name="Sprite2D" type="Sprite2D" parent="BigBlock2"]
-light_mask = 2
-material = SubResource("ShaderMaterial_ub0ve")
-scale = Vector2(4, 4)
-texture = ExtResource("5_btkgd")
+[node name="BasicTurret9" parent="." instance=ExtResource("4_8rtal")]
+position = Vector2(-766, 2117)
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="BigBlock2/Sprite2D"]
-show_behind_parent = true
-occluder = SubResource("OccluderPolygon2D_jd4ht")
+[node name="BasicTurret10" parent="." instance=ExtResource("4_8rtal")]
+position = Vector2(-991, 2132)
 
-[node name="BigBlock3" type="StaticBody2D" parent="."]
-position = Vector2(1487, 1849)
-collision_mask = 6
+[node name="BasicTurret11" parent="." instance=ExtResource("4_8rtal")]
+position = Vector2(-805, 1128)
 
-[node name="TextureRect" type="TextureRect" parent="BigBlock3"]
-material = SubResource("ShaderMaterial_kx25j")
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -256.0
-offset_right = 256.0
-offset_bottom = 256.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CanvasTexture_mgp14")
+[node name="BasicTurret12" parent="." instance=ExtResource("4_8rtal")]
+position = Vector2(-1033, 1118)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BigBlock3"]
-shape = SubResource("RectangleShape2D_v1c3o")
+[node name="BasicTurret2" parent="." instance=ExtResource("4_8rtal")]
+position = Vector2(-820, -524)
 
-[node name="BigBlock4" type="StaticBody2D" parent="."]
-position = Vector2(-10, 2776)
-collision_mask = 6
+[node name="SpaceBlock" parent="." instance=ExtResource("6_s4txw")]
+position = Vector2(1623, 725)
+rotation = 0.791083
+scale = Vector2(2.53451, 1.16728)
 
-[node name="TextureRect" type="TextureRect" parent="BigBlock4"]
-material = SubResource("ShaderMaterial_kx25j")
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -256.0
-offset_right = 256.0
-offset_bottom = 256.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CanvasTexture_mgp14")
+[node name="SpaceBlock2" parent="." instance=ExtResource("6_s4txw")]
+position = Vector2(-345, -100)
+scale = Vector2(1, 2.4)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BigBlock4"]
-shape = SubResource("RectangleShape2D_v1c3o")
+[node name="SpaceBlock3" parent="." instance=ExtResource("6_s4txw")]
+position = Vector2(-345, 1597)
+scale = Vector2(1, 2.4)
 
-[node name="BigBlock5" type="StaticBody2D" parent="."]
-position = Vector2(2356, 3104)
-collision_mask = 6
+[node name="SpaceBlock4" parent="." instance=ExtResource("6_s4txw")]
+position = Vector2(-875, 69)
+rotation = 1.73082
+scale = Vector2(1.55659, 0.806458)
 
-[node name="TextureRect" type="TextureRect" parent="BigBlock5"]
-material = SubResource("ShaderMaterial_kx25j")
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -256.0
-offset_right = 256.0
-offset_bottom = 256.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CanvasTexture_mgp14")
+[node name="SpaceBlock5" parent="." instance=ExtResource("6_s4txw")]
+position = Vector2(1612, 1682)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BigBlock5"]
-shape = SubResource("RectangleShape2D_v1c3o")
-
-[node name="BigBlock6" type="StaticBody2D" parent="."]
-position = Vector2(1557, 3104)
-collision_mask = 6
-
-[node name="TextureRect" type="TextureRect" parent="BigBlock6"]
-material = SubResource("ShaderMaterial_kx25j")
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -256.0
-offset_right = 256.0
-offset_bottom = 256.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CanvasTexture_mgp14")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BigBlock6"]
-shape = SubResource("RectangleShape2D_v1c3o")
-
-[node name="BigBlock7" type="StaticBody2D" parent="."]
-position = Vector2(767, 3095)
-collision_mask = 6
-
-[node name="TextureRect" type="TextureRect" parent="BigBlock7"]
-material = SubResource("ShaderMaterial_kx25j")
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -256.0
-offset_right = 256.0
-offset_bottom = 256.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CanvasTexture_mgp14")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BigBlock7"]
-shape = SubResource("RectangleShape2D_v1c3o")
-
-[node name="BigBlock8" type="StaticBody2D" parent="."]
-position = Vector2(-724, 3167)
-collision_mask = 6
-
-[node name="TextureRect" type="TextureRect" parent="BigBlock8"]
-material = SubResource("ShaderMaterial_kx25j")
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -256.0
-offset_right = 256.0
-offset_bottom = 256.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CanvasTexture_mgp14")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BigBlock8"]
-shape = SubResource("RectangleShape2D_v1c3o")
-
-[node name="BigBlock9" type="StaticBody2D" parent="."]
-position = Vector2(12, 1775)
-collision_mask = 6
-
-[node name="TextureRect" type="TextureRect" parent="BigBlock9"]
-material = SubResource("ShaderMaterial_kx25j")
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -256.0
-offset_right = 256.0
-offset_bottom = 256.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CanvasTexture_mgp14")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BigBlock9"]
-shape = SubResource("RectangleShape2D_v1c3o")
+[node name="SpaceBlock6" parent="." instance=ExtResource("6_s4txw")]
+position = Vector2(991, 2281)
 
 [node name="TOP" type="StaticBody2D" parent="."]
 position = Vector2(1044, -1964)
@@ -362,6 +250,13 @@ texture = SubResource("CanvasTexture_mgp14")
 visible = false
 shape = SubResource("RectangleShape2D_v1c3o")
 
+[node name="Randomness" type="Sprite2D" parent="."]
+light_mask = 2
+material = SubResource("ShaderMaterial_l1tom")
+position = Vector2(1847, 2798)
+scale = Vector2(28.6874, 19.5696)
+texture = ExtResource("7_lss8f")
+
 [node name="Monolith1" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_e5of4")
 offset_left = 447.0
@@ -375,8 +270,9 @@ texture = SubResource("CanvasTexture_02xa6")
 [node name="LifeBar" type="TextureRect" parent="UI"]
 light_mask = 0
 material = SubResource("ShaderMaterial_3qa5j")
-offset_left = 5.0
-offset_right = 517.0
-offset_bottom = 64.0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 576.0
+offset_bottom = 128.0
 texture = SubResource("CanvasTexture_8kou0")
 script = ExtResource("9_4cm7t")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b40y5i886yjtt"]
+[gd_scene load_steps=38 format=3 uid="uid://b40y5i886yjtt"]
 
 [ext_resource type="Shader" path="res://shader/energy_shield.gdshader" id="1_ft3tv"]
 [ext_resource type="Script" path="res://root.gd" id="1_xn33p"]
@@ -10,6 +10,10 @@
 [ext_resource type="Shader" path="res://shader/basic_bolt.gdshader" id="8_k0q7s"]
 [ext_resource type="Shader" path="res://shader/healthbar.gdshader" id="9_k26bi"]
 [ext_resource type="Shader" path="res://shader/world/dark_monolith_1.gdshader" id="10_2new3"]
+[ext_resource type="Shader" path="res://shader/randomness.gdshader" id="11_5nprb"]
+[ext_resource type="Texture2D" uid="uid://7nknufbr1enf" path="res://icon_sq.svg" id="12_kgppm"]
+[ext_resource type="PackedScene" uid="uid://b6p2rd8ul4uet" path="res://world/space_block.tscn" id="13_ju7ux"]
+[ext_resource type="Shader" path="res://shader/ideas/thrust.gdshader" id="14_j3q1e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0dgx2"]
 shader = ExtResource("1_ft3tv")
@@ -55,6 +59,50 @@ shader_parameter/units = 5.0
 shader = ExtResource("10_2new3")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_h5ivo"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3bwbj"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5p0wp"]
+seamless = true
+noise = SubResource("FastNoiseLite_3bwbj")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hw8pn"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_l2nke"]
+seamless = true
+noise = SubResource("FastNoiseLite_hw8pn")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0xjjo"]
+shader = ExtResource("11_5nprb")
+shader_parameter/scroll1 = Vector2(0.05, 0.05)
+shader_parameter/scroll2 = Vector2(0.195, -0.05)
+shader_parameter/distortion_strength = 0.2
+shader_parameter/tone_color = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/top_color = Color(0.737255, 0.662745, 0.733333, 1)
+shader_parameter/light_start = 0.37
+shader_parameter/light_end = 0.95
+shader_parameter/_noise1 = SubResource("NoiseTexture2D_5p0wp")
+shader_parameter/_noise2 = SubResource("NoiseTexture2D_l2nke")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_x3d12"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ccojq"]
+seamless = true
+noise = SubResource("FastNoiseLite_x3d12")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_71i2w"]
+shader = ExtResource("14_j3q1e")
+shader_parameter/scroll1 = Vector2(0.05, 0.05)
+shader_parameter/base_size = 0.65
+shader_parameter/base_width = -0.22
+shader_parameter/base_color = Color(1, 0.349, 0.369, 1)
+shader_parameter/mid_size = 0.5
+shader_parameter/mid_width = -0.18
+shader_parameter/mid_color = Color(1, 0.57, 0.298, 1)
+shader_parameter/top_size = 0.45
+shader_parameter/top_width = -1.0
+shader_parameter/top_color = Color(1, 0.937, 0.769, 1)
+shader_parameter/noise1 = SubResource("NoiseTexture2D_ccojq")
 
 [node name="Root" type="Node2D"]
 script = ExtResource("1_xn33p")
@@ -130,3 +178,18 @@ offset_top = 90.0
 offset_right = 1835.0
 offset_bottom = 346.0
 texture = SubResource("CanvasTexture_h5ivo")
+
+[node name="SpaceBlock" parent="." instance=ExtResource("13_ju7ux")]
+position = Vector2(2081, 1074)
+
+[node name="Randomness" type="Sprite2D" parent="."]
+light_mask = 2
+material = SubResource("ShaderMaterial_0xjjo")
+position = Vector2(-2201, 882)
+scale = Vector2(28.6874, 19.5696)
+texture = ExtResource("12_kgppm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_71i2w")
+position = Vector2(3767, 444)
+texture = ExtResource("12_kgppm")

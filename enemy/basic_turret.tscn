@@ -2,17 +2,17 @@
 
 [ext_resource type="Shader" path="res://shader/basic_turret.gdshader" id="1_6kb45"]
 [ext_resource type="Script" path="res://enemy/basic_turret.gd" id="1_ucdna"]
+[ext_resource type="Texture2D" uid="uid://7nknufbr1enf" path="res://icon_sq.svg" id="3_p30op"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_svmu5"]
 radius = 60.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xr5rv"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8yd0c"]
+resource_local_to_scene = true
 shader = ExtResource("1_6kb45")
 shader_parameter/barWidth = 0.3
 shader_parameter/progress = 0.2
 shader_parameter/is_grayscale = false
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_35536"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1pvr"]
 radius = 800.0
@@ -28,20 +28,9 @@ shape = SubResource("CircleShape2D_svmu5")
 
 [node name="Pivot" type="Node2D" parent="."]
 
-[node name="Sprite" type="TextureRect" parent="Pivot"]
-material = SubResource("ShaderMaterial_xr5rv")
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CanvasTexture_35536")
+[node name="Sprite" type="Sprite2D" parent="Pivot"]
+material = SubResource("ShaderMaterial_8yd0c")
+texture = ExtResource("3_p30op")
 
 [node name="MainCannonMarker" type="Marker2D" parent="Pivot"]
 position = Vector2(0, -80)

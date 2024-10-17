@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6p2rd8ul4uet"]
+
+[ext_resource type="Shader" path="res://shader/space_block.gdshader" id="1_6mw0k"]
+[ext_resource type="Texture2D" uid="uid://7nknufbr1enf" path="res://icon_sq.svg" id="2_0bopb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wbv6j"]
+shader = ExtResource("1_6mw0k")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5l2fj"]
+polygon = PackedVector2Array(-64, 64, -64, -64, 64, -64, 64, 64)
+
+[node name="SpaceBlock" type="StaticBody2D"]
+position = Vector2(1248, 564)
+collision_mask = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 2
+material = SubResource("ShaderMaterial_wbv6j")
+scale = Vector2(4, 4)
+texture = ExtResource("2_0bopb")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D"]
+show_behind_parent = true
+occluder = SubResource("OccluderPolygon2D_5l2fj")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(4, 4)
+polygon = PackedVector2Array(-64, 64, -64, -64, 64, -64, 64, 64)
