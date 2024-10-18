@@ -19,6 +19,8 @@ uniform float top_width : hint_range(-1., 1., 0.01) = 0.;
 uniform vec4 top_color : source_color  = vec4(1.0, 0.937, .769, 1.);
 
 uniform float speed_mod : hint_range(0., 2., .05) = 1.0;
+uniform float ripple_speed : hint_range(0., 100., 1.) = 1.0;
+uniform float ripple_power : hint_range(0., .3, .01) = .08;
 
 uniform float distance_intensity_shift : hint_range(-1.0, 1.0, .1) = .1;
 uniform float top_distance_intensity_shift : hint_range(-1.0, 1.0, .1) = .2;
@@ -27,7 +29,7 @@ uniform float top_color_intensity_shift : hint_range(-2.0, 2.0, .1) = .6;
 
 void fragment() {
 	float noise1_strength = texture(noise1, vec2(0.0) + scroll1 * TIME * speed_mod).r;
-	float noise2_strength = texture(noise1, vec2(-UV.y) + scroll1 * TIME * speed_mod).r * .03;
+	float noise2_strength = texture(noise1, vec2(-UV.y) + scroll1 * TIME * ripple_speed).r * ripple_power;
 	
 	float noise1_color_shift = (.4 - noise1_strength) * color_intensity_shift;
 	float noise1_top_color_shift = (.5 - noise1_strength) * top_color_intensity_shift;

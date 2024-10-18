@@ -24,8 +24,8 @@ vec3 convert_color(vec3 rgb) {
 void fragment() {
 	//float progress = fract(TIME/3.0);
 	//
-	
-	
+
+
 	float sharp_body = 1.0 - circle(UV, .48, .0);
 	float feathered_body = 1.0 - circle(UV, .48, .01);
 	float bar = (step((1.0 - barWidth)/2.0, UV.x) - step(1. - (1.0 - barWidth)/2.0, UV.x)) * sharp_body;
@@ -35,7 +35,7 @@ void fragment() {
 	leftEye = 1. - step(.05, leftEye);
 	rightEye = 1. - step(.05, rightEye);
 	float eye = leftEye + rightEye;
-	
+
 	vec3 progressBarColor = convert_color(RED) * progressBar;
 	vec3 eyeColor = eye * convert_color(mix(YELLOW, RED, progress));
 	vec3 bodyColor = PURPLE * feathered_body * (1.0-bar) * (1.0-eye);
