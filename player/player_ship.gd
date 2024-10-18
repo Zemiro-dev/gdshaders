@@ -70,10 +70,10 @@ func _physics_process(delta: float) -> void:
 		main_thruster_particles.emitting = true
 	else:
 		main_thruster_sprite.visible = false
-		main_thruster_particles.emitting = false	
+		main_thruster_particles.emitting = false
 	
-	var bowToImpulse := get_facing().angle_to(impulse)
-	var starboardToImpulse := (transform.x).angle_to(impulse)
+	var bowToImpulse := get_global_facing().angle_to(impulse)
+	var starboardToImpulse := (global_transform.x).angle_to(impulse)
 	
 	for i in thrusters.size():
 		if thruster_predicates[i].call(impulse_on, bowToImpulse, starboardToImpulse):
