@@ -1,0 +1,28 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://djmydboyxeyur"]
+
+[ext_resource type="Shader" path="res://shader/ideas/thrust.gdshader" id="1_7fgh4"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_x3d12"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ccojq"]
+seamless = true
+noise = SubResource("FastNoiseLite_x3d12")
+
+[resource]
+shader = ExtResource("1_7fgh4")
+shader_parameter/scroll1 = Vector2(0.05, 0.05)
+shader_parameter/base_size = 0.65
+shader_parameter/base_width = -0.22
+shader_parameter/base_color = Color(1, 0.349, 0.369, 1)
+shader_parameter/mid_size = 0.5
+shader_parameter/mid_width = -0.18
+shader_parameter/mid_color = Color(1, 0.57, 0.298, 1)
+shader_parameter/top_size = 0.45
+shader_parameter/top_width = -1.0
+shader_parameter/top_color = Color(1, 0.937, 0.769, 1)
+shader_parameter/speed_mod = 2.0
+shader_parameter/distance_intensity_shift = 0.1
+shader_parameter/top_distance_intensity_shift = 0.2
+shader_parameter/color_intensity_shift = 0.4
+shader_parameter/top_color_intensity_shift = 0.6
+shader_parameter/noise1 = SubResource("NoiseTexture2D_ccojq")

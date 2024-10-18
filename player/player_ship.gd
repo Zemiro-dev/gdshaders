@@ -4,19 +4,39 @@ class_name Player
 
 var basic_bolt = preload("res://player/basic_bolt.tscn")
 
-@onready var main_thrust_particles: GPUParticles2D = $Pivot/MainThrustParticles
-@onready var left_thrust_particles: GPUParticles2D = $Pivot/LeftThrustParticles
-@onready var right_thrust_particles: GPUParticles2D = $Pivot/RightThrustParticles
-@onready var forward_thrust_particles: GPUParticles2D = $Pivot/ForwardThrustParticles
-@onready var rear_left_thrust_particles: GPUParticles2D = $Pivot/RearLeftThrustParticles
-@onready var rear_right_thrust_particles: GPUParticles2D = $Pivot/RearRightThrustParticles
 
-@onready var main_thrust_texture: TextureRect = $Pivot/MainThrust
-@onready var left_thrust_texture: TextureRect = $Pivot/LeftThrust
-@onready var right_thrust_texture: TextureRect = $Pivot/RightThrust
-@onready var forward_thrust_texture: TextureRect = $Pivot/ForwardThrust
-@onready var rear_left_thrust_texture: TextureRect = $Pivot/RearLeftThrust
-@onready var rear_right_thrust_texture: TextureRect = $Pivot/RearRightThrust
+@export var base_impulse_tolerance := PI/2.0
+@export var front_back_impulse_deadzone: float = PI/6.0
+@export var left_right_impulse_deadzone: float = PI/4.0
+
+@onready var rear_left_impulse_sprite: Sprite2D = $Pivot/Thrusters/RearLeftImpulseSprite
+@onready var rear_right_impulse_sprite: Sprite2D = $Pivot/Thrusters/RearRightImpulseSprite
+@onready var left_impulse_sprite: Sprite2D = $Pivot/Thrusters/LeftImpulseSprite
+@onready var right_impulse_sprite: Sprite2D = $Pivot/Thrusters/RightImpulseSprite
+@onready var forward_impulse_sprite: Sprite2D = $Pivot/Thrusters/ForwardImpulseSprite
+@onready var main_thruster_sprite: Sprite2D = $Pivot/Thrusters/MainThrusterSprite
+@onready var main_thruster_particles: GPUParticles2D = $Pivot/ThrusterParticles/MainThrusterParticles
+
+@onready var thrusters: Array = [
+	rear_left_impulse_sprite,
+	rear_right_impulse_sprite,
+	left_impulse_sprite,
+	right_impulse_sprite,
+	forward_impulse_sprite,
+]
+
+@onready var thruster_predicates: Array = [
+	func(impulse_on: bool, bowToImpulse: float, starboardToImpulse: float): 
+		return impulse_on && abs(bowToImpulse) < base_impulse_tolerance - front_back_impulse_deadzone,
+	func(impulse_on: bool, bowToImpulse: float, starboardToImpulse: float): 
+		return impulse_on && abs(bowToImpulse) < base_impulse_tolerance - front_back_impulse_deadzone,
+	func(impulse_on: bool, bowToImpulse: float, starboardToImpulse: float): 
+		return impulse_on && abs(starboardToImpulse) < base_impulse_tolerance - left_right_impulse_deadzone,
+	func(impulse_on: bool, bowToImpulse: float, starboardToImpulse: float): 
+		return impulse_on && abs(starboardToImpulse) > base_impulse_tolerance + left_right_impulse_deadzone,
+	func(impulse_on: bool, bowToImpulse: float, starboardToImpulse: float): 
+		return impulse_on && abs(bowToImpulse) > base_impulse_tolerance + front_back_impulse_deadzone
+]
 
 @onready var main_cannon_marker: Marker2D = $Pivot/MainCannonMarker
 
@@ -46,75 +66,20 @@ func _physics_process(delta: float) -> void:
 	
 	if main_thrust_on:
 		GlobalSignals.camera_shake_requested.emit(0.2, 250)
-		main_thrust_texture.visible = true
-		main_thrust_particles.emitting = true
+		main_thruster_sprite.visible = true
+		main_thruster_particles.emitting = true
 	else:
-		main_thrust_texture.visible = false
-		main_thrust_particles.emitting = false
-		
-	var impulse_up := []
-	var impulse_down := []
-	var impulse_particles_up := []
-	var impulse_particles_down := []
-	if impulse_on:
-		var bowToImpulse := get_facing().angle_to(impulse)
-		var starboardToImpulse := (transform.x).angle_to(impulse)
-		var base_tolerance := PI/2.0
-		var fbdead = PI/6.0;
-		var lrdead = PI/4.0;
-		
-		if abs(bowToImpulse) > base_tolerance + fbdead:
-			impulse_up.append(forward_thrust_texture)
-			impulse_particles_up.append(forward_thrust_particles)
+		main_thruster_sprite.visible = false
+		main_thruster_particles.emitting = false	
+	
+	var bowToImpulse := get_facing().angle_to(impulse)
+	var starboardToImpulse := (transform.x).angle_to(impulse)
+	
+	for i in thrusters.size():
+		if thruster_predicates[i].call(impulse_on, bowToImpulse, starboardToImpulse):
+			thrusters[i].visible = true
 		else:
-			impulse_down.append(forward_thrust_texture)
-			impulse_particles_down.append(forward_thrust_particles)
-		
-		if abs(starboardToImpulse) < base_tolerance - lrdead:
-			impulse_up.append(left_thrust_texture)
-			impulse_particles_up.append(left_thrust_particles)
-		else:
-			impulse_down.append(left_thrust_texture)
-			impulse_particles_down.append(left_thrust_particles)
-		
-		if abs(starboardToImpulse) > base_tolerance + lrdead:
-			impulse_up.append(right_thrust_texture)
-			impulse_particles_up.append(right_thrust_particles)
-		else:
-			impulse_down.append(right_thrust_texture)
-			impulse_particles_down.append(right_thrust_particles)
-		
-		if abs(bowToImpulse) < base_tolerance - fbdead:
-			impulse_up.append(rear_left_thrust_texture)
-			impulse_up.append(rear_right_thrust_texture)
-			impulse_particles_up.append(rear_left_thrust_particles)
-			impulse_particles_up.append(rear_right_thrust_particles)
-		else:
-			impulse_down.append(rear_left_thrust_texture)
-			impulse_down.append(rear_right_thrust_texture)
-			impulse_particles_down.append(rear_left_thrust_particles)
-			impulse_particles_down.append(rear_right_thrust_particles)
-			
-	else:
-		impulse_down.append(forward_thrust_texture)
-		impulse_down.append(left_thrust_texture)
-		impulse_down.append(right_thrust_texture)
-		impulse_down.append(rear_left_thrust_texture)
-		impulse_down.append(rear_right_thrust_texture)
-		impulse_particles_down.append(forward_thrust_particles)
-		impulse_particles_down.append(left_thrust_particles)
-		impulse_particles_down.append(right_thrust_particles)
-		impulse_particles_down.append(rear_left_thrust_particles)
-		impulse_particles_down.append(rear_right_thrust_particles)
-		
-	for texture_rect in impulse_up:
-		texture_rect.visible = true
-	for texture_rect in impulse_down:
-		texture_rect.visible = false
-	for particles in impulse_particles_up:
-		particles.emitting = true
-	for particles in impulse_particles_down:
-		particles.emitting = false
+			thrusters[i].visible = false
 	
 	if impulse_on or main_thrust_on:
 		var impulse_velocity = impulse * impulse_acceleration * delta
