@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwh3m5g0begbp"]
+
+[ext_resource type="Shader" path="res://shader/debug/debug_dot.gdshader" id="1_s5yuj"]
+[ext_resource type="Texture2D" uid="uid://7nknufbr1enf" path="res://icon_sq.svg" id="2_qxg3g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i8ycj"]
+resource_local_to_scene = true
+shader = ExtResource("1_s5yuj")
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/FUZZ = 0.007
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
+shader_parameter/strength = 1.0
+shader_parameter/offset = Vector2(0, 0)
+
+[node name="DebugDot" type="Sprite2D"]
+material = SubResource("ShaderMaterial_i8ycj")
+texture = ExtResource("2_qxg3g")

@@ -33,6 +33,9 @@ var basic_bolt = preload("res://player/basic_bolt.tscn")
 		return impulse_on && abs(bowToImpulse) > base_impulse_tolerance + front_back_impulse_deadzone
 ]
 
+@onready var shield: JellyShield = $Shield
+@export var jelly_min_speed_threshold : float = 0.
+
 @onready var main_cannon_marker: Marker2D = $Pivot/MainCannonMarker
 
 @export var impulse_acceleration: float = 1000.0
@@ -111,6 +114,9 @@ func _physics_process(delta: float) -> void:
 	if !is_zero_approx(angular_velocity):
 		angular_velocity = clampf(angular_velocity, -max_angular_velocity, max_angular_velocity)
 		rotate(angular_velocity * delta)
+	
+	if !shield.jelly_vector.is_zero_approx() and !(velocity.length() < jelly_min_speed_threshold):
+		velocity += shield.jelly_vector.rotated(rotation) * delta
 	
 	# Velocity Cap
 	if velocity.length() > max_speed:

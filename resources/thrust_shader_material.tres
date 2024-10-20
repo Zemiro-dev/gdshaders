@@ -10,16 +10,21 @@ noise = SubResource("FastNoiseLite_x3d12")
 
 [resource]
 shader = ExtResource("1_7fgh4")
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/FUZZ = 0.007
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
 shader_parameter/scroll1 = Vector2(0.05, 0.05)
 shader_parameter/base_size = 0.65
 shader_parameter/base_width = -0.22
-shader_parameter/base_color = Color(1, 0.349, 0.369, 1)
 shader_parameter/mid_size = 0.5
 shader_parameter/mid_width = -0.18
-shader_parameter/mid_color = Color(1, 0.57, 0.298, 1)
 shader_parameter/top_size = 0.45
 shader_parameter/top_width = -1.0
-shader_parameter/top_color = Color(1, 0.937, 0.769, 1)
 shader_parameter/speed_mod = 2.0
 shader_parameter/ripple_speed = 50.0
 shader_parameter/ripple_power = 0.08
