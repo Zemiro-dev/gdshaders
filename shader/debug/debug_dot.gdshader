@@ -14,8 +14,8 @@ void vertex() {
 void fragment() {
 	vec3 color_step_empty = RED.rgb;
 	vec3 color_step_half = YELLOW.rgb;
-	vec3 color_step_full = GREEN.rgb;
-	float debug_dot = 1. - circle(UV, .4, FUZZ*1.8);
+	vec3 color_step_full = BLUE.rgb;
+	float debug_dot = 1. - circle(UV, .2, FUZZ*1.8);
 	vec3 color = (1. - step(.5, strength)) * mix(color_step_empty, color_step_half, strength * 2.)
 		+ (step(.5, strength) * mix(color_step_half, color_step_full, (strength - .5) * 2.));
 	

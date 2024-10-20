@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://k8nbtwxisbbw"]
+[gd_scene load_steps=16 format=3 uid="uid://k8nbtwxisbbw"]
 
 [ext_resource type="Shader" path="res://shader/unit_triangle.gdshader" id="1_a5ce8"]
 [ext_resource type="Script" path="res://player/player_ship.gd" id="1_y4txy"]
@@ -6,6 +6,8 @@
 [ext_resource type="Material" uid="uid://djmydboyxeyur" path="res://resources/thrust_shader_material.tres" id="4_2xj1e"]
 [ext_resource type="Texture2D" uid="uid://bj32yg41s8648" path="res://data/light/point.webp" id="4_lvblp"]
 [ext_resource type="Texture2D" uid="uid://7nknufbr1enf" path="res://icon_sq.svg" id="5_3jw70"]
+[ext_resource type="Script" path="res://player/player_shield.gd" id="5_q4knm"]
+[ext_resource type="Shader" path="res://shader/debug/debug_dot.gdshader" id="6_w7u3c"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8gfpo"]
 particle_flag_disable_z = true
@@ -23,6 +25,58 @@ radial_accel_min = 89.26
 radial_accel_max = 89.26
 scale_min = 10.0
 scale_max = 10.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i8ycj"]
+shader = ExtResource("6_w7u3c")
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/FUZZ = 0.007
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
+shader_parameter/strength = 1.0
+shader_parameter/offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hyihu"]
+shader = ExtResource("6_w7u3c")
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/FUZZ = 0.007
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
+shader_parameter/strength = 1.0
+shader_parameter/offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g5rbk"]
+shader = ExtResource("6_w7u3c")
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/FUZZ = 0.007
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
+shader_parameter/strength = 1.0
+shader_parameter/offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k7cyb"]
+shader = ExtResource("6_w7u3c")
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/FUZZ = 0.007
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
+shader_parameter/strength = 1.0
+shader_parameter/offset = Vector2(0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ohyys"]
 shader = ExtResource("1_a5ce8")
@@ -97,6 +151,37 @@ amount = 32
 process_material = SubResource("ParticleProcessMaterial_8gfpo")
 lifetime = 0.5
 randomness = 0.1
+
+[node name="Shield" type="Node2D" parent="Pivot"]
+script = ExtResource("5_q4knm")
+
+[node name="RayX" type="RayCast2D" parent="Pivot/Shield"]
+target_position = Vector2(400, 0)
+
+[node name="RayY" type="RayCast2D" parent="Pivot/Shield"]
+target_position = Vector2(0, 400)
+
+[node name="RayNegX" type="RayCast2D" parent="Pivot/Shield"]
+target_position = Vector2(-400, 0)
+
+[node name="RayNegY" type="RayCast2D" parent="Pivot/Shield"]
+target_position = Vector2(0, -400)
+
+[node name="DebugDotX" type="Sprite2D" parent="Pivot/Shield"]
+material = SubResource("ShaderMaterial_i8ycj")
+texture = ExtResource("5_3jw70")
+
+[node name="DebugDotY" type="Sprite2D" parent="Pivot/Shield"]
+material = SubResource("ShaderMaterial_hyihu")
+texture = ExtResource("5_3jw70")
+
+[node name="DebugDotNegX" type="Sprite2D" parent="Pivot/Shield"]
+material = SubResource("ShaderMaterial_g5rbk")
+texture = ExtResource("5_3jw70")
+
+[node name="DebugDotNegY" type="Sprite2D" parent="Pivot/Shield"]
+material = SubResource("ShaderMaterial_k7cyb")
+texture = ExtResource("5_3jw70")
 
 [node name="ShipBody" type="TextureRect" parent="Pivot"]
 material = SubResource("ShaderMaterial_ohyys")
