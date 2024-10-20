@@ -50,5 +50,5 @@ void fragment() {
 	float remainingBar = smoothstep(remaining, remaining-.01, UV.x);
 	inner *= remainingBar;
 	outer *= 1. - inner;
-	COLOR = vec4(RED * inner + mix(RED, BLACK, .55) * outer, outer + inner);
+	COLOR = vec4(RED.rgb * inner + mix(RED.rgb, BLACK, .55) * outer, outer + inner);
 }

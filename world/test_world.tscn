@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://utilities/camera_controls.gd" id="4_kdbjg"]
 [ext_resource type="Shader" path="res://shader/space_block.gdshader" id="4_uetue"]
 [ext_resource type="Shader" path="res://shader/world/dark_monolith_1.gdshader" id="5_lfufx"]
-[ext_resource type="PackedScene" path="res://world/space_block.tscn" id="6_s4txw"]
+[ext_resource type="PackedScene" uid="uid://b6p2rd8ul4uet" path="res://world/space_block.tscn" id="6_s4txw"]
 [ext_resource type="Texture2D" uid="uid://7nknufbr1enf" path="res://icon_sq.svg" id="7_lss8f"]
 [ext_resource type="Shader" path="res://shader/healthbar.gdshader" id="8_doxqx"]
 [ext_resource type="Script" path="res://ui/life_bar.gd" id="9_4cm7t"]
@@ -15,6 +15,14 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kx25j"]
 shader = ExtResource("4_uetue")
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/FUZZ = 0.007
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_mgp14"]
 
@@ -35,6 +43,14 @@ noise = SubResource("FastNoiseLite_q5kgo")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l1tom"]
 shader = ExtResource("11_0jx18")
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/FUZZ = 0.007
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
 shader_parameter/scroll1 = Vector2(0.05, 0.05)
 shader_parameter/scroll2 = Vector2(0.195, -0.05)
 shader_parameter/distortion_strength = 0.2
@@ -47,11 +63,27 @@ shader_parameter/_noise2 = SubResource("NoiseTexture2D_uy12w")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e5of4"]
 shader = ExtResource("5_lfufx")
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/FUZZ = 0.007
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_02xa6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3qa5j"]
 shader = ExtResource("8_doxqx")
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/FUZZ = 0.007
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
 shader_parameter/remaining = 0.8
 shader_parameter/units = 5.0
 
@@ -64,6 +96,7 @@ script = ExtResource("1_ss4vj")
 layer = -1
 
 [node name="CanvasModulate" type="CanvasModulate" parent="BG"]
+visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="BG"]
@@ -82,6 +115,7 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="PlayerShip" parent="." instance=ExtResource("1_apm65")]
@@ -90,6 +124,8 @@ position = Vector2(732, 510)
 
 [node name="Camera2D" type="Camera2D" parent="PlayerShip"]
 script = ExtResource("4_kdbjg")
+look_ahead_distance = 200.0
+look_ahead_speed = 1.0
 
 [node name="ShakeTimer" type="Timer" parent="PlayerShip/Camera2D"]
 one_shot = true
@@ -253,7 +289,7 @@ shape = SubResource("RectangleShape2D_v1c3o")
 [node name="Randomness" type="Sprite2D" parent="."]
 light_mask = 2
 material = SubResource("ShaderMaterial_l1tom")
-position = Vector2(1847, 2798)
+position = Vector2(-1859, 4052)
 scale = Vector2(28.6874, 19.5696)
 texture = ExtResource("7_lss8f")
 

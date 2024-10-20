@@ -37,7 +37,7 @@ float Star (vec2 uv, float size, float baseRotation) {
 
 void fragment() {
 	float star = Star(UV+vec2(-.5), .2, TIME*10.);
-	COLOR = vec4(mix(BLUE, YELLOW, .1) * star, smoothstep(.01, 1., star));
+	COLOR = vec4(mix(BLUE.rgb, YELLOW.rgb, .1) * star, smoothstep(.01, 1., star));
 }
 
 

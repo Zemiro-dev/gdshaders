@@ -8,15 +8,12 @@ uniform vec2 scroll1 = vec2(0.05);
 
 uniform float base_size : hint_range(0.01, .65, 0.01) = .5;
 uniform float base_width : hint_range(-1., 1., 0.01) = 0.;
-uniform vec4 base_color : source_color = vec4(1.0, .349, .369, 1.0);
 
 uniform float mid_size : hint_range(0.01, .65, 0.01) = .5;
 uniform float mid_width : hint_range(-1., 1., 0.01) = 0.;
-uniform vec4 mid_color : source_color  = vec4(1.0, .570, .298, 1.);
 
 uniform float top_size : hint_range(0.01, .65, 0.01) = .5;
 uniform float top_width : hint_range(-1., 1., 0.01) = 0.;
-uniform vec4 top_color : source_color  = vec4(1.0, 0.937, .769, 1.);
 
 uniform float speed_mod : hint_range(0., 2., .05) = 1.0;
 uniform float ripple_speed : hint_range(0., 100., 1.) = 1.0;
@@ -28,6 +25,9 @@ uniform float color_intensity_shift : hint_range(-2.0, 2.0, .1) = .4;
 uniform float top_color_intensity_shift : hint_range(-2.0, 2.0, .1) = .6;
 
 void fragment() {
+	vec4 base_color = RED;
+	vec4 mid_color = ORANGE;
+	vec4 top_color = BRIGHT_ORANGE;
 	float noise1_strength = texture(noise1, vec2(0.0) + scroll1 * TIME * speed_mod).r;
 	float noise2_strength = texture(noise1, vec2(-UV.y) + scroll1 * TIME * ripple_speed).r * ripple_power;
 	

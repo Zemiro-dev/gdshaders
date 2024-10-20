@@ -10,5 +10,5 @@ void fragment() {
 	ship = 1. - step(.57735, ship);
 	ship = ship - cockpit;
 
-	COLOR = vec4(vec3(ship) * BLUE + vec3(cockpit) * WHITE, ship + cockpit);
+	COLOR = vec4(vec3(ship) * BLUE.rgb + vec3(cockpit) * WHITE, ship + cockpit);
 }

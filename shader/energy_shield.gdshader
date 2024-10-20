@@ -17,7 +17,7 @@ void fragment() {
 	//
 	//float inner = 1.0 - circle(vec2(UV.x, UV.y), 0.275, 0.1 - fade_effect );
 	//
-	COLOR = vec4(vec3(BLUE), 1.0 - (outer + inner));
+	COLOR = vec4(vec3(BLUE.rgb), 1.0 - (outer + inner));
 	//COLOR.a -= outer + inner;
 }
 //

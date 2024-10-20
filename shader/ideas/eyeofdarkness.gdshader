@@ -34,13 +34,13 @@ void fragment() {
 	
 	vec2 orbuv = vec2(UV.x + sin(TIME) * .3, UV.y + .1);
 	float inner_shell = 1. - circle(orbuv, .1, .02);
-	vec3 inner_shell_color = mix(WHITE, RED, .25) * inner_shell;
+	vec3 inner_shell_color = mix(WHITE, RED.rgb, .25) * inner_shell;
 	
 	float outer_shell = (1. - circle(orbuv, .13 , .05)) * (1. - inner_shell);
-	vec3 outer_shell_color = RED * outer_shell;
+	vec3 outer_shell_color = RED.rgb * outer_shell;
 	
 	float glow = (1. - circle(orbuv, .18 , .3 )) * (1. - inner_shell) * (1. - outer_shell);
-	vec3 glow_color = mix(WHITE, RED, .7) * glow;
+	vec3 glow_color = mix(WHITE, RED.rgb, .7) * glow;
 	glow = glow / (2.0 + sin(TIME*2.) * .5);
 	vec3 orb = (outer_shell_color + inner_shell_color) * wire + glow_color;
 	

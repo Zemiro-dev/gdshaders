@@ -24,7 +24,7 @@ void fragment() {
 	uv = uv - vec2(.75, 0);
 	float ripple = hit(uv, radius, .025, .04);
 	
-	vec3 rippleColor = BLUE + (.08 * pow(ripple, 10.0));
+	vec3 rippleColor = BLUE.rgb + (.08 * pow(ripple, 10.0));
 	
 	// the pow statement adds some white highlighting near the main ring   
 	//vec3 mainShieldColor = BLUE + (.08 * pow(mainShield, 10.0));

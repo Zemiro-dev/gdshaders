@@ -1,13 +1,17 @@
-const vec3 RED = vec3(1.0, .349, .369);
-const vec3 YELLOW = vec3(1.0, .792, .227);
-const vec3 GREEN = vec3(.501, .788, .149);
-const vec3 BLUE = vec3(.098, .470, .769);
+uniform vec4 BLUE : source_color = vec4(.098, .470, .769, 1.);
 const vec3 PURPLE = vec3(.416, .298, .576);
 const vec3 BLACK = vec3(.0, .0, .0);
 const vec3 WHITE = vec3(1., 1., 1.);
 
-const vec3 YELLOW_WHITE = mix(WHITE, YELLOW, .3);
+
 
 const vec3 MONOLITH_BLACK = mix(BLACK, PURPLE, .1);
 
-const float FUZZ = .007;
+uniform float FUZZ = .007;
+
+uniform vec4 RED : source_color = vec4(1.0, .349, .369, 1.0);
+uniform vec4 YELLOW : source_color = vec4(1.0, .792, .227, 1.0);
+uniform vec4 ORANGE : source_color  = vec4(1.0, .570, .298, 1.);
+uniform vec4 BRIGHT_ORANGE : source_color  = vec4(1.0, 0.937, .769, 1.);
+uniform vec4 YELLOW_WHITE : source_color  = vec4(.333, 0.264, .075, 1.);
+uniform vec4 GREEN : source_color = vec4(.501, .788, .149, 1.);

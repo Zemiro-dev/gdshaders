@@ -30,5 +30,5 @@ void fragment() {
 	float hit4 = shieldHit(uv - vec2(.3, 0.0), clock4) * shieldBound;
 	float hit5 = shieldHit(uv + vec2(0.1, 0.5), clock5) * shieldBound;
 	float result = max(max(max(max(hit1, hit2), hit3), hit4), hit5);
-	COLOR = vec4(BLUE, result);
+	COLOR = vec4(BLUE.rgb, result);
 }

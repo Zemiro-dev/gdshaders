@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b40y5i886yjtt"]
+[gd_scene load_steps=37 format=3 uid="uid://b40y5i886yjtt"]
 
 [ext_resource type="Shader" path="res://shader/energy_shield.gdshader" id="1_ft3tv"]
 [ext_resource type="Script" path="res://root.gd" id="1_xn33p"]
@@ -14,30 +14,79 @@
 [ext_resource type="Texture2D" uid="uid://7nknufbr1enf" path="res://icon_sq.svg" id="12_kgppm"]
 [ext_resource type="PackedScene" uid="uid://b6p2rd8ul4uet" path="res://world/space_block.tscn" id="13_ju7ux"]
 [ext_resource type="Material" uid="uid://djmydboyxeyur" path="res://resources/thrust_shader_material.tres" id="14_ucan4"]
+[ext_resource type="Shader" path="res://shader/debug/debug_dot.gdshader" id="15_b25uo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0dgx2"]
 shader = ExtResource("1_ft3tv")
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/FUZZ = 0.007
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_dn0np"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tr1wt"]
 shader = ExtResource("2_m1sg8")
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/FUZZ = 0.007
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8f3tr"]
 shader = ExtResource("5_5n27c")
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/FUZZ = 0.007
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_4qfrb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ab53v"]
 shader = ExtResource("4_froer")
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/FUZZ = 0.007
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_42dd2"]
 shader = ExtResource("7_wm6uv")
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/FUZZ = 0.007
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_dimtq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hacmh"]
 shader = ExtResource("8_k0q7s")
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/FUZZ = 0.007
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
 shader_parameter/star_rays = 1.0
 shader_parameter/brightness1 = 1.0
 shader_parameter/brightness2 = 0.5
@@ -47,9 +96,25 @@ shader_parameter/brightness3 = 0.5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kp1yf"]
 shader = ExtResource("8_hq7tk")
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/FUZZ = 0.007
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_utd7s"]
 shader = ExtResource("9_k26bi")
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/FUZZ = 0.007
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
 shader_parameter/remaining = 1.0
 shader_parameter/units = 5.0
 
@@ -57,6 +122,14 @@ shader_parameter/units = 5.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_688j3"]
 shader = ExtResource("10_2new3")
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/FUZZ = 0.007
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_h5ivo"]
 
@@ -74,6 +147,14 @@ noise = SubResource("FastNoiseLite_hw8pn")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0xjjo"]
 shader = ExtResource("11_5nprb")
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/FUZZ = 0.007
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
 shader_parameter/scroll1 = Vector2(0.05, 0.05)
 shader_parameter/scroll2 = Vector2(0.195, -0.05)
 shader_parameter/distortion_strength = 0.2
@@ -83,6 +164,19 @@ shader_parameter/light_start = 0.37
 shader_parameter/light_end = 0.95
 shader_parameter/_noise1 = SubResource("NoiseTexture2D_5p0wp")
 shader_parameter/_noise2 = SubResource("NoiseTexture2D_l2nke")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_whbd3"]
+shader = ExtResource("15_b25uo")
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/FUZZ = 0.007
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
+shader_parameter/strength = 0.1
+shader_parameter/offset = Vector2(0.5, 0.5)
 
 [node name="Root" type="Node2D"]
 script = ExtResource("1_xn33p")
@@ -172,4 +266,9 @@ texture = ExtResource("12_kgppm")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = ExtResource("14_ucan4")
 position = Vector2(3767, 444)
+texture = ExtResource("12_kgppm")
+
+[node name="Dot" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_whbd3")
+position = Vector2(3624, 1296)
 texture = ExtResource("12_kgppm")

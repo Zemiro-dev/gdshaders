@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://k8nbtwxisbbw"]
+[gd_scene load_steps=10 format=3 uid="uid://k8nbtwxisbbw"]
 
 [ext_resource type="Shader" path="res://shader/unit_triangle.gdshader" id="1_a5ce8"]
 [ext_resource type="Script" path="res://player/player_ship.gd" id="1_y4txy"]
 [ext_resource type="PackedScene" uid="uid://dquv283uvwc4b" path="res://player/test_particles.tscn" id="2_o610h"]
-[ext_resource type="Shader" path="res://shader/thrust.gdshader" id="3_eo3qa"]
 [ext_resource type="Material" uid="uid://djmydboyxeyur" path="res://resources/thrust_shader_material.tres" id="4_2xj1e"]
 [ext_resource type="Texture2D" uid="uid://bj32yg41s8648" path="res://data/light/point.webp" id="4_lvblp"]
 [ext_resource type="Texture2D" uid="uid://7nknufbr1enf" path="res://icon_sq.svg" id="5_3jw70"]
@@ -25,30 +24,16 @@ radial_accel_max = 89.26
 scale_min = 10.0
 scale_max = 10.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_w5lr4"]
-shader = ExtResource("3_eo3qa")
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_ql6pc"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uo36b"]
-particle_flag_disable_z = true
-direction = Vector3(0, 1, 0)
-spread = 10.0
-flatness = 0.5
-initial_velocity_min = 512.0
-initial_velocity_max = 512.0
-angular_velocity_min = 360.0
-angular_velocity_max = 360.0
-gravity = Vector3(0, 0, 0)
-linear_accel_min = -100.0
-linear_accel_max = -100.0
-radial_accel_min = 89.26
-radial_accel_max = 89.26
-scale_min = 5.0
-scale_max = 5.0
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ohyys"]
 shader = ExtResource("1_a5ce8")
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/FUZZ = 0.007
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_llk3e"]
 
@@ -61,144 +46,6 @@ max_health = 5
 polygon = PackedVector2Array(0, -76, 64, 35, -64, 35)
 
 [node name="Pivot" type="Node2D" parent="."]
-
-[node name="MainThrustParticles" parent="Pivot" instance=ExtResource("2_o610h")]
-visible = false
-light_mask = 2
-position = Vector2(0, 59)
-amount = 32
-process_material = SubResource("ParticleProcessMaterial_8gfpo")
-lifetime = 0.5
-randomness = 0.1
-
-[node name="MainThrust" type="TextureRect" parent="Pivot"]
-visible = false
-material = SubResource("ShaderMaterial_w5lr4")
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -32.0
-offset_top = 33.0
-offset_right = 32.0
-offset_bottom = 161.0
-grow_horizontal = 2
-texture = SubResource("CanvasTexture_ql6pc")
-
-[node name="LeftThrustParticles" parent="Pivot" instance=ExtResource("2_o610h")]
-visible = false
-light_mask = 2
-position = Vector2(-41, 5)
-rotation = 1.5708
-amount = 16
-process_material = SubResource("ParticleProcessMaterial_uo36b")
-lifetime = 0.2
-randomness = 0.1
-
-[node name="LeftThrust" type="TextureRect" parent="Pivot"]
-visible = false
-material = SubResource("ShaderMaterial_w5lr4")
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -13.0
-offset_top = -12.0
-offset_right = 19.0
-offset_bottom = 52.0
-grow_horizontal = 2
-rotation = 1.5708
-texture = SubResource("CanvasTexture_ql6pc")
-
-[node name="RightThrustParticles" parent="Pivot" instance=ExtResource("2_o610h")]
-visible = false
-light_mask = 2
-position = Vector2(44, 5)
-rotation = -1.5708
-amount = 16
-process_material = SubResource("ParticleProcessMaterial_uo36b")
-lifetime = 0.2
-randomness = 0.1
-
-[node name="RightThrust" type="TextureRect" parent="Pivot"]
-visible = false
-material = SubResource("ShaderMaterial_w5lr4")
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 13.0
-offset_top = 20.0
-offset_right = 45.0
-offset_bottom = 84.0
-grow_horizontal = 2
-rotation = -1.5708
-texture = SubResource("CanvasTexture_ql6pc")
-
-[node name="ForwardThrustParticles" parent="Pivot" instance=ExtResource("2_o610h")]
-visible = false
-light_mask = 2
-position = Vector2(0, -71)
-rotation = -3.14159
-amount = 16
-process_material = SubResource("ParticleProcessMaterial_uo36b")
-lifetime = 0.2
-randomness = 0.1
-
-[node name="ForwardThrust" type="TextureRect" parent="Pivot"]
-visible = false
-material = SubResource("ShaderMaterial_w5lr4")
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 16.0
-offset_top = -36.0
-offset_right = 48.0
-offset_bottom = 28.0
-grow_horizontal = 2
-rotation = 3.14159
-texture = SubResource("CanvasTexture_ql6pc")
-
-[node name="RearLeftThrustParticles" parent="Pivot" instance=ExtResource("2_o610h")]
-visible = false
-light_mask = 2
-position = Vector2(-34, 54)
-amount = 16
-process_material = SubResource("ParticleProcessMaterial_uo36b")
-lifetime = 0.2
-randomness = 0.1
-
-[node name="RearLeftThrust" type="TextureRect" parent="Pivot"]
-visible = false
-material = SubResource("ShaderMaterial_w5lr4")
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -50.0
-offset_top = 24.0
-offset_right = -18.0
-offset_bottom = 88.0
-grow_horizontal = 2
-texture = SubResource("CanvasTexture_ql6pc")
-
-[node name="RearRightThrustParticles" parent="Pivot" instance=ExtResource("2_o610h")]
-visible = false
-light_mask = 2
-position = Vector2(34, 54)
-amount = 16
-process_material = SubResource("ParticleProcessMaterial_uo36b")
-lifetime = 0.2
-randomness = 0.1
-
-[node name="RearRightThrust" type="TextureRect" parent="Pivot"]
-visible = false
-material = SubResource("ShaderMaterial_w5lr4")
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 18.0
-offset_top = 24.0
-offset_right = 50.0
-offset_bottom = 88.0
-grow_horizontal = 2
-texture = SubResource("CanvasTexture_ql6pc")
 
 [node name="Thrusters" type="Node2D" parent="Pivot"]
 
@@ -260,12 +107,14 @@ offset_bottom = 52.0
 texture = SubResource("CanvasTexture_llk3e")
 
 [node name="ShadowCaster" type="PointLight2D" parent="Pivot"]
+visible = false
 range_layer_min = -1
 shadow_enabled = true
 texture = ExtResource("4_lvblp")
 texture_scale = 10.0
 
 [node name="NoShadow" type="PointLight2D" parent="Pivot"]
+visible = false
 position = Vector2(13, -40)
 range_layer_min = -1
 range_item_cull_mask = 2
