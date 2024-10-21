@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://k8nbtwxisbbw"]
+[gd_scene load_steps=16 format=3 uid="uid://k8nbtwxisbbw"]
 
 [ext_resource type="Shader" path="res://shader/unit_triangle.gdshader" id="1_a5ce8"]
 [ext_resource type="Script" path="res://player/player_ship.gd" id="1_y4txy"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://player/player_shield.gd" id="5_q4knm"]
 [ext_resource type="PackedScene" uid="uid://cwh3m5g0begbp" path="res://debug/debug_dot.tscn" id="6_867ks"]
 [ext_resource type="Shader" path="res://shader/debug/debug_dot.gdshader" id="6_w7u3c"]
+[ext_resource type="Shader" path="res://shader/shield_jelly.gdshader" id="8_rygt0"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8gfpo"]
 particle_flag_disable_z = true
@@ -29,8 +30,8 @@ scale_max = 10.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ohyys"]
 shader = ExtResource("1_a5ce8")
-shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
 shader_parameter/FUZZ = 0.007
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
 shader_parameter/RED = Color(1, 0.349, 0.369, 1)
 shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
 shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
@@ -40,11 +41,24 @@ shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_llk3e"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o60ew"]
+shader = ExtResource("8_rygt0")
+shader_parameter/FUZZ = 0.007
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
+shader_parameter/divisions = 32.0
+shader_parameter/strengths = PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2h8jf"]
 resource_local_to_scene = true
 shader = ExtResource("6_w7u3c")
-shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
 shader_parameter/FUZZ = 0.007
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
 shader_parameter/RED = Color(1, 0.349, 0.369, 1)
 shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
 shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
@@ -143,6 +157,11 @@ position = Vector2(0, -76)
 
 [node name="Shield" type="Node2D" parent="."]
 script = ExtResource("5_q4knm")
+
+[node name="JellyShieldSprite" type="Sprite2D" parent="Shield"]
+material = SubResource("ShaderMaterial_o60ew")
+scale = Vector2(3.08594, 3.08594)
+texture = ExtResource("5_3jw70")
 
 [node name="DebugDot" parent="Shield" instance=ExtResource("6_867ks")]
 material = SubResource("ShaderMaterial_2h8jf")

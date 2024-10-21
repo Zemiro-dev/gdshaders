@@ -3,6 +3,7 @@ class_name JellyShield
 
 
 @onready var debug_dot: Sprite2D = $DebugDot
+@onready var jelly_shield_sprite: Sprite2D = $JellyShieldSprite
 
 @export var detection_ray_length : float = 400.
 @export var detection_ray_count : float = 32.
@@ -36,11 +37,28 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	for i in rays.size():
 		update_debug_dot(i)
-	
+		
+	var jelly_strengths : Array = get_jelly_strengths(rays)
+	jelly_shield_sprite.material.set_shader_parameter('strengths', jelly_strengths)
 	var _jelly_vector : Vector2 = get_jelly_combined_weighted_normal(rays)
 	debug_dot.material.set_shader_parameter('offset', _jelly_vector * max_jelly_strength / 3.)
 	debug_dot.material.set_shader_parameter('strength', 1.)
 	jelly_vector = _jelly_vector * max_jelly_strength
+	
+
+func get_jelly_strengths(rays) -> Array:
+	var jelly_strengths = []
+	for i in rays.size():
+		var ray: RayCast2D = rays[i];
+		if !ray.is_colliding():
+			jelly_strengths.append(1.)
+		else:
+			var local_collision_point = to_local(ray.get_collision_point())
+			var strength = local_collision_point.length() / ray.target_position.length()
+			jelly_strengths.append(strength)
+		
+	
+	return jelly_strengths
 	
 func get_jelly_combined_weighted_normal(rays) -> Vector2:
 	var jelly_combined_weighted_normal = Vector2.ZERO

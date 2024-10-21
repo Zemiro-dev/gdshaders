@@ -15,8 +15,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kx25j"]
 shader = ExtResource("4_uetue")
-shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
 shader_parameter/FUZZ = 0.007
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
 shader_parameter/RED = Color(1, 0.349, 0.369, 1)
 shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
 shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
@@ -43,8 +43,8 @@ noise = SubResource("FastNoiseLite_q5kgo")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l1tom"]
 shader = ExtResource("11_0jx18")
-shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
 shader_parameter/FUZZ = 0.007
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
 shader_parameter/RED = Color(1, 0.349, 0.369, 1)
 shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
 shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
@@ -63,8 +63,8 @@ shader_parameter/_noise2 = SubResource("NoiseTexture2D_uy12w")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e5of4"]
 shader = ExtResource("5_lfufx")
-shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
 shader_parameter/FUZZ = 0.007
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
 shader_parameter/RED = Color(1, 0.349, 0.369, 1)
 shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
 shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
@@ -76,8 +76,8 @@ shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3qa5j"]
 shader = ExtResource("8_doxqx")
-shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
 shader_parameter/FUZZ = 0.007
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
 shader_parameter/RED = Color(1, 0.349, 0.369, 1)
 shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
 shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)

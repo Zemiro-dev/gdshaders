@@ -6,8 +6,8 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i8ycj"]
 resource_local_to_scene = true
 shader = ExtResource("1_s5yuj")
-shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
 shader_parameter/FUZZ = 0.007
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
 shader_parameter/RED = Color(1, 0.349, 0.369, 1)
 shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
 shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
