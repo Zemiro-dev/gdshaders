@@ -15,8 +15,8 @@ var debug_dots: Array = []
 
 var jelly_vector: Vector2 = Vector2.ZERO
 
-
 var debug_dot_scene = preload("res://debug/debug_dot.tscn")
+
 
 func _ready() -> void:
 	var theta_step : float = 2. * PI / detection_ray_count
@@ -34,6 +34,7 @@ func _ready() -> void:
 		add_child(ray)
 		add_child(debug_dot)
 
+
 func _physics_process(delta: float) -> void:
 	for i in rays.size():
 		update_debug_dot(i)
@@ -44,7 +45,7 @@ func _physics_process(delta: float) -> void:
 	debug_dot.material.set_shader_parameter('offset', _jelly_vector * max_jelly_strength / 3.)
 	debug_dot.material.set_shader_parameter('strength', 1.)
 	jelly_vector = _jelly_vector * max_jelly_strength
-	
+
 
 func get_jelly_strengths(rays) -> Array:
 	var jelly_strengths = []
@@ -56,10 +57,9 @@ func get_jelly_strengths(rays) -> Array:
 			var local_collision_point = to_local(ray.get_collision_point())
 			var strength = local_collision_point.length() / ray.target_position.length()
 			jelly_strengths.append(strength)
-		
-	
 	return jelly_strengths
-	
+
+
 func get_jelly_combined_weighted_normal(rays) -> Vector2:
 	var jelly_combined_weighted_normal = Vector2.ZERO
 	for i in rays.size():
@@ -78,8 +78,6 @@ func get_jelly_weighted_normal(ray: RayCast2D) -> Vector2:
 	var local_collision_point = to_local(ray.get_collision_point())
 	var strength = clamp(1. - (local_collision_point.length()-detection_ray_dead_length) / (ray.target_position.length()-detection_ray_dead_length), 0, 1.)
 	return -ray.target_position.normalized() * strength
-	
-
 
 
 func update_debug_dot(index: int) -> void:
