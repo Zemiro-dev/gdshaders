@@ -34,7 +34,7 @@ var basic_bolt = preload("res://player/basic_bolt.tscn")
 ]
 
 @onready var shield: JellyShield = $Shield
-@export var jelly_min_speed_threshold : float = 0.
+@export var min_jelly_speed: float = 750.
 
 @onready var main_cannon_marker: Marker2D = $Pivot/MainCannonMarker
 
@@ -115,8 +115,14 @@ func _physics_process(delta: float) -> void:
 		angular_velocity = clampf(angular_velocity, -max_angular_velocity, max_angular_velocity)
 		rotate(angular_velocity * delta)
 	
-	if !shield.jelly_vector.is_zero_approx() and !(velocity.length() < jelly_min_speed_threshold):
-		velocity += shield.jelly_vector.rotated(rotation) * delta
+	# Jelly Shield
+	if !shield.jelly_vector.is_zero_approx():
+		var jelly_vector : Vector2 = shield.jelly_vector.rotated(rotation)
+		var theta_delta = jelly_vector.angle_to(velocity)
+		print(velocity.length())
+		if abs(theta_delta) > PI / 2 and velocity.length() > min_jelly_speed:
+			var jellied_velocity : Vector2 = velocity.project(jelly_vector).rotated(PI)
+			velocity += jellied_velocity / min(4., 2000. / velocity.length())
 	
 	# Velocity Cap
 	if velocity.length() > max_speed:
