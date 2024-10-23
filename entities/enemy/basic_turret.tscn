@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://w5m2rs6uhks4"]
 
 [ext_resource type="Shader" path="res://shader/basic_turret.gdshader" id="1_6kb45"]
-[ext_resource type="Script" path="res://enemy/basic_turret.gd" id="1_ucdna"]
+[ext_resource type="Script" path="res://entities/enemy/basic_turret.gd" id="1_ucdna"]
 [ext_resource type="Texture2D" uid="uid://7nknufbr1enf" path="res://icon_sq.svg" id="3_p30op"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_svmu5"]

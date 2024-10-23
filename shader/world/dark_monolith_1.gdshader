@@ -49,11 +49,11 @@ void fragment() {
 	float wire = bar(UV.y, .06, vec2(.02, .1 ), vec2(0., .002));
 	float body = bar(UV.y, .06, vec2(0., 1.), vec2(0.));
 	
-	vec3 highlight_color =  mix(mix(PURPLE, WHITE, .5), YELLOW.rgb, .1) * highlight;
+	vec3 highlight_color =  mix(mix(PURPLE.rgb, WHITE.rgb, .5), YELLOW.rgb, .1) * highlight;
 	highlight_color *= highlight;
-	vec3 wire_color = PURPLE;
+	vec3 wire_color = PURPLE.rgb;
 	wire_color *= wire;
-	vec3 body_color = MONOLITH_BLACK;
+	vec3 body_color = PURPLE_BLACK.rgb    ;
 	body_color *= body * (1.0 - wire);
 	
 	COLOR = vec4(highlight_color + wire_color + body_color, body + wire + highlight);

@@ -2,7 +2,7 @@ extends Entity
 class_name Player
 
 
-var basic_bolt = preload("res://player/basic_bolt.tscn")
+var basic_bolt = preload("res://entities/player/basic_bolt.tscn")
 
 
 @export var base_impulse_tolerance := PI/2.0
@@ -119,7 +119,6 @@ func _physics_process(delta: float) -> void:
 	if !shield.jelly_vector.is_zero_approx():
 		var jelly_vector : Vector2 = shield.jelly_vector.rotated(rotation)
 		var theta_delta = jelly_vector.angle_to(velocity)
-		print(velocity.length())
 		if abs(theta_delta) > PI / 2 and velocity.length() > min_jelly_speed:
 			var jellied_velocity : Vector2 = velocity.project(jelly_vector).rotated(PI)
 			velocity += jellied_velocity / min(4., 2000. / velocity.length())

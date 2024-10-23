@@ -1,12 +1,12 @@
 [gd_scene load_steps=17 format=3 uid="uid://k8nbtwxisbbw"]
 
-[ext_resource type="Script" path="res://player/player_ship.gd" id="1_y4txy"]
-[ext_resource type="PackedScene" uid="uid://dquv283uvwc4b" path="res://player/test_particles.tscn" id="2_o610h"]
+[ext_resource type="Script" path="res://entities/player/player_ship.gd" id="1_y4txy"]
+[ext_resource type="PackedScene" uid="uid://dquv283uvwc4b" path="res://entities/player/test_particles.tscn" id="2_o610h"]
 [ext_resource type="Shader" path="res://shader/player_ship.gdshader" id="2_tuwjd"]
 [ext_resource type="Material" uid="uid://djmydboyxeyur" path="res://resources/thrust_shader_material.tres" id="4_2xj1e"]
 [ext_resource type="Texture2D" uid="uid://bj32yg41s8648" path="res://data/light/point.webp" id="4_lvblp"]
 [ext_resource type="Texture2D" uid="uid://7nknufbr1enf" path="res://icon_sq.svg" id="5_3jw70"]
-[ext_resource type="Script" path="res://player/player_shield.gd" id="5_q4knm"]
+[ext_resource type="Script" path="res://entities/player/player_shield.gd" id="5_q4knm"]
 [ext_resource type="PackedScene" uid="uid://cwh3m5g0begbp" path="res://debug/debug_dot.tscn" id="6_867ks"]
 [ext_resource type="Shader" path="res://shader/debug/debug_dot.gdshader" id="6_w7u3c"]
 [ext_resource type="Shader" path="res://shader/shield_jelly.gdshader" id="8_rygt0"]
@@ -30,6 +30,8 @@ shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
 shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
 shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
 shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
+shader_parameter/PURPLE = Color(0.416, 0.298, 0.576, 1)
+shader_parameter/PURPLE_BLACK = Color(0.0416, 0.0298, 0.0576, 1)
 shader_parameter/divisions = 32.0
 shader_parameter/strengths = PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 shader_parameter/scroll1 = Vector2(0.05, 0.05)
@@ -46,6 +48,8 @@ shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
 shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
 shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
 shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
+shader_parameter/PURPLE = Color(0.416, 0.298, 0.576, 1)
+shader_parameter/PURPLE_BLACK = Color(0.0416, 0.0298, 0.0576, 1)
 shader_parameter/strength = 1.0
 shader_parameter/offset = Vector2(0, 0)
 
@@ -76,6 +80,8 @@ shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
 shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
 shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
 shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
+shader_parameter/PURPLE = Color(0.416, 0.298, 0.576, 1)
+shader_parameter/PURPLE_BLACK = Color(0.0416, 0.0298, 0.0576, 1)
 
 [node name="PlayerShip" type="CharacterBody2D"]
 collision_layer = 2
@@ -83,6 +89,7 @@ script = ExtResource("1_y4txy")
 max_health = 5
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.95, 0.95)
 polygon = PackedVector2Array(0, -74, 62, 34, -62, 34)
 
 [node name="Shield" type="Node2D" parent="."]

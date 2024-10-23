@@ -1,9 +1,9 @@
 [gd_scene load_steps=25 format=3 uid="uid://c7fo2we3emmg2"]
 
-[ext_resource type="PackedScene" uid="uid://k8nbtwxisbbw" path="res://player/player_ship.tscn" id="1_apm65"]
+[ext_resource type="PackedScene" uid="uid://k8nbtwxisbbw" path="res://entities/player/player_ship.tscn" id="1_apm65"]
 [ext_resource type="PackedScene" uid="uid://kjklqigokfoo" path="res://world/background_grid.tscn" id="1_htvu4"]
 [ext_resource type="Script" path="res://world/test_world.gd" id="1_ss4vj"]
-[ext_resource type="PackedScene" uid="uid://w5m2rs6uhks4" path="res://enemy/basic_turret.tscn" id="4_8rtal"]
+[ext_resource type="PackedScene" uid="uid://w5m2rs6uhks4" path="res://entities/enemy/basic_turret.tscn" id="4_8rtal"]
 [ext_resource type="Script" path="res://utilities/camera_controls.gd" id="4_kdbjg"]
 [ext_resource type="Shader" path="res://shader/space_block.gdshader" id="4_uetue"]
 [ext_resource type="Shader" path="res://shader/world/dark_monolith_1.gdshader" id="5_lfufx"]
@@ -23,6 +23,8 @@ shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
 shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
 shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
 shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
+shader_parameter/PURPLE = Color(0.416, 0.298, 0.576, 1)
+shader_parameter/PURPLE_BLACK = Color(0.0416, 0.0298, 0.0576, 1)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_mgp14"]
 
@@ -51,6 +53,8 @@ shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
 shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
 shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
 shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
+shader_parameter/PURPLE = Color(0.416, 0.298, 0.576, 1)
+shader_parameter/PURPLE_BLACK = Color(0.0416, 0.0298, 0.0576, 1)
 shader_parameter/scroll1 = Vector2(0.05, 0.05)
 shader_parameter/scroll2 = Vector2(0.195, -0.05)
 shader_parameter/distortion_strength = 0.2
@@ -71,6 +75,8 @@ shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
 shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
 shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
 shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
+shader_parameter/PURPLE = Color(0.416, 0.298, 0.576, 1)
+shader_parameter/PURPLE_BLACK = Color(0.0416, 0.0298, 0.0576, 1)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_02xa6"]
 
@@ -84,6 +90,8 @@ shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
 shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
 shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
 shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
+shader_parameter/PURPLE = Color(0.416, 0.298, 0.576, 1)
+shader_parameter/PURPLE_BLACK = Color(0.0416, 0.0298, 0.0576, 1)
 shader_parameter/remaining = 0.8
 shader_parameter/units = 5.0
 

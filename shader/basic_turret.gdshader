@@ -38,7 +38,7 @@ void fragment() {
 
 	vec3 progressBarColor = convert_color(RED.rgb) * progressBar;
 	vec3 eyeColor = eye * convert_color(mix(YELLOW.rgb, RED.rgb, progress));
-	vec3 bodyColor = PURPLE * feathered_body * (1.0-bar) * (1.0-eye);
+	vec3 bodyColor = PURPLE.rgb * feathered_body * (1.0-bar) * (1.0-eye);
 	vec3 barColor = convert_color(ORANGE.rgb) * (bar - progressBar);
 	COLOR = vec4(progressBarColor + bodyColor + barColor + eyeColor, progressBar + feathered_body);
 }

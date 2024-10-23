@@ -1,9 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://dquv283uvwc4b"]
 
-[ext_resource type="Shader" path="res://shader/thrust.gdshader" id="1_jcx8n"]
+[ext_resource type="Shader" path="res://shader/thrust.gdshader" id="1_k18gp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0vcka"]
-shader = ExtResource("1_jcx8n")
+shader = ExtResource("1_k18gp")
 shader_parameter/FUZZ = 0.007
 shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
 shader_parameter/RED = Color(1, 0.349, 0.369, 1)
@@ -12,6 +12,8 @@ shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
 shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
 shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
 shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
+shader_parameter/PURPLE = Color(0.416, 0.298, 0.576, 1)
+shader_parameter/PURPLE_BLACK = Color(0.0416, 0.0298, 0.0576, 1)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wl8lb"]
 particle_flag_disable_z = true
