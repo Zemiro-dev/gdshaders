@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://ccr7cy2xntb67"]
+[gd_scene load_steps=23 format=3 uid="uid://ccr7cy2xntb67"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_86tin"]
+[ext_resource type="Shader" path="res://world/block.gdshader" id="2_k5vpq"]
 [ext_resource type="PackedScene" uid="uid://k8nbtwxisbbw" path="res://entities/player/player_ship.tscn" id="2_xskq6"]
 [ext_resource type="Script" path="res://utilities/camera_controls.gd" id="3_iu3i8"]
 [ext_resource type="Shader" path="res://shader/world/cloud_layer_lower.gdshader" id="4_2mmj8"]
@@ -9,6 +10,53 @@
 [ext_resource type="Script" path="res://ui/life_bar.gd" id="5_m5i0y"]
 [ext_resource type="Shader" path="res://shader/world/cloud_layer_upper.gdshader" id="6_uyhx7"]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6oxag"]
+noise_type = 3
+frequency = 0.0407
+fractal_type = 3
+fractal_ping_pong_strength = 2.61
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h74kq"]
+width = 1024
+height = 1024
+seamless = true
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_6oxag")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_h61f0"]
+noise_type = 2
+frequency = 0.0045
+fractal_type = 2
+cellular_distance_function = 3
+cellular_return_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_85cm2"]
+width = 1024
+height = 1024
+seamless = true
+noise = SubResource("FastNoiseLite_h61f0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xnwww"]
+shader = ExtResource("2_k5vpq")
+shader_parameter/FUZZ = 0.007
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
+shader_parameter/PURPLE = Color(0.416, 0.298, 0.576, 1)
+shader_parameter/PURPLE_BLACK = Color(0.0416, 0.0298, 0.0576, 1)
+shader_parameter/box_size = 0.9
+shader_parameter/ink_width = 0.01
+shader_parameter/highlight_width = 0.05
+shader_parameter/highlight_power = 0.5
+shader_parameter/texture_mix = Color(0.241667, 0, 0.58, 1)
+shader_parameter/texture_mix_power = 0.29
+shader_parameter/noise1 = SubResource("NoiseTexture2D_h74kq")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_85cm2")
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_q40wd"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yagj8"]
@@ -16,6 +64,8 @@ seamless = true
 noise = SubResource("FastNoiseLite_q40wd")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_6063v"]
+offset = Vector3(50, 50, 0)
+fractal_lacunarity = 2.62
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4tk01"]
 seamless = true
@@ -81,7 +131,21 @@ shader_parameter/units = 5.0
 [node name="World" type="Node2D"]
 script = ExtResource("1_86tin")
 
+[node name="Environment" type="Node" parent="."]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Environment"]
+position = Vector2(-1551, -62)
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/RigidBody2D"]
+material = SubResource("ShaderMaterial_xnwww")
+position = Vector2(2397, 604)
+scale = Vector2(8, 8)
+texture = ExtResource("5_lx2ue")
+
 [node name="PlayerShip" parent="." instance=ExtResource("2_xskq6")]
+position = Vector2(0, 529)
+rotation = 1.57079
 
 [node name="Camera2D" type="Camera2D" parent="PlayerShip"]
 script = ExtResource("3_iu3i8")
