@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://bin1yer8raw7m"]
+
+[ext_resource type="Shader" path="res://world/block.gdshader" id="1_uq38v"]
+[ext_resource type="Texture2D" uid="uid://7nknufbr1enf" path="res://icon_sq.svg" id="2_cfsb2"]
+[ext_resource type="Script" path="res://world/world_rng_sprite.gd" id="3_kkgeb"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6oxag"]
+noise_type = 3
+seed = 190
+frequency = 0.0407
+fractal_type = 3
+fractal_ping_pong_strength = 2.61
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h74kq"]
+width = 1024
+height = 1024
+seamless = true
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_6oxag")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_a3f15"]
+resource_local_to_scene = true
+noise_type = 2
+frequency = 0.0045
+fractal_type = 2
+cellular_distance_function = 3
+cellular_return_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_85cm2"]
+width = 1024
+height = 1024
+seamless = true
+noise = SubResource("FastNoiseLite_a3f15")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xnwww"]
+resource_local_to_scene = true
+shader = ExtResource("1_uq38v")
+shader_parameter/FUZZ = 0.007
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
+shader_parameter/PURPLE = Color(0.416, 0.298, 0.576, 1)
+shader_parameter/PURPLE_BLACK = Color(0.0416, 0.0298, 0.0576, 1)
+shader_parameter/scroll1 = Vector2(0, 0)
+shader_parameter/scroll2 = Vector2(0, 0)
+shader_parameter/box_size = 0.9
+shader_parameter/ink_width = 0.01
+shader_parameter/highlight_width = 0.05
+shader_parameter/highlight_power = 0.5
+shader_parameter/texture_mix = Color(0.241667, 0, 0.58, 1)
+shader_parameter/texture_mix_power = 0.29
+shader_parameter/noise1 = SubResource("NoiseTexture2D_h74kq")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_85cm2")
+
+[node name="SolidSpaceBlock" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_xnwww")
+scale = Vector2(8, 8)
+texture = ExtResource("2_cfsb2")
+script = ExtResource("3_kkgeb")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+scale = Vector2(8, 8)
+polygon = PackedVector2Array(-58, 58.375, -58.5, -58.625, 58.25, -58.5, 58.125, 58.375)

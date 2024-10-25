@@ -29,10 +29,11 @@ float polygon(vec2 uv, int sides)
 }
 
 // util lib
-float random (vec2 uv)
-{
-    return fract(sin(dot(uv.xy, vec2(12.9898,78.233))) * 43758.5453123);
+float random (vec2 uv) {
+    return fract(sin(dot(uv.xy,
+        vec2(12.9898,78.233))) * 43758.5453123);
 }
+
 
 float noisey(vec2 uv) {
     vec2 uv_index = floor(uv);

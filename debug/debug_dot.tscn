@@ -14,6 +14,8 @@ shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
 shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
 shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
 shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
+shader_parameter/PURPLE = Color(0.416, 0.298, 0.576, 1)
+shader_parameter/PURPLE_BLACK = Color(0.0416, 0.0298, 0.0576, 1)
 shader_parameter/strength = 1.0
 shader_parameter/offset = Vector2(0, 0)
 

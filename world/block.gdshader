@@ -3,6 +3,8 @@ shader_type canvas_item;
 #include "res://shader/lib/glint.gdshaderinc"
 #include "res://shader/data/theme.gdshaderinc"
 
+uniform vec2 scroll1 = vec2(0.);
+uniform vec2 scroll2 = vec2(0.);
 uniform float box_size = .9;
 uniform float ink_width = .03;
 uniform float highlight_width = .05;
@@ -26,8 +28,8 @@ void fragment() {
 	
 	vec4 highlight_color = mix(PURPLE, vec4(WHITE, 1.), highlight_power);
 	
-	float noise1_strength = texture(noise1, UV).r;
-	float noise2_strength = texture(noise2, UV).r;
+	float noise1_strength = texture(noise1, UV+scroll1).r;
+	float noise2_strength = texture(noise2, UV+scroll2).r;
 	float strength = noise1_strength * (1.0-noise2_strength);
 	vec4 box_color = mix(PURPLE, texture_mix, (1.-strength) * texture_mix_power);
 	
