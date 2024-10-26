@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bin1yer8raw7m"]
+[gd_scene load_steps=9 format=3 uid="uid://dwbqdbtpr2lo7"]
 
-[ext_resource type="Shader" path="res://world/block.gdshader" id="1_uq38v"]
-[ext_resource type="Texture2D" uid="uid://7nknufbr1enf" path="res://icon_sq.svg" id="2_cfsb2"]
-[ext_resource type="Script" path="res://world/world_rng_sprite.gd" id="3_kkgeb"]
+[ext_resource type="Shader" path="res://world/block.gdshader" id="1_xm7kp"]
+[ext_resource type="Texture2D" uid="uid://7nknufbr1enf" path="res://icon_sq.svg" id="2_7tx46"]
+[ext_resource type="Script" path="res://world/world_rng_sprite.gd" id="3_4utta"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_6oxag"]
 noise_type = 3
@@ -32,9 +32,9 @@ height = 1024
 seamless = true
 noise = SubResource("FastNoiseLite_a3f15")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xnwww"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ysr7g"]
 resource_local_to_scene = true
-shader = ExtResource("1_uq38v")
+shader = ExtResource("1_xm7kp")
 shader_parameter/FUZZ = 0.007
 shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
 shader_parameter/RED = Color(1, 0.349, 0.369, 1)
@@ -45,7 +45,7 @@ shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
 shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
 shader_parameter/PURPLE = Color(0.416, 0.298, 0.576, 1)
 shader_parameter/PURPLE_BLACK = Color(0.0416, 0.0298, 0.0576, 1)
-shader_parameter/mode = 0
+shader_parameter/mode = 1
 shader_parameter/scroll1 = Vector2(0, 0)
 shader_parameter/scroll2 = Vector2(0, 0)
 shader_parameter/box_size = 0.9
@@ -57,17 +57,16 @@ shader_parameter/texture_mix_power = 0.29
 shader_parameter/noise1 = SubResource("NoiseTexture2D_h74kq")
 shader_parameter/noise2 = SubResource("NoiseTexture2D_85cm2")
 
-[node name="SolidSpaceBlock" type="RigidBody2D"]
+[node name="SolidSpaceCornerBlock" type="RigidBody2D"]
 collision_mask = 0
 gravity_scale = 0.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_xnwww")
+material = SubResource("ShaderMaterial_ysr7g")
 scale = Vector2(8, 8)
-texture = ExtResource("2_cfsb2")
-script = ExtResource("3_kkgeb")
+texture = ExtResource("2_7tx46")
+script = ExtResource("3_4utta")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-visible = false
 scale = Vector2(8, 8)
-polygon = PackedVector2Array(-58, 58.375, -58.5, -58.625, 58.25, -58.5, 58.125, 58.375)
+polygon = PackedVector2Array(-58, 58.375, 58.25, -58.5, 58.125, 58.375)

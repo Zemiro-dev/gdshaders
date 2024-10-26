@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ccr7cy2xntb67"]
+[gd_scene load_steps=19 format=3 uid="uid://ccr7cy2xntb67"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_86tin"]
 [ext_resource type="PackedScene" uid="uid://k8nbtwxisbbw" path="res://entities/player/player_ship.tscn" id="2_xskq6"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://7nknufbr1enf" path="res://icon_sq.svg" id="5_lx2ue"]
 [ext_resource type="Script" path="res://ui/life_bar.gd" id="5_m5i0y"]
 [ext_resource type="PackedScene" uid="uid://bin1yer8raw7m" path="res://world/solid_space_block.tscn" id="5_wiuku"]
+[ext_resource type="PackedScene" uid="uid://dwbqdbtpr2lo7" path="res://world/solid_space_corner_block.tscn" id="6_7vgf3"]
 [ext_resource type="Shader" path="res://shader/world/cloud_layer_upper.gdshader" id="6_uyhx7"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_q40wd"]
@@ -142,6 +143,13 @@ position = Vector2(3911, 0)
 
 [node name="SolidSpaceBlock12" parent="Environment" instance=ExtResource("5_wiuku")]
 position = Vector2(3399, 1665)
+
+[node name="SolidSpaceCornerBlock" parent="Environment" instance=ExtResource("6_7vgf3")]
+position = Vector2(4855, 0)
+
+[node name="SolidSpaceCornerBlock2" parent="Environment" instance=ExtResource("6_7vgf3")]
+position = Vector2(4343, 1665)
+rotation = 1.57079
 
 [node name="PlayerShip" parent="." instance=ExtResource("2_xskq6")]
 position = Vector2(0, 529)

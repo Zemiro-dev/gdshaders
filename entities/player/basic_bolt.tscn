@@ -6,6 +6,16 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_spck4"]
 shader = ExtResource("1_t32kx")
+shader_parameter/FUZZ = 0.007
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
+shader_parameter/PURPLE = Color(0.416, 0.298, 0.576, 1)
+shader_parameter/PURPLE_BLACK = Color(0.0416, 0.0298, 0.0576, 1)
 shader_parameter/star_rays = 1.0
 shader_parameter/brightness1 = 1.0
 shader_parameter/brightness2 = 0.5
@@ -51,7 +61,8 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DetectionZone"]
-polygon = PackedVector2Array(256, -512, -256, -512, 0, 0)
+position = Vector2(-1, 0)
+polygon = PackedVector2Array(64, -512, -64, -512, 0, 0)
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_xb3cc")]
 
