@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxhuea0o5v5ep"]
+
+[ext_resource type="Script" path="res://world/moving_obstacle.gd" id="1_h6xau"]
+[ext_resource type="PackedScene" uid="uid://bin1yer8raw7m" path="res://world/solid_space_block.tscn" id="2_apa3x"]
+
+[node name="MovingObstacle" type="Node2D"]
+script = ExtResource("1_h6xau")
+
+[node name="ObstaclePath" type="Path2D" parent="."]
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ObstaclePath"]
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="ObstaclePath/PathFollow2D"]
+remote_path = NodePath("../../../SolidSpaceBlock")
+update_rotation = false
+update_scale = false
+
+[node name="SolidSpaceBlock" parent="." instance=ExtResource("2_apa3x")]

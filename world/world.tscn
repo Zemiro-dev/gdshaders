@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ccr7cy2xntb67"]
+[gd_scene load_steps=22 format=3 uid="uid://ccr7cy2xntb67"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_86tin"]
 [ext_resource type="PackedScene" uid="uid://k8nbtwxisbbw" path="res://entities/player/player_ship.tscn" id="2_xskq6"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bin1yer8raw7m" path="res://world/solid_space_block.tscn" id="5_wiuku"]
 [ext_resource type="PackedScene" uid="uid://dwbqdbtpr2lo7" path="res://world/solid_space_corner_block.tscn" id="6_7vgf3"]
 [ext_resource type="Shader" path="res://shader/world/cloud_layer_upper.gdshader" id="6_uyhx7"]
+[ext_resource type="PackedScene" uid="uid://sqxh81fs1uke" path="res://world/move_around_obstacle.tscn" id="7_ba6cw"]
+[ext_resource type="Script" path="res://world/obstacle_pinger.gd" id="8_pcw6x"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_q40wd"]
 
@@ -65,6 +67,9 @@ shader_parameter/light_end = 0.808
 shader_parameter/_noise1 = SubResource("NoiseTexture2D_yagj8")
 shader_parameter/_noise2 = SubResource("NoiseTexture2D_4tk01")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1evm4"]
+radius = 639.02
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hqf0b"]
 shader = ExtResource("4_60ltu")
 shader_parameter/FUZZ = 0.007
@@ -114,29 +119,17 @@ centered = false
 [node name="SolidSpaceBlock2" parent="Environment" instance=ExtResource("5_wiuku")]
 position = Vector2(1170, 0)
 
+[node name="SolidSpaceBlock5" parent="Environment" instance=ExtResource("5_wiuku")]
+position = Vector2(1314, -1463)
+
+[node name="SolidSpaceBlock6" parent="Environment" instance=ExtResource("5_wiuku")]
+position = Vector2(3209, -1463)
+
 [node name="SolidSpaceBlock3" parent="Environment" instance=ExtResource("5_wiuku")]
-position = Vector2(1314, 1153)
+position = Vector2(1170, 1772)
 
 [node name="SolidSpaceBlock4" parent="Environment" instance=ExtResource("5_wiuku")]
 position = Vector2(0, 1772)
-
-[node name="SolidSpaceBlock5" parent="Environment" instance=ExtResource("5_wiuku")]
-position = Vector2(-1362, 1430)
-
-[node name="SolidSpaceBlock6" parent="Environment" instance=ExtResource("5_wiuku")]
-position = Vector2(-1794, 202)
-
-[node name="SolidSpaceBlock7" parent="Environment" instance=ExtResource("5_wiuku")]
-position = Vector2(-1362, -1207)
-
-[node name="SolidSpaceBlock8" parent="Environment" instance=ExtResource("5_wiuku")]
-position = Vector2(0, -1852)
-
-[node name="SolidSpaceBlock9" parent="Environment" instance=ExtResource("5_wiuku")]
-position = Vector2(1682, -2129)
-
-[node name="SolidSpaceBlock10" parent="Environment" instance=ExtResource("5_wiuku")]
-position = Vector2(3334, -1719)
 
 [node name="SolidSpaceBlock11" parent="Environment" instance=ExtResource("5_wiuku")]
 position = Vector2(3911, 0)
@@ -150,6 +143,18 @@ position = Vector2(4855, 0)
 [node name="SolidSpaceCornerBlock2" parent="Environment" instance=ExtResource("6_7vgf3")]
 position = Vector2(4343, 1665)
 rotation = 1.57079
+
+[node name="MoveAroundObstacle" parent="Environment" instance=ExtResource("7_ba6cw")]
+position = Vector2(2265, -1463)
+
+[node name="Area2D" type="Area2D" parent="Environment"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("8_pcw6x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Area2D"]
+position = Vector2(2265, -806)
+shape = SubResource("CircleShape2D_1evm4")
 
 [node name="PlayerShip" parent="." instance=ExtResource("2_xskq6")]
 position = Vector2(0, 529)

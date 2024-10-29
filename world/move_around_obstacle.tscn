@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://sqxh81fs1uke"]
+
+[ext_resource type="PackedScene" uid="uid://cxhuea0o5v5ep" path="res://world/moving_obstacle.tscn" id="1_uxer4"]
+
+[sub_resource type="Curve2D" id="Curve2D_iiwk7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -968, 0, 0, 0, 0, 968, -968)
+}
+point_count = 3
+
+[node name="MoveAroundObstacle" instance=ExtResource("1_uxer4")]
+position = Vector2(0, 1)
+
+[node name="ObstaclePath" parent="." index="0"]
+curve = SubResource("Curve2D_iiwk7")
