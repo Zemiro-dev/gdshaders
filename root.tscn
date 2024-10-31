@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://b40y5i886yjtt"]
+[gd_scene load_steps=41 format=3 uid="uid://b40y5i886yjtt"]
 
 [ext_resource type="Shader" path="res://shader/energy_shield.gdshader" id="1_ft3tv"]
 [ext_resource type="Script" path="res://root.gd" id="1_xn33p"]
@@ -16,6 +16,7 @@
 [ext_resource type="Material" uid="uid://djmydboyxeyur" path="res://resources/thrust_shader_material.tres" id="14_ucan4"]
 [ext_resource type="Shader" path="res://shader/debug/debug_dot.gdshader" id="15_b25uo"]
 [ext_resource type="Shader" path="res://shader/shield_jelly.gdshader" id="16_lyr15"]
+[ext_resource type="Shader" path="res://shader/sfx/laser_pointer.gdshader" id="16_y7clk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0dgx2"]
 shader = ExtResource("1_ft3tv")
@@ -201,6 +202,24 @@ shader_parameter/PURPLE_BLACK = Color(0.0416, 0.0298, 0.0576, 1)
 shader_parameter/strength = 0.1
 shader_parameter/offset = Vector2(0.5, 0.5)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mr8t5"]
+shader = ExtResource("16_y7clk")
+shader_parameter/FUZZ = 0.007
+shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
+shader_parameter/RED = Color(1, 0.349, 0.369, 1)
+shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
+shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
+shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
+shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
+shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
+shader_parameter/PURPLE = Color(0.416, 0.298, 0.576, 1)
+shader_parameter/PURPLE_BLACK = Color(0.0416, 0.0298, 0.0576, 1)
+shader_parameter/laser_height = 0.1
+shader_parameter/laser_width = 0.8
+shader_parameter/opacity = 0.2
+shader_parameter/cold_glow_power = 10.0
+shader_parameter/cold_glow_color = Color(0.0980392, 0.470588, 0.768627, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4g1tb"]
 shader = ExtResource("16_lyr15")
 shader_parameter/FUZZ = 0.007
@@ -309,6 +328,12 @@ texture = ExtResource("12_kgppm")
 [node name="Dot" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_whbd3")
 position = Vector2(3624, 1296)
+texture = ExtResource("12_kgppm")
+
+[node name="LaserPointer" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_mr8t5")
+position = Vector2(2702, 1756)
+scale = Vector2(16.7617, 1.4961)
 texture = ExtResource("12_kgppm")
 
 [node name="JellyShieldSprite" type="Sprite2D" parent="."]

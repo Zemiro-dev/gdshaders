@@ -13,3 +13,6 @@ position = Vector2(0, 1)
 
 [node name="ObstaclePath" parent="." index="0"]
 curve = SubResource("Curve2D_iiwk7")
+
+[node name="PathFollow2D" parent="ObstaclePath" index="0"]
+rotation = -1.5708
