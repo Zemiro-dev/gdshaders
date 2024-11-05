@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://k8nbtwxisbbw"]
+[gd_scene load_steps=20 format=3 uid="uid://k8nbtwxisbbw"]
 
 [ext_resource type="Script" path="res://entities/player/player_ship.gd" id="1_y4txy"]
 [ext_resource type="PackedScene" uid="uid://dquv283uvwc4b" path="res://entities/player/test_particles.tscn" id="2_o610h"]
@@ -11,6 +11,7 @@
 [ext_resource type="Shader" path="res://shader/debug/debug_dot.gdshader" id="6_w7u3c"]
 [ext_resource type="Shader" path="res://shader/sfx/laser_pointer.gdshader" id="7_bxuee"]
 [ext_resource type="Shader" path="res://shader/shield_jelly.gdshader" id="8_rygt0"]
+[ext_resource type="Texture2D" uid="uid://dwnafngxitm58" path="res://data/assets/shiptest.svg" id="11_u2if0"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_usad8"]
 noise_type = 3
@@ -187,6 +188,10 @@ randomness = 0.1
 material = SubResource("ShaderMaterial_is3rr")
 position = Vector2(0, -12)
 texture = ExtResource("5_3jw70")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Pivot"]
+position = Vector2(0, -19)
+texture = ExtResource("11_u2if0")
 
 [node name="ShadowCaster" type="PointLight2D" parent="Pivot"]
 visible = false

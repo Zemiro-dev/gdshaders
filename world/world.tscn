@@ -157,7 +157,7 @@ position = Vector2(2265, -806)
 shape = SubResource("CircleShape2D_1evm4")
 
 [node name="PlayerShip" parent="." instance=ExtResource("2_xskq6")]
-position = Vector2(0, 529)
+position = Vector2(-24, 827)
 rotation = 1.57079
 
 [node name="Camera2D" type="Camera2D" parent="PlayerShip"]
