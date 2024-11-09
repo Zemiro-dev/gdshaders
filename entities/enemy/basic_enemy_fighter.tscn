@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccebawj0f0vlu"]
+
+[ext_resource type="Texture2D" uid="uid://y18ki2b4c3s4" path="res://data/assets/enemy_ship.svg" id="1_bv88p"]
+
+[node name="BasicEnemyFighter" type="CharacterBody2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot"]
+texture = ExtResource("1_bv88p")
