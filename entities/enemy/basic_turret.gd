@@ -10,9 +10,8 @@ var player: CharacterBody2D = null
 @export var rads_per_sec := PI;
 @export var shoot_angle_threshold := .1;
 
-var primary_weapon_cooldown := 0.0
-
-var red_orb = preload("res://entities/projectiles/red_orb.tscn")
+@export var primary_weapon_cooldown := 0.0
+@export var projectile_scene : PackedScene;
 
 
 func _ready() -> void:
@@ -37,7 +36,7 @@ func _physics_process(delta: float) -> void:
 			var facing_angle := get_global_facing().angle()
 			var new_rotation = rotate_toward(facing_angle, angle_to_target, rads_per_sec * delta)
 			shoot()
-			rotation = new_rotation + PI/2.;
+			rotation = new_rotation;
 	
 	if primary_weapon_cooldown > 0.0:
 		primary_weapon_cooldown -= delta
@@ -52,7 +51,7 @@ func shoot() -> void:
 		var facing_angle := get_global_facing().angle()
 		
 		if abs(angle_to_target - facing_angle) < shoot_angle_threshold:
-			var red_orb_instance = red_orb.instantiate()
+			var red_orb_instance = projectile_scene.instantiate()
 			primary_weapon_cooldown = red_orb_instance.cooldown
 			get_tree().root.add_child(red_orb_instance)
 			red_orb_instance.shoot(main_cannon_marker.global_transform)
@@ -63,10 +62,10 @@ func _on_detection_zone_entered(body: Node2D) -> void:
 
 
 func get_facing() -> Vector2:
-	return Vector2.from_angle(rotation + PI/2.0)
+	return Vector2.from_angle(rotation)
 
 func get_global_facing() -> Vector2:
-	return -global_transform.y
+	return global_transform.x
 
 func _on_health_changed(new_health: int, max_health: int) -> void:
 	sprite.material.set_shader_parameter('progress', float(new_health) / float(max_health));

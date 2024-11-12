@@ -5,18 +5,22 @@ class_name Projectile
 @onready var lifetime: Timer = $Lifetime
 @onready var hurtbox: Hurtbox = $Hurtbox
 
-@export var eject_velocity := Vector2(0.0, -1500.0)
+@export var eject_velocity := Vector2(0., 0.)
+@export var initial_speed := 10.
 @export var acceleration := Vector2.ZERO
 @export var max_speed := 1500.0
 @export var spread := 0.
-@export var cooldown := .1
+@export var cooldown := .5
 
 var velocity := Vector2.ZERO
 
 
 func shoot(_global_transform):
 	global_transform = _global_transform
-	velocity = eject_velocity.rotated(eject_velocity.angle_to(-transform.y)).rotated((randf() * spread) - spread / 2)
+	rotation += randf_range(-spread, spread)
+	velocity = transform.x * initial_speed
+	velocity += eject_velocity.rotated(eject_velocity.angle_to(transform.x))
+	
 	
 	#ttl
 	lifetime.timeout.connect(_on_lifetime_timeout)
@@ -25,9 +29,9 @@ func shoot(_global_transform):
 
 
 func _physics_process(delta: float) -> void:
-	velocity += acceleration * delta
+	velocity += acceleration.rotated(acceleration.angle_to(velocity)) * delta
 	velocity = velocity.limit_length(max_speed)
-	rotation = velocity.angle() + PI/2.0;
+	rotation = velocity.angle();
 	position += velocity * delta
 
 

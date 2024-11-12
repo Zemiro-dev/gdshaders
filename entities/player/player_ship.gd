@@ -38,11 +38,11 @@ var basic_bolt = preload("res://entities/player/basic_bolt.tscn")
 
 @onready var main_cannon_marker: Marker2D = $Pivot/MainCannonMarker
 
-@export var impulse_acceleration: float = 1000.0
+@export var impulse_acceleration: float = 500.0
 @export var drag: float = 150.0
 @export var handling_multiplier: float = 3.0
-@export var main_thrust_acceleration: float = 3000.0
-@export var max_speed := 2000.0
+@export var main_thrust_acceleration: float = 1500.0
+@export var max_speed := 1000.0
 
 @export var max_angular_velocity := 2.5*PI
 @export var angular_impulse_acceleration := 6.*PI

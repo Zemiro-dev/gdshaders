@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://ccr7cy2xntb67"]
+[gd_scene load_steps=33 format=4 uid="uid://ccr7cy2xntb67"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_86tin"]
 [ext_resource type="PackedScene" uid="uid://k8nbtwxisbbw" path="res://entities/player/player_ship.tscn" id="2_xskq6"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" path="res://world/obstacle_pinger.gd" id="8_pcw6x"]
 [ext_resource type="Texture2D" uid="uid://bif1m2ya3c7gc" path="res://data/assets/basic_tileset.svg" id="9_40avo"]
 [ext_resource type="PackedScene" uid="uid://ccebawj0f0vlu" path="res://entities/enemy/basic_enemy_fighter.tscn" id="10_j7qj1"]
+[ext_resource type="PackedScene" uid="uid://w5m2rs6uhks4" path="res://entities/enemy/basic_turret.tscn" id="11_46175"]
+[ext_resource type="PackedScene" uid="uid://bmgatdas6bvhy" path="res://entities/projectiles/basic_missile.tscn" id="12_ruj2m"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_q40wd"]
 
@@ -196,6 +198,8 @@ shader_parameter/units = 5.0
 script = ExtResource("1_86tin")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.1, 0.1)
@@ -246,13 +250,18 @@ tile_set = SubResource("TileSet_p2dmr")
 [node name="EnemyNest" type="Node" parent="."]
 
 [node name="BasicEnemyFighter" parent="EnemyNest" instance=ExtResource("10_j7qj1")]
-position = Vector2(600, 425)
+position = Vector2(1068, 340)
+
+[node name="BasicTurret" parent="EnemyNest" instance=ExtResource("11_46175")]
+position = Vector2(1274, 914)
+projectile_scene = ExtResource("12_ruj2m")
 
 [node name="PlayerShip" parent="." instance=ExtResource("2_xskq6")]
 position = Vector2(378, 342)
 rotation = 1.57079
 
 [node name="Camera2D" type="Camera2D" parent="PlayerShip"]
+zoom = Vector2(0.5, 0.5)
 script = ExtResource("3_iu3i8")
 look_ahead_distance = 200.0
 look_ahead_speed = 1.0

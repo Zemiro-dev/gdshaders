@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://bmgatdas6bvhy"]
+
+[ext_resource type="Script" path="res://entities/projectiles/basic_missile.gd" id="1_o4kcq"]
+[ext_resource type="Texture2D" uid="uid://drafa7igee5wv" path="res://data/assets/basic_enemy_fighter_missle.svg" id="1_rmiyj"]
+[ext_resource type="Material" uid="uid://djmydboyxeyur" path="res://resources/thrust_shader_material.tres" id="2_064u2"]
+[ext_resource type="PackedScene" uid="uid://ba0ggrxjujuhf" path="res://entities/hurtbox.tscn" id="2_fpvuc"]
+[ext_resource type="Texture2D" uid="uid://7nknufbr1enf" path="res://icon_sq.svg" id="3_h2x6l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_djdtb"]
+radius = 25.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fvho0"]
+radius = 25.0799
+
+[node name="BassicMissile" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_o4kcq")
+initial_speed = 100.0
+acceleration = Vector2(1500, 0)
+max_speed = 3000.0
+cooldown = 2.0
+
+[node name="Hurtbox" parent="." instance=ExtResource("2_fpvuc")]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_djdtb")
+
+[node name="ThrusterSprite2D" type="Sprite2D" parent="."]
+material = ExtResource("2_064u2")
+position = Vector2(-53.6324, -1.00007)
+rotation = 1.57079
+scale = Vector2(0.191795, 0.525506)
+texture = ExtResource("3_h2x6l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-9, 0)
+texture = ExtResource("1_rmiyj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fvho0")
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 3.0
