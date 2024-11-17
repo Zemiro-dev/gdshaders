@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://b40y5i886yjtt"]
+[gd_scene load_steps=42 format=3 uid="uid://b40y5i886yjtt"]
 
 [ext_resource type="Shader" path="res://shader/energy_shield.gdshader" id="1_ft3tv"]
 [ext_resource type="Script" path="res://root.gd" id="1_xn33p"]
@@ -17,6 +17,7 @@
 [ext_resource type="Shader" path="res://shader/debug/debug_dot.gdshader" id="15_b25uo"]
 [ext_resource type="Shader" path="res://shader/shield_jelly.gdshader" id="16_lyr15"]
 [ext_resource type="Shader" path="res://shader/sfx/laser_pointer.gdshader" id="16_y7clk"]
+[ext_resource type="Texture2D" uid="uid://wnto744bhk1x" path="res://data/assets/playership.svg" id="18_4pilr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0dgx2"]
 shader = ExtResource("1_ft3tv")
@@ -341,3 +342,6 @@ material = SubResource("ShaderMaterial_4g1tb")
 position = Vector2(744, 1872)
 scale = Vector2(3.08594, 3.08594)
 texture = ExtResource("12_kgppm")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("18_4pilr")

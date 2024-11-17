@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://k8nbtwxisbbw"]
+[gd_scene load_steps=23 format=3 uid="uid://k8nbtwxisbbw"]
 
 [ext_resource type="Script" path="res://entities/player/player_ship.gd" id="1_y4txy"]
 [ext_resource type="PackedScene" uid="uid://dquv283uvwc4b" path="res://entities/player/test_particles.tscn" id="2_o610h"]
@@ -12,6 +12,8 @@
 [ext_resource type="Shader" path="res://shader/sfx/laser_pointer.gdshader" id="7_bxuee"]
 [ext_resource type="Shader" path="res://shader/shield_jelly.gdshader" id="8_rygt0"]
 [ext_resource type="Texture2D" uid="uid://dwnafngxitm58" path="res://data/assets/shiptest.svg" id="11_u2if0"]
+[ext_resource type="Shader" path="res://shader/color_glow.gdshader" id="12_71ofd"]
+[ext_resource type="Texture2D" uid="uid://wnto744bhk1x" path="res://data/assets/playership.svg" id="12_xoq78"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_usad8"]
 noise_type = 3
@@ -103,6 +105,10 @@ shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
 shader_parameter/PURPLE = Color(0.416, 0.298, 0.576, 1)
 shader_parameter/PURPLE_BLACK = Color(0.0416, 0.0298, 0.0576, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_utg5o"]
+shader = ExtResource("12_71ofd")
+shader_parameter/target_color = Color(0.294118, 0.627451, 0.772549, 1)
+
 [node name="PlayerShip" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_y4txy")
@@ -185,13 +191,21 @@ lifetime = 0.5
 randomness = 0.1
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot"]
+visible = false
 material = SubResource("ShaderMaterial_is3rr")
 position = Vector2(0, -12)
 texture = ExtResource("5_3jw70")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Pivot"]
+visible = false
 position = Vector2(0, -19)
 texture = ExtResource("11_u2if0")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Pivot"]
+material = SubResource("ShaderMaterial_utg5o")
+position = Vector2(0, -17)
+scale = Vector2(2.36, 2.36)
+texture = ExtResource("12_xoq78")
 
 [node name="ShadowCaster" type="PointLight2D" parent="Pivot"]
 visible = false
