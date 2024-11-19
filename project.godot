@@ -91,3 +91,34 @@ fire={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+
+[shader_globals]
+
+theme_black={
+"type": "color",
+"value": Color(0.121569, 0.0705882, 0.121569, 1)
+}
+theme_white={
+"type": "color",
+"value": Color(0.988235, 0.996078, 0.976471, 1)
+}
+theme_red={
+"type": "color",
+"value": Color(0.870588, 0.258824, 0.188235, 1)
+}
+theme_redorange={
+"type": "color",
+"value": Color(0.905882, 0.392157, 0.2, 1)
+}
+theme_orange={
+"type": "color",
+"value": Color(0.952941, 0.717647, 0.25098, 1)
+}
+theme_yellow={
+"type": "color",
+"value": Color(0.992157, 0.972549, 0.32549, 1)
+}
+base_fuzz={
+"type": "float",
+"value": 0.007
+}
