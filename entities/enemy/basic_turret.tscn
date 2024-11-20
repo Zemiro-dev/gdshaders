@@ -1,32 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://w5m2rs6uhks4"]
+[gd_scene load_steps=6 format=3 uid="uid://w5m2rs6uhks4"]
 
-[ext_resource type="Shader" path="res://shader/basic_turret.gdshader" id="1_6kb45"]
 [ext_resource type="Script" path="res://entities/enemy/basic_turret.gd" id="1_ucdna"]
 [ext_resource type="PackedScene" uid="uid://0u8ff7ar7bki" path="res://entities/projectiles/red_orb.tscn" id="2_auix6"]
-[ext_resource type="Texture2D" uid="uid://7nknufbr1enf" path="res://icon_sq.svg" id="3_p30op"]
+[ext_resource type="Texture2D" uid="uid://cgieq8gnpvrad" path="res://data/assets/enemyturret.svg" id="3_0f0y6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_svmu5"]
-radius = 60.0
+radius = 19.105
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1pvr"]
 radius = 800.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8yd0c"]
-resource_local_to_scene = true
-shader = ExtResource("1_6kb45")
-shader_parameter/FUZZ = 0.007
-shader_parameter/BLUE = Color(0.098, 0.47, 0.769, 1)
-shader_parameter/RED = Color(1, 0.349, 0.369, 1)
-shader_parameter/YELLOW = Color(1, 0.792, 0.227, 1)
-shader_parameter/ORANGE = Color(1, 0.57, 0.298, 1)
-shader_parameter/BRIGHT_ORANGE = Color(1, 0.937, 0.769, 1)
-shader_parameter/YELLOW_WHITE = Color(0.333, 0.264, 0.075, 1)
-shader_parameter/GREEN = Color(0.501, 0.788, 0.149, 1)
-shader_parameter/PURPLE = Color(0.416, 0.298, 0.576, 1)
-shader_parameter/PURPLE_BLACK = Color(0.0416, 0.0298, 0.0576, 1)
-shader_parameter/barWidth = 0.3
-shader_parameter/progress = 0.2
-shader_parameter/is_grayscale = false
 
 [node name="BasicTurret" type="CharacterBody2D"]
 light_mask = 2
@@ -48,9 +30,8 @@ shape = SubResource("CircleShape2D_b1pvr")
 [node name="Pivot" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite2D" parent="Pivot"]
-material = SubResource("ShaderMaterial_8yd0c")
 rotation = 1.5708
-texture = ExtResource("3_p30op")
+texture = ExtResource("3_0f0y6")
 
 [node name="MainCannonMarker" type="Marker2D" parent="Pivot"]
 position = Vector2(80, 0)

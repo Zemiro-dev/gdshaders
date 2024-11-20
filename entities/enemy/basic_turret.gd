@@ -18,7 +18,7 @@ func _ready() -> void:
 	super()
 	detection_zone.body_entered.connect(_on_detection_zone_entered)
 	
-	sprite.material.set_shader_parameter('progress', 1.0);
+	#sprite.material.set_shader_parameter('progress', 1.0);
 	on_health_changed.connect(_on_health_changed)
 	on_death.connect(_on_death)
 	
@@ -68,7 +68,9 @@ func get_global_facing() -> Vector2:
 	return global_transform.x
 
 func _on_health_changed(new_health: int, max_health: int) -> void:
-	sprite.material.set_shader_parameter('progress', float(new_health) / float(max_health));
+	pass
+	#sprite.material.set_shader_parameter('progress', float(new_health) / float(max_health));
 
 func _on_death(entity: Entity):
-	sprite.material.set_shader_parameter('is_grayscale', true);
+	modulate = Color(0,0,0,1)
+	#sprite.material.set_shader_parameter('is_grayscale', true);

@@ -114,6 +114,7 @@ scale = Vector2(1.543, 1.543)
 texture = ExtResource("5_3jw70")
 
 [node name="DebugDot" parent="Shield" instance=ExtResource("6_867ks")]
+visible = false
 material = SubResource("ShaderMaterial_2h8jf")
 scale = Vector2(0.5, 0.5)
 
@@ -121,9 +122,9 @@ scale = Vector2(0.5, 0.5)
 
 [node name="LaserPointer" type="Sprite2D" parent="Pivot"]
 material = SubResource("ShaderMaterial_rmlkv")
-position = Vector2(0, -330)
+position = Vector2(-0.00164522, -151)
 rotation = -1.57079
-scale = Vector2(6.52497, 0.176574)
+scale = Vector2(2.42789, 0.176574)
 texture = ExtResource("5_3jw70")
 
 [node name="Thrusters" type="Node2D" parent="Pivot"]
