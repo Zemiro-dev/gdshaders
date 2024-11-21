@@ -33,7 +33,7 @@ var basic_bolt = preload("res://entities/player/basic_bolt.tscn")
 		return impulse_on && abs(bowToImpulse) > base_impulse_tolerance + front_back_impulse_deadzone
 ]
 
-@onready var shield: JellyShield = $Shield
+@onready var jelly_shield: JellyShield = $JellyShield
 @export var min_jelly_speed: float = 750.
 
 @onready var main_cannon_marker: Marker2D = $Pivot/MainCannonMarker
@@ -116,8 +116,8 @@ func _physics_process(delta: float) -> void:
 		rotate(angular_velocity * delta)
 	
 	# Jelly Shield
-	if !shield.jelly_vector.is_zero_approx():
-		var jelly_vector : Vector2 = shield.jelly_vector.rotated(rotation)
+	if !jelly_shield.jelly_vector.is_zero_approx():
+		var jelly_vector : Vector2 = jelly_shield.jelly_vector.rotated(rotation)
 		var theta_delta = jelly_vector.angle_to(velocity)
 		if abs(theta_delta) > PI / 2 and velocity.length() > min_jelly_speed:
 			var jellied_velocity : Vector2 = velocity.project(jelly_vector).rotated(PI)

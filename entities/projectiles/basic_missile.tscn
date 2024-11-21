@@ -13,10 +13,10 @@ radius = 25.0
 radius = 25.0799
 
 [node name="BassicMissile" type="Area2D"]
-collision_layer = 0
+collision_layer = 8
 script = ExtResource("1_o4kcq")
 initial_speed = 100.0
-acceleration = Vector2(1500, 0)
+acceleration = Vector2(500, 0)
 max_speed = 3000.0
 cooldown = 2.0
 

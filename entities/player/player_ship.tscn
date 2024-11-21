@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://k8nbtwxisbbw"]
+[gd_scene load_steps=22 format=3 uid="uid://k8nbtwxisbbw"]
 
 [ext_resource type="Script" path="res://entities/player/player_ship.gd" id="1_y4txy"]
+[ext_resource type="Script" path="res://entities/shield.gd" id="2_32lux"]
 [ext_resource type="PackedScene" uid="uid://dquv283uvwc4b" path="res://entities/player/test_particles.tscn" id="2_o610h"]
 [ext_resource type="Material" uid="uid://djmydboyxeyur" path="res://resources/thrust_shader_material.tres" id="4_2xj1e"]
 [ext_resource type="Texture2D" uid="uid://bj32yg41s8648" path="res://data/light/point.webp" id="4_lvblp"]
@@ -94,6 +95,9 @@ scale_max = 10.0
 shader = ExtResource("12_71ofd")
 shader_parameter/target_color = Color(0.294118, 0.627451, 0.772549, 1)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_oo21n"]
+radius = 121.696
+
 [node name="PlayerShip" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_y4txy")
@@ -103,17 +107,17 @@ max_health = 5
 position = Vector2(0, 12)
 polygon = PackedVector2Array(0, -36, 24, 8, -24, 8)
 
-[node name="Shield" type="Node2D" parent="."]
+[node name="JellyShield" type="Node2D" parent="."]
 position = Vector2(0, 12)
 script = ExtResource("5_q4knm")
 detection_ray_length = 100.0
 
-[node name="JellyShieldSprite" type="Sprite2D" parent="Shield"]
+[node name="JellyShieldSprite" type="Sprite2D" parent="JellyShield"]
 material = SubResource("ShaderMaterial_o60ew")
 scale = Vector2(1.543, 1.543)
 texture = ExtResource("5_3jw70")
 
-[node name="DebugDot" parent="Shield" instance=ExtResource("6_867ks")]
+[node name="DebugDot" parent="JellyShield" instance=ExtResource("6_867ks")]
 visible = false
 material = SubResource("ShaderMaterial_2h8jf")
 scale = Vector2(0.5, 0.5)
@@ -202,3 +206,13 @@ texture_scale = 10.0
 
 [node name="MainCannonMarker" type="Marker2D" parent="Pivot"]
 position = Vector2(0, -64)
+
+[node name="Area2D" type="Area2D" parent="Pivot" node_paths=PackedStringArray("entity")]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_32lux")
+entity = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Area2D"]
+position = Vector2(0, 15)
+shape = SubResource("CircleShape2D_oo21n")

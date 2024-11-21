@@ -34,6 +34,7 @@ func _physics_process(delta: float) -> void:
 func take_damage(damage: int, attacker: Node2D):
 	if is_dead or remaining_invulnerability_time > 0:
 		return
+	print(current_health, current_shield)
 	if current_shield > 0:
 		current_shield -= damage
 		if current_shield <= 0:

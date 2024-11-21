@@ -39,5 +39,3 @@ void fragment() {
 	float star = Star(UV+vec2(-.5), .2, TIME*10.);
 	COLOR = vec4(mix(BLUE.rgb, YELLOW.rgb, .1) * star, smoothstep(.01, 1., star));
 }
-
-
