@@ -41,7 +41,9 @@ func take_damage(damage: int, attacker: Node2D):
 	if current_shield > 0:
 		current_shield -= damage
 		if current_shield <= 0:
-			current_health = 0
+			current_shield = 0
+			if shield != null:
+				shield.is_dead = true
 		on_shield_changed.emit(current_shield, max_shield)
 	else:
 		current_health -= damage

@@ -102,6 +102,7 @@ shader_parameter/target_color = Color(0.294118, 0.627451, 0.772549, 1)
 collision_layer = 2
 script = ExtResource("1_y4txy")
 max_health = 5
+max_shield = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, 12)
