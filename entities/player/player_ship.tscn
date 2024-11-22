@@ -56,6 +56,9 @@ shader_parameter/PURPLE_BLACK = Color(0.0416, 0.0298, 0.0576, 1)
 shader_parameter/strength = 1.0
 shader_parameter/offset = Vector2(0, 0)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_oo21n"]
+radius = 121.696
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rmlkv"]
 shader = ExtResource("7_bxuee")
 shader_parameter/FUZZ = 0.007
@@ -95,9 +98,6 @@ scale_max = 10.0
 shader = ExtResource("12_71ofd")
 shader_parameter/target_color = Color(0.294118, 0.627451, 0.772549, 1)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_oo21n"]
-radius = 121.696
-
 [node name="PlayerShip" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_y4txy")
@@ -123,6 +123,16 @@ material = SubResource("ShaderMaterial_2h8jf")
 scale = Vector2(0.5, 0.5)
 
 [node name="Pivot" type="Node2D" parent="."]
+
+[node name="Shield" type="Area2D" parent="Pivot" node_paths=PackedStringArray("entity")]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_32lux")
+entity = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Shield"]
+position = Vector2(0, 15)
+shape = SubResource("CircleShape2D_oo21n")
 
 [node name="LaserPointer" type="Sprite2D" parent="Pivot"]
 material = SubResource("ShaderMaterial_rmlkv")
@@ -206,13 +216,3 @@ texture_scale = 10.0
 
 [node name="MainCannonMarker" type="Marker2D" parent="Pivot"]
 position = Vector2(0, -64)
-
-[node name="Area2D" type="Area2D" parent="Pivot" node_paths=PackedStringArray("entity")]
-collision_layer = 2
-collision_mask = 0
-script = ExtResource("2_32lux")
-entity = NodePath("../..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Area2D"]
-position = Vector2(0, 15)
-shape = SubResource("CircleShape2D_oo21n")

@@ -18,13 +18,16 @@ var current_shield := 0
 @export var max_invulnerability_time := 0.0
 var remaining_invulnerability_time := 0.0
 
+var shield : Shield
 var is_dead := false
 
 
 func _ready() -> void:
 	current_health = max_health
 	current_shield = max_shield
-
+	if has_node('Pivot/Shield'):
+		shield = $Pivot/Shield
+		shield.is_dead = current_shield == 0
 
 func _physics_process(delta: float) -> void:
 	if remaining_invulnerability_time > 0.0:
