@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://ccr7cy2xntb67"]
+[gd_scene load_steps=43 format=4 uid="uid://ccr7cy2xntb67"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_86tin"]
 [ext_resource type="PackedScene" uid="uid://k8nbtwxisbbw" path="res://entities/player/player_ship.tscn" id="2_xskq6"]
@@ -17,6 +17,13 @@
 [ext_resource type="Texture2D" uid="uid://b8hko314t4sdj" path="res://data/assets/neon_purple_tileset.svg" id="10_s1abm"]
 [ext_resource type="PackedScene" uid="uid://w5m2rs6uhks4" path="res://entities/enemy/basic_turret.tscn" id="11_46175"]
 [ext_resource type="PackedScene" uid="uid://bmgatdas6bvhy" path="res://entities/projectiles/basic_missile.tscn" id="12_ruj2m"]
+[ext_resource type="Texture2D" uid="uid://dilu41cwm5suw" path="res://data/assets/ui/health_bottom.png" id="18_lk2it"]
+[ext_resource type="Texture2D" uid="uid://vyoub7tpogus" path="res://data/assets/ui/health_top.png" id="19_xb1nn"]
+[ext_resource type="Texture2D" uid="uid://dwb668525ppsa" path="res://data/assets/ui/health_progress.png" id="20_q0y2e"]
+[ext_resource type="Texture2D" uid="uid://bfaa44ufcwrqu" path="res://data/assets/ui/shield_bottom.png" id="22_xl1s3"]
+[ext_resource type="Texture2D" uid="uid://4oknt2ycgj84" path="res://data/assets/ui/shield_top.png" id="23_cksyo"]
+[ext_resource type="Texture2D" uid="uid://betx0jexfklxm" path="res://data/assets/ui/shield_progress.png" id="24_rahc0"]
+[ext_resource type="Script" path="res://ui/resource_bar.gd" id="25_g0y7s"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_q40wd"]
 
@@ -333,6 +340,7 @@ one_shot = true
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="LifeBar" type="TextureRect" parent="HUD"]
+visible = false
 light_mask = 0
 material = SubResource("ShaderMaterial_hqf0b")
 offset_left = 64.0
@@ -341,3 +349,26 @@ offset_right = 576.0
 offset_bottom = 128.0
 texture = SubResource("CanvasTexture_5p41w")
 script = ExtResource("5_m5i0y")
+
+[node name="HealthBar" type="TextureProgressBar" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 40.0
+value = 100.0
+fill_mode = 2
+texture_under = ExtResource("18_lk2it")
+texture_over = ExtResource("19_xb1nn")
+texture_progress = ExtResource("20_q0y2e")
+texture_progress_offset = Vector2(30, 69)
+script = ExtResource("25_g0y7s")
+
+[node name="ShieldBar" type="TextureProgressBar" parent="HUD"]
+offset_left = 51.0
+offset_right = 179.0
+offset_bottom = 512.0
+value = 100.0
+fill_mode = 2
+texture_under = ExtResource("22_xl1s3")
+texture_over = ExtResource("23_cksyo")
+texture_progress = ExtResource("24_rahc0")
+texture_progress_offset = Vector2(52.305, 68.355)
+script = ExtResource("25_g0y7s")
