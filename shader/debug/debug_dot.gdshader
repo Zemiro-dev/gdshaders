@@ -18,9 +18,9 @@ void fragment() {
 	float debug_dot = 1. - circle(UV, .2, FUZZ*1.8);
 	vec3 color = (1. - step(.5, strength)) * mix(color_step_empty, color_step_half, strength * 2.)
 		+ (step(.5, strength) * mix(color_step_half, color_step_full, (strength - .5) * 2.));
-	
-	
+
+
 	COLOR = vec4(color, debug_dot);
-} 
+}
 
 // COLOR = vec4(texture(TEXTURE, UV).rgb - (smoothstep(0., 1., abs(sin(TIME))*(RED+GREEN))), 1.);

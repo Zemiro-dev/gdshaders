@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://k8nbtwxisbbw"]
+[gd_scene load_steps=23 format=3 uid="uid://k8nbtwxisbbw"]
 
 [ext_resource type="Script" path="res://entities/player/player_ship.gd" id="1_y4txy"]
 [ext_resource type="Script" path="res://entities/shield.gd" id="2_32lux"]
@@ -13,6 +13,7 @@
 [ext_resource type="Shader" path="res://shader/shield_jelly.gdshader" id="8_rygt0"]
 [ext_resource type="Shader" path="res://shader/color_glow.gdshader" id="12_71ofd"]
 [ext_resource type="Texture2D" uid="uid://wnto744bhk1x" path="res://data/assets/playership.svg" id="12_xoq78"]
+[ext_resource type="Texture2D" uid="uid://bcu4g6l0buse3" path="res://data/assets/shield.png" id="13_kpfyb"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_usad8"]
 noise_type = 3
@@ -56,9 +57,6 @@ shader_parameter/PURPLE_BLACK = Color(0.0416, 0.0298, 0.0576, 1)
 shader_parameter/strength = 1.0
 shader_parameter/offset = Vector2(0, 0)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_oo21n"]
-radius = 121.696
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rmlkv"]
 shader = ExtResource("7_bxuee")
 shader_parameter/FUZZ = 0.007
@@ -98,6 +96,9 @@ scale_max = 10.0
 shader = ExtResource("12_71ofd")
 shader_parameter/target_color = Color(0.294118, 0.627451, 0.772549, 1)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_oo21n"]
+radius = 110.164
+
 [node name="PlayerShip" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_y4txy")
@@ -109,6 +110,7 @@ position = Vector2(0, 12)
 polygon = PackedVector2Array(0, -36, 24, 8, -24, 8)
 
 [node name="JellyShield" type="Node2D" parent="."]
+visible = false
 position = Vector2(0, 12)
 script = ExtResource("5_q4knm")
 detection_ray_length = 100.0
@@ -124,16 +126,6 @@ material = SubResource("ShaderMaterial_2h8jf")
 scale = Vector2(0.5, 0.5)
 
 [node name="Pivot" type="Node2D" parent="."]
-
-[node name="Shield" type="Area2D" parent="Pivot" node_paths=PackedStringArray("entity")]
-collision_layer = 2
-collision_mask = 0
-script = ExtResource("2_32lux")
-entity = NodePath("../..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Shield"]
-position = Vector2(0, 15)
-shape = SubResource("CircleShape2D_oo21n")
 
 [node name="LaserPointer" type="Sprite2D" parent="Pivot"]
 material = SubResource("ShaderMaterial_rmlkv")
@@ -199,6 +191,20 @@ randomness = 0.1
 material = SubResource("ShaderMaterial_utg5o")
 position = Vector2(0, -5)
 texture = ExtResource("12_xoq78")
+
+[node name="Shield" type="Area2D" parent="Pivot" node_paths=PackedStringArray("entity")]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_32lux")
+entity = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Shield"]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_oo21n")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot/Shield"]
+position = Vector2(0, 2)
+texture = ExtResource("13_kpfyb")
 
 [node name="ShadowCaster" type="PointLight2D" parent="Pivot"]
 visible = false

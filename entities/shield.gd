@@ -10,4 +10,6 @@ func take_damage(damage: int, attacker: Node2D):
 	if entity != null:
 		entity.take_damage(damage, attacker)
 		if is_dead:
-			queue_free()
+			var tween = create_tween()
+			tween.tween_property(self, "scale", Vector2.ZERO, .1)
+			monitorable = false

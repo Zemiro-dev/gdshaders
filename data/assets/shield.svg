@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="256"
+   height="256"
+   viewBox="0 0 256 256"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="shield.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="1"
+     inkscape:cx="82.5"
+     inkscape:cy="143"
+     inkscape:window-width="2560"
+     inkscape:window-height="1494"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showgrid="true">
+    <inkscape:grid
+       id="grid10"
+       units="px"
+       originx="0"
+       originy="0"
+       spacingx="128"
+       spacingy="128"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       dotted="false"
+       gridanglex="30"
+       gridanglez="30"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1">
+    <inkscape:path-effect
+       effect="powerclip"
+       id="path-effect14"
+       is_visible="true"
+       lpeversion="1"
+       inverse="true"
+       flatten="false"
+       hide_clip="false"
+       message="Use fill-rule evenodd on &lt;b&gt;fill and stroke&lt;/b&gt; dialog if no flatten result after convert clip to paths." />
+    <linearGradient
+       id="linearGradient9"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#95deec;stop-opacity:1"
+         offset="0.79064327"
+         id="stop9" />
+      <stop
+         style="stop-color:#95deec;stop-opacity:0;"
+         offset="1"
+         id="stop10" />
+    </linearGradient>
+    <inkscape:path-effect
+       effect="simplify"
+       id="path-effect7"
+       is_visible="true"
+       lpeversion="1.3"
+       threshold="5"
+       steps="1"
+       smooth_angles="360"
+       helper_size="10"
+       simplify_individual_paths="false"
+       simplify_just_coalesce="false" />
+    <inkscape:path-effect
+       effect="interpolate_points"
+       id="path-effect6"
+       is_visible="true"
+       lpeversion="1"
+       interpolator_type="CentripetalCatmullRom" />
+    <inkscape:path-effect
+       effect="dashed_stroke"
+       id="path-effect5"
+       is_visible="true"
+       lpeversion="1"
+       numberdashes="2"
+       holefactor="0.99999"
+       splitsegments="true"
+       halfextreme="true"
+       unifysegment="true"
+       message="Add &lt;b&gt;&quot;Fill Between Many LPE&quot;&lt;/b&gt; to add fill." />
+    <inkscape:path-effect
+       effect="simplify"
+       id="path-effect4"
+       is_visible="true"
+       lpeversion="1.3"
+       threshold="28.781545"
+       steps="24.499112"
+       smooth_angles="360"
+       helper_size="10"
+       simplify_individual_paths="false"
+       simplify_just_coalesce="false" />
+    <inkscape:path-effect
+       effect="roughen"
+       id="path-effect3"
+       is_visible="true"
+       lpeversion="1.2"
+       global_randomize="1;619302437"
+       displace_x="1.49;1"
+       displace_y="10;1"
+       method="size"
+       max_segment_size="4.45945"
+       segments="2"
+       handles="along"
+       shift_nodes="true"
+       fixed_displacement="false"
+       spray_tool_friendly="false" />
+    <linearGradient
+       id="linearGradient1"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#95deec;stop-opacity:0;"
+         offset="0"
+         id="stop1" />
+      <stop
+         style="stop-color:#95deec;stop-opacity:0.56437123;"
+         offset="1"
+         id="stop2" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1"
+       id="radialGradient2"
+       cx="126.62847"
+       cy="128.28143"
+       fx="126.62847"
+       fy="128.28143"
+       r="111.48544"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.97529641,-0.00304866,0.00310521,0.99399842,5.8554626,1.2143872)" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient9"
+       id="radialGradient10"
+       cx="127.839"
+       cy="128.41154"
+       fx="127.839"
+       fy="128.41154"
+       r="128"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(0.16098978,-0.41154447)" />
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath14">
+      <circle
+         style="display:none;fill:#1f121f;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:5"
+         id="circle14"
+         cx="128"
+         cy="128"
+         r="111.48633"
+         inkscape:label="path11"
+         d="M 239.48633,128 A 111.48633,111.48633 0 0 1 128,239.48633 111.48633,111.48633 0 0 1 16.513672,128 111.48633,111.48633 0 0 1 128,16.513672 111.48633,111.48633 0 0 1 239.48633,128 Z" />
+      <path
+         id="lpe_path-effect14"
+         style="display:inline;fill:#1f121f;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:5"
+         class="powerclip"
+         d="M -5,-5 H 261 V 261 H -5 Z M 239.48633,128 A 111.48633,111.48633 0 0 0 128,16.513672 111.48633,111.48633 0 0 0 16.513672,128 111.48633,111.48633 0 0 0 128,239.48633 111.48633,111.48633 0 0 0 239.48633,128 Z" />
+    </clipPath>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter14"
+       x="-0.012"
+       y="-0.012"
+       width="1.024"
+       height="1.024">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="1.1148633"
+         id="feGaussianBlur14" />
+    </filter>
+  </defs>
+  <g
+     inkscape:label="shieldbody"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="display:inline;fill:url(#radialGradient10);fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:5"
+       id="rect7"
+       width="256"
+       height="256"
+       x="0"
+       y="0"
+       mask="none"
+       clip-path="url(#clipPath14)"
+       inkscape:path-effect="#path-effect14"
+       sodipodi:type="rect"
+       d="M 0,0 H 256 V 256 H 0 Z" />
+    <path
+       style="color:#000000;display:inline;fill:url(#radialGradient2);stroke-miterlimit:5;-inkscape-stroke:none"
+       d="M 238.48544,128 A 110.48544,110.48544 0 0 1 128,238.48544 110.48544,110.48544 0 0 1 17.514557,128 110.48544,110.48544 0 0 1 128,17.514557 110.48544,110.48544 0 0 1 238.48544,128 Z"
+       id="path2" />
+    <path
+       style="color:#000000;display:inline;fill:#95deec;fill-opacity:1;stroke-miterlimit:5;-inkscape-stroke:none;filter:url(#filter14)"
+       d="M 128,16.513672 C 66.440196,16.513672 16.513672,66.440196 16.513672,128 16.513672,189.5598 66.440196,239.48633 128,239.48633 189.5598,239.48633 239.48633,189.5598 239.48633,128 239.48633,66.440196 189.5598,16.513672 128,16.513672 Z m 0,2 c 60.47892,0 109.48633,49.007403 109.48633,109.486328 0,60.47892 -49.00741,109.48633 -109.48633,109.48633 C 67.521075,237.48633 18.513672,188.47892 18.513672,128 18.513672,67.521075 67.521075,18.513672 128,18.513672 Z"
+       id="path3" />
+  </g>
+</svg>
