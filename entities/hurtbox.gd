@@ -5,6 +5,9 @@ class_name Hurtbox
 signal damage_dealt(body: Node2D)
 
 @export var damage: int = 1
+@export var one_shot: bool = true
+var spent: bool = false
+
 
 
 func _ready() -> void:
@@ -22,6 +25,8 @@ func _on_body_entered(body: Node2D) -> void:
 func check_body(body: Node2D):
 	var a = body.has_method('take_damage')
 	var b = !body.get("is_dead")
-	if body.has_method("take_damage") and !body.get("is_dead"):
+	if body.has_method("take_damage") and !body.get("is_dead") and !spent:
 		body.take_damage(damage, get_owner())
+		if one_shot:
+			spent = true
 		damage_dealt.emit(body)

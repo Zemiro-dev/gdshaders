@@ -320,10 +320,29 @@ tile_set = SubResource("TileSet_6cqnh")
 
 [node name="BasicEnemyFighter" parent="EnemyNest" instance=ExtResource("10_j7qj1")]
 position = Vector2(1068, 340)
+target_distance = 512.0
+strafe_distance = 128.0
+chase_grav = 500.0
+wall_avoid_grav = 500.0
+max_speed = 500.0
+ray_rotation_speed = 37.6991
+should_trigger_hitstop = false
+hitstop_time_ms = 0.0
+max_health = 1
+max_shield = 0
+max_invulnerability_time = 0.0
 
 [node name="BasicTurret" parent="EnemyNest" instance=ExtResource("11_46175")]
 position = Vector2(1274, 914)
+ignore_range = 1000
+rads_per_sec = 3.14159
+shoot_angle_threshold = 0.1
+primary_weapon_cooldown = 0.0
 projectile_scene = ExtResource("12_ruj2m")
+should_trigger_hitstop = false
+hitstop_time_ms = 0.0
+max_shield = 0
+max_invulnerability_time = 0.0
 
 [node name="PlayerShip" parent="." instance=ExtResource("2_xskq6")]
 position = Vector2(378, 342)

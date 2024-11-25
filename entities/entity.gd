@@ -65,6 +65,16 @@ func restore_health(health: int):
 	if current_health != previous_health:
 		on_health_changed.emit(current_health, max_health)
 
+
+func restore_shield(amount: int):
+	var previous_shield = current_shield
+	current_shield = clampi(current_shield + amount, current_shield, max_shield)
+	if current_shield != previous_shield:
+		if current_shield > 0 and shield.is_dead and shield.can_reactivate:
+			shield.is_dead = false
+		on_shield_changed.emit(current_shield, max_shield)
+
+
 func reset_shield():
 	current_shield = max_shield
 	on_shield_changed.emit(current_shield, max_shield)

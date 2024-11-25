@@ -47,4 +47,5 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 func _on_damage_dealt(body: Node2D) -> void:
-	fade()
+	if hurtbox.spent:
+		fade()
