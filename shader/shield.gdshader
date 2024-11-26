@@ -5,6 +5,7 @@ uniform sampler2D noise2 : repeat_enable;
 uniform float strength;
 uniform float fps;
 uniform int frames = 256;
+uniform vec4 mix_color : source_color;
 
 //normalized
 float clock(float time) {
@@ -19,5 +20,5 @@ void fragment() {
 	vec4 offset = offset1*offset2*strength;
 	//vec4 offset = vec4(0, 0, 0., 0.);
 	//COLOR = texture(TEXTURE, vec2(UV.x,UV.y) + normal.xy); //Apply offset
-	COLOR = texture(TEXTURE, UV + offset.xy - vec2(.5) * strength); //We need to remove the displacement
+	COLOR = texture(TEXTURE, UV + offset.xy - vec2(.5) * strength) * mix_color; //We need to remove the displacement
 }

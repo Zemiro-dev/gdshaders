@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://w5m2rs6uhks4"]
+[gd_scene load_steps=8 format=3 uid="uid://w5m2rs6uhks4"]
 
 [ext_resource type="Script" path="res://entities/enemy/basic_turret.gd" id="1_ucdna"]
 [ext_resource type="PackedScene" uid="uid://0u8ff7ar7bki" path="res://entities/projectiles/red_orb.tscn" id="2_auix6"]
 [ext_resource type="Texture2D" uid="uid://cgieq8gnpvrad" path="res://data/assets/enemyturret.svg" id="3_0f0y6"]
 [ext_resource type="PackedScene" uid="uid://c8m2kuytc1o2h" path="res://entities/shield/shield.tscn" id="4_7acsd"]
+[ext_resource type="Material" uid="uid://ddfis28pww81" path="res://resources/purple_shield_material.tres" id="5_bj3pd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_svmu5"]
 radius = 19.105
@@ -40,6 +41,7 @@ position = Vector2(80, 0)
 
 [node name="Shield" parent="Pivot" node_paths=PackedStringArray("entity") instance=ExtResource("4_7acsd")]
 modulate = Color(0.698039, 0.192157, 0.454902, 1)
+material = ExtResource("5_bj3pd")
 collision_layer = 4
 entity = NodePath("../..")
 can_reactivate = false

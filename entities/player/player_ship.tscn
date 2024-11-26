@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://k8nbtwxisbbw"]
+[gd_scene load_steps=22 format=3 uid="uid://k8nbtwxisbbw"]
 
 [ext_resource type="Script" path="res://entities/player/player_ship.gd" id="1_y4txy"]
 [ext_resource type="PackedScene" uid="uid://dquv283uvwc4b" path="res://entities/player/test_particles.tscn" id="2_o610h"]
@@ -13,6 +13,7 @@
 [ext_resource type="Shader" path="res://shader/color_glow.gdshader" id="12_71ofd"]
 [ext_resource type="PackedScene" uid="uid://c8m2kuytc1o2h" path="res://entities/shield/shield.tscn" id="12_fijev"]
 [ext_resource type="Texture2D" uid="uid://wnto744bhk1x" path="res://data/assets/playership.svg" id="12_xoq78"]
+[ext_resource type="Material" uid="uid://b0w2gkrybsyi4" path="res://resources/player_shield_material.tres" id="13_o7xqb"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_usad8"]
 noise_type = 3
@@ -189,6 +190,7 @@ position = Vector2(0, -5)
 texture = ExtResource("12_xoq78")
 
 [node name="Shield" parent="Pivot" node_paths=PackedStringArray("entity") instance=ExtResource("12_fijev")]
+material = ExtResource("13_o7xqb")
 entity = NodePath("../..")
 
 [node name="ShadowCaster" type="PointLight2D" parent="Pivot"]

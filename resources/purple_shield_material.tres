@@ -1,0 +1,50 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://ddfis28pww81"]
+
+[sub_resource type="Shader" id="Shader_2tejl"]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise1 : repeat_enable;
+uniform sampler2D noise2 : repeat_enable;
+uniform float strength;
+uniform float fps;
+uniform int frames = 256;
+uniform vec4 mix_color : source_color;
+
+//normalized
+float clock(float time) {
+	float fframes = float(frames);
+	return floor(mod(time * fps, fframes)) / fframes;
+}
+
+void fragment() {
+	float c = clock(TIME); //Get clock frame
+	vec4 offset1 = texture(noise1, UV+c); //Get offset
+	vec4 offset2 = texture(noise2,UV+c);
+	vec4 offset = offset1*offset2*strength;
+	//vec4 offset = vec4(0, 0, 0., 0.);
+	//COLOR = texture(TEXTURE, vec2(UV.x,UV.y) + normal.xy); //Apply offset
+	COLOR = texture(TEXTURE, UV + offset.xy - vec2(.5) * strength) * mix_color; //We need to remove the displacement
+}
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_keo7h"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_d4guf"]
+seamless = true
+noise = SubResource("FastNoiseLite_keo7h")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_itg3k"]
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7anpn"]
+seamless = true
+noise = SubResource("FastNoiseLite_itg3k")
+
+[resource]
+shader = SubResource("Shader_2tejl")
+shader_parameter/strength = 0.05
+shader_parameter/fps = 24.0
+shader_parameter/frames = 128
+shader_parameter/mix_color = Color(0.698039, 0.192157, 0.454902, 1)
+shader_parameter/noise1 = SubResource("NoiseTexture2D_d4guf")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_7anpn")
