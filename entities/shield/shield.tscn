@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c8m2kuytc1o2h"]
+[gd_scene load_steps=15 format=3 uid="uid://c8m2kuytc1o2h"]
 
 [ext_resource type="Script" path="res://entities/shield.gd" id="1_vurdy"]
 [ext_resource type="Script" path="res://utilities/state_machine.gd" id="2_0k38g"]
@@ -7,9 +7,31 @@
 [ext_resource type="Script" path="res://entities/shield/shield_dead.gd" id="5_tnqat"]
 [ext_resource type="Script" path="res://entities/shield/shield_regenerating.gd" id="6_fxooy"]
 [ext_resource type="Texture2D" uid="uid://bcu4g6l0buse3" path="res://data/assets/shield.png" id="6_ildjj"]
+[ext_resource type="Shader" path="res://shader/shield.gdshader" id="7_e6tcw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oo21n"]
 radius = 110.164
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_keo7h"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_d4guf"]
+seamless = true
+noise = SubResource("FastNoiseLite_keo7h")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_itg3k"]
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7anpn"]
+seamless = true
+noise = SubResource("FastNoiseLite_itg3k")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kr5ui"]
+shader = ExtResource("7_e6tcw")
+shader_parameter/strength = 0.05
+shader_parameter/fps = 24.0
+shader_parameter/frames = 128
+shader_parameter/noise1 = SubResource("NoiseTexture2D_d4guf")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_7anpn")
 
 [node name="Shield" type="Area2D"]
 z_index = 10
@@ -33,9 +55,11 @@ script = ExtResource("5_tnqat")
 script = ExtResource("6_fxooy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_oo21n")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_kr5ui")
 position = Vector2(0, 2)
 texture = ExtResource("6_ildjj")
