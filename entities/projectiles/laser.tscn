@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c71do5ssg7hpf"]
+
+[ext_resource type="Texture2D" uid="uid://bwjyau10kg2c7" path="res://data/assets/laser_frames.png" id="1_nd6l2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vl572"]
+radius = 19.105
+
+[node name="Laser" type="Area2D"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-35, 0)
+texture = ExtResource("1_nd6l2")
+hframes = 4
+frame = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-11, 0)
+shape = SubResource("CircleShape2D_vl572")
