@@ -282,7 +282,8 @@ motion_mirroring = Vector2(1920, 1080)
 
 [node name="UpperCloudLayer" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 material = SubResource("ShaderMaterial_ydseg")
-scale = Vector2(15, 8.438)
+position = Vector2(0, 3.8147e-06)
+scale = Vector2(15.0705, 8.41269)
 texture = ExtResource("5_lx2ue")
 centered = false
 
@@ -323,7 +324,7 @@ script = ExtResource("11_s2wp7")
 [node name="EnemyNest" type="Node" parent="."]
 
 [node name="BasicEnemyFighter" parent="EnemyNest" instance=ExtResource("10_j7qj1")]
-position = Vector2(1068, 340)
+position = Vector2(1141, 386)
 
 [node name="BasicTurret" parent="EnemyNest" instance=ExtResource("11_46175")]
 position = Vector2(1274, 914)

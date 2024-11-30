@@ -8,6 +8,7 @@ signal projectile_collided(location: Vector2, explosion_scene: PackedScene)
 @onready var lifetime: Timer = $Lifetime
 @onready var hurtbox: Hurtbox = $Hurtbox
 @onready var detection_area : Area2D = $DetectionArea
+@onready var trail: Trail = $Trail
 
 @export var explosion : PackedScene
 @export var eject_velocity := Vector2(0., 0.)
