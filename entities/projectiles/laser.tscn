@@ -1,13 +1,81 @@
-[gd_scene load_steps=3 format=3 uid="uid://c71do5ssg7hpf"]
+[gd_scene load_steps=11 format=3 uid="uid://c71do5ssg7hpf"]
 
 [ext_resource type="Texture2D" uid="uid://bwjyau10kg2c7" path="res://data/assets/laser_frames.png" id="1_nd6l2"]
+[ext_resource type="Script" path="res://entities/projectiles/projectile.gd" id="1_np7nl"]
+[ext_resource type="PackedScene" uid="uid://ba0ggrxjujuhf" path="res://entities/hurtbox.tscn" id="2_scktd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vl572"]
 radius = 19.105
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u2hyy"]
+radius = 21.0
+height = 72.0
+
+[sub_resource type="Animation" id="Animation_7vtls"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_qv1vj"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_uhc6d"]
+resource_name = "start_up"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c5plm"]
+_data = {
+"RESET": SubResource("Animation_7vtls"),
+"idle": SubResource("Animation_qv1vj"),
+"start_up": SubResource("Animation_uhc6d")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_urbuq"]
+radius = 169.579
+
 [node name="Laser" type="Area2D"]
 collision_layer = 8
-collision_mask = 0
+script = ExtResource("1_np7nl")
+initial_speed = 1000.0
+acceleration = Vector2(100, 0)
+cooldown = 0.2
+add_host_velocity = false
+match_rotation_to_velocity = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-11, 0)
+shape = SubResource("CircleShape2D_vl572")
+
+[node name="Hurtbox" parent="." instance=ExtResource("2_scktd")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-28, 0)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_u2hyy")
+debug_color = Color(0.877251, 0.313907, 0.362102, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-35, 0)
@@ -15,6 +83,20 @@ texture = ExtResource("1_nd6l2")
 hframes = 4
 frame = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-11, 0)
-shape = SubResource("CircleShape2D_vl572")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_c5plm")
+}
+autoplay = "start_up"
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(97, 0)
+shape = SubResource("CircleShape2D_urbuq")

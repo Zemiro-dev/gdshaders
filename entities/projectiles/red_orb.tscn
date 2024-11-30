@@ -26,7 +26,7 @@ radius = 6.08276
 radius = 6.0
 
 [node name="RedOrb" type="Area2D"]
-collision_layer = 0
+collision_layer = 8
 script = ExtResource("1_a7qsx")
 initial_speed = 750.0
 

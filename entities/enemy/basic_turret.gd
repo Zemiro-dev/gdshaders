@@ -53,7 +53,7 @@ func shoot() -> void:
 		if abs(angle_to_target - facing_angle) < shoot_angle_threshold:
 			var red_orb_instance = projectile_scene.instantiate()
 			primary_weapon_cooldown = red_orb_instance.cooldown
-			get_tree().root.add_child(red_orb_instance)
+			GlobalSignals.projectile_spawn_requested.emit(red_orb_instance)
 			red_orb_instance.shoot(main_cannon_marker.global_transform)
 
 

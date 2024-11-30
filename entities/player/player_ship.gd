@@ -49,6 +49,8 @@ var basic_bolt = preload("res://entities/player/basic_bolt.tscn")
 @export var angular_velocity := 0.
 @export var angular_drag := angular_impulse_acceleration
 
+@export var projectile_scene : PackedScene;
+
 var primary_weapon_cooldown := 0.0
 
 
@@ -77,7 +79,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Impulse Thruster Visuals
 	var bowToImpulse := get_global_facing().angle_to(impulse)
-	var starboardToImpulse := (global_transform.x).angle_to(impulse)
+	var starboardToImpulse := (global_transform.y).angle_to(impulse)
 	for i in thrusters.size():
 		if thruster_predicates[i].call(impulse_on, bowToImpulse, starboardToImpulse):
 			thrusters[i].visible = true
@@ -129,10 +131,10 @@ func _physics_process(delta: float) -> void:
 	
 	# Fire
 	if Input.is_action_pressed("fire") and primary_weapon_cooldown <= 0.0:
-		var bolt_instance = basic_bolt.instantiate()
-		primary_weapon_cooldown = bolt_instance.cooldown
-		get_tree().root.add_child(bolt_instance)
-		bolt_instance.shoot(main_cannon_marker.global_transform)
+		var projectile: Projectile = projectile_scene.instantiate()
+		primary_weapon_cooldown = projectile.cooldown
+		GlobalSignals.projectile_spawn_requested.emit(projectile)
+		projectile.shoot(main_cannon_marker.global_transform, null, velocity)
 	
 	# Maintain Timers
 	if primary_weapon_cooldown > 0.0:
@@ -155,11 +157,11 @@ func get_main_thrust() -> float:
 
 
 func get_facing() -> Vector2:
-	return -transform.y
+	return transform.x
 
 
 func get_global_facing() -> Vector2:
-	return -global_transform.y
+	return global_transform.x
 
 
 func speed_normalized() -> float:

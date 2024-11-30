@@ -1,6 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://k8nbtwxisbbw"]
+[gd_scene load_steps=23 format=3 uid="uid://k8nbtwxisbbw"]
 
 [ext_resource type="Script" path="res://entities/player/player_ship.gd" id="1_y4txy"]
+[ext_resource type="PackedScene" uid="uid://c71do5ssg7hpf" path="res://entities/projectiles/laser.tscn" id="2_0fk5s"]
 [ext_resource type="PackedScene" uid="uid://dquv283uvwc4b" path="res://entities/player/test_particles.tscn" id="2_o610h"]
 [ext_resource type="Material" uid="uid://djmydboyxeyur" path="res://resources/thrust_shader_material.tres" id="4_2xj1e"]
 [ext_resource type="Texture2D" uid="uid://bj32yg41s8648" path="res://data/light/point.webp" id="4_lvblp"]
@@ -99,14 +100,17 @@ shader_parameter/target_color = Color(0.294118, 0.627451, 0.772549, 1)
 [node name="PlayerShip" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_y4txy")
+projectile_scene = ExtResource("2_0fk5s")
 max_health = 5
 max_shield = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(0, 12)
+position = Vector2(-14, 9.53674e-07)
+rotation = 1.57402
 polygon = PackedVector2Array(0, -36, 24, 8, -24, 8)
 
 [node name="JellyShield" type="Node2D" parent="."]
+process_mode = 4
 visible = false
 position = Vector2(0, 12)
 script = ExtResource("5_q4knm")
@@ -126,50 +130,51 @@ scale = Vector2(0.5, 0.5)
 
 [node name="LaserPointer" type="Sprite2D" parent="Pivot"]
 material = SubResource("ShaderMaterial_rmlkv")
-position = Vector2(-0.00164522, -151)
-rotation = -1.57079
+position = Vector2(139, 1.52588e-05)
 scale = Vector2(2.42789, 0.176574)
 texture = ExtResource("5_3jw70")
 
 [node name="Thrusters" type="Node2D" parent="Pivot"]
-position = Vector2(0, 12)
 
 [node name="RearLeftImpulseSprite" type="Sprite2D" parent="Pivot/Thrusters"]
 material = ExtResource("4_2xj1e")
-position = Vector2(-13, 16)
+position = Vector2(-30, -10)
+rotation = 1.57079
 scale = Vector2(0.152, 0.25)
 texture = ExtResource("5_3jw70")
 
 [node name="RearRightImpulseSprite" type="Sprite2D" parent="Pivot/Thrusters"]
 material = ExtResource("4_2xj1e")
-position = Vector2(13, 16)
+position = Vector2(-30, 10)
+rotation = 1.57079
 scale = Vector2(0.152, 0.25)
 texture = ExtResource("5_3jw70")
 
 [node name="LeftImpulseSprite" type="Sprite2D" parent="Pivot/Thrusters"]
 material = ExtResource("4_2xj1e")
-position = Vector2(-26, -14)
-rotation = 1.57079
+position = Vector2(0, -20)
+rotation = 3.14159
 scale = Vector2(0.152, 0.25)
 texture = ExtResource("5_3jw70")
 
 [node name="RightImpulseSprite" type="Sprite2D" parent="Pivot/Thrusters"]
 material = ExtResource("4_2xj1e")
-position = Vector2(26, -14)
-rotation = 4.71238
+position = Vector2(0, 20)
+rotation = 6.28318
 scale = Vector2(0.152, 0.25)
 texture = ExtResource("5_3jw70")
 
 [node name="ForwardImpulseSprite" type="Sprite2D" parent="Pivot/Thrusters"]
 material = ExtResource("4_2xj1e")
-position = Vector2(1.31127e-06, -40)
-rotation = 3.14159
+position = Vector2(22, 0)
+rotation = 4.71238
 scale = Vector2(0.152, 0.25)
 texture = ExtResource("5_3jw70")
 
 [node name="MainThrusterSprite" type="Sprite2D" parent="Pivot/Thrusters"]
 material = ExtResource("4_2xj1e")
-position = Vector2(0, 36)
+position = Vector2(-42, 0)
+rotation = 1.57079
 scale = Vector2(0.265625, 0.592)
 texture = ExtResource("5_3jw70")
 
@@ -178,7 +183,8 @@ position = Vector2(0, 12)
 
 [node name="MainThrusterParticles" parent="Pivot/ThrusterParticles" instance=ExtResource("2_o610h")]
 light_mask = 2
-position = Vector2(0, 21)
+position = Vector2(-1, -12)
+rotation = 1.57079
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_8gfpo")
 lifetime = 0.5
@@ -186,7 +192,7 @@ randomness = 0.1
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot"]
 material = SubResource("ShaderMaterial_utg5o")
-position = Vector2(0, -5)
+rotation = 1.57079
 texture = ExtResource("12_xoq78")
 
 [node name="Shield" parent="Pivot" node_paths=PackedStringArray("entity") instance=ExtResource("12_fijev")]
@@ -209,4 +215,4 @@ texture = ExtResource("4_lvblp")
 texture_scale = 10.0
 
 [node name="MainCannonMarker" type="Marker2D" parent="Pivot"]
-position = Vector2(0, -64)
+position = Vector2(39, 0)
