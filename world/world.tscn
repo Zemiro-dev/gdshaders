@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://b8hko314t4sdj" path="res://data/assets/neon_purple_tileset.svg" id="10_s1abm"]
 [ext_resource type="PackedScene" uid="uid://w5m2rs6uhks4" path="res://entities/enemy/basic_turret.tscn" id="11_46175"]
 [ext_resource type="Script" path="res://world/projectile_manager.gd" id="11_s2wp7"]
-[ext_resource type="PackedScene" uid="uid://bmgatdas6bvhy" path="res://entities/projectiles/basic_missile.tscn" id="12_ruj2m"]
+[ext_resource type="PackedScene" uid="uid://dvmfgq1jgicx8" path="res://entities/projectiles/bullet.tscn" id="14_075b3"]
 [ext_resource type="Texture2D" uid="uid://dilu41cwm5suw" path="res://data/assets/ui/health_bottom.png" id="18_lk2it"]
 [ext_resource type="Texture2D" uid="uid://vyoub7tpogus" path="res://data/assets/ui/health_top.png" id="19_xb1nn"]
 [ext_resource type="Texture2D" uid="uid://dwb668525ppsa" path="res://data/assets/ui/health_progress.png" id="20_q0y2e"]
@@ -328,7 +328,7 @@ position = Vector2(1141, 386)
 
 [node name="BasicTurret" parent="EnemyNest" instance=ExtResource("11_46175")]
 position = Vector2(1274, 914)
-projectile_scene = ExtResource("12_ruj2m")
+projectile_scene = ExtResource("14_075b3")
 
 [node name="PlayerShip" parent="." instance=ExtResource("2_xskq6")]
 position = Vector2(378, 342)

@@ -11,6 +11,7 @@ var basic_bolt = preload("res://entities/player/basic_bolt.tscn")
 
 @onready var main_thruster_sprite: Sprite2D = $Pivot/Thrusters/MainThrusterSprite
 @onready var main_thruster_particles: GPUParticles2D = $Pivot/ThrusterParticles/MainThrusterParticles
+@onready var trail: Trail = $Pivot/Trail
 
 @onready var thrusters: Array = [
 	$Pivot/Thrusters/RearLeftImpulseSprite,
@@ -56,6 +57,7 @@ var primary_weapon_cooldown := 0.0
 
 func _ready() -> void:
 	super()
+	trail.init($Pivot/TrailMarker)
 	if has_node("Camera2D"):
 		$Camera2D.player = self
 

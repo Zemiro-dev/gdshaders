@@ -9,6 +9,7 @@ signal projectile_collided(location: Vector2, explosion_scene: PackedScene)
 @onready var hurtbox: Hurtbox = $Hurtbox
 @onready var detection_area : Area2D = $DetectionArea
 @onready var trail: Trail = $Trail
+@onready var trail_marker: Marker2D = $TrailMarker
 
 @export var explosion : PackedScene
 @export var eject_velocity := Vector2(0., 0.)
@@ -29,7 +30,8 @@ var target: Node2D
 
 
 func _ready() -> void:
-	trail.init($TrailMarker)
+	if trail != null && trail_marker != null:
+		trail.init(trail_marker)
 
 
 func _physics_process(delta: float) -> void:
@@ -47,6 +49,10 @@ func _physics_process(delta: float) -> void:
 func shoot(_global_transform: Transform2D, target: Node2D = null, host_velocity: Vector2 = Vector2.ZERO):
 	global_transform = _global_transform
 	rotation += randf_range(-radial_spread, radial_spread)
+	var spread: Vector2 = Vector2(0., randf_range(-side_spread, side_spread))
+	spread = spread.rotated(global_transform.get_rotation())
+	
+	position += spread
 	velocity = transform.x * initial_speed
 	if add_host_velocity:
 		velocity += host_velocity

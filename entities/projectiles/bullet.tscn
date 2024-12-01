@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvmfgq1jgicx8"]
+
+[ext_resource type="Script" path="res://entities/projectiles/projectile.gd" id="1_yekjk"]
+[ext_resource type="Script" path="res://entities/hurtbox.gd" id="2_r7du0"]
+[ext_resource type="Texture2D" uid="uid://nr0lab5jtb85" path="res://data/assets/bullet.png" id="3_yvbnq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_00mid"]
+radius = 5.0
+height = 14.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q0cvb"]
+radius = 5.0
+height = 14.0
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 8
+script = ExtResource("1_yekjk")
+initial_speed = 2000.0
+max_speed = 2000.0
+radial_spread = 0.1
+side_spread = 10.0
+cooldown = 0.01
+add_host_velocity = false
+match_rotation_to_velocity = false
+
+[node name="Lifetime" type="Timer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_00mid")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_r7du0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_q0cvb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_yvbnq")

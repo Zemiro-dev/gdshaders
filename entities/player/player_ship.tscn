@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://k8nbtwxisbbw"]
+[gd_scene load_steps=26 format=3 uid="uid://k8nbtwxisbbw"]
 
 [ext_resource type="Script" path="res://entities/player/player_ship.gd" id="1_y4txy"]
 [ext_resource type="PackedScene" uid="uid://c71do5ssg7hpf" path="res://entities/projectiles/laser.tscn" id="2_0fk5s"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://c8m2kuytc1o2h" path="res://entities/shield/shield.tscn" id="12_fijev"]
 [ext_resource type="Texture2D" uid="uid://wnto744bhk1x" path="res://data/assets/playership.svg" id="12_xoq78"]
 [ext_resource type="Material" uid="uid://b0w2gkrybsyi4" path="res://resources/player_shield_material.tres" id="13_o7xqb"]
+[ext_resource type="Script" path="res://entities/trail.gd" id="16_ad85a"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_usad8"]
 noise_type = 3
@@ -57,6 +58,14 @@ shader_parameter/PURPLE = Color(0.416, 0.298, 0.576, 1)
 shader_parameter/PURPLE_BLACK = Color(0.0416, 0.0298, 0.0576, 1)
 shader_parameter/strength = 1.0
 shader_parameter/offset = Vector2(0, 0)
+
+[sub_resource type="Curve" id="Curve_6bcli"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_j185j"]
+offsets = PackedFloat32Array(0.493404, 0.994723)
+colors = PackedColorArray(0.41743, 0.464341, 0.903964, 1, 1, 0.83, 0.915, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rmlkv"]
 shader = ExtResource("7_bxuee")
@@ -127,6 +136,21 @@ material = SubResource("ShaderMaterial_2h8jf")
 scale = Vector2(0.5, 0.5)
 
 [node name="Pivot" type="Node2D" parent="."]
+
+[node name="TrailMarker" type="Marker2D" parent="Pivot"]
+
+[node name="Trail" type="Line2D" parent="Pivot"]
+top_level = true
+z_index = -5
+points = PackedVector2Array(-99, 0, 0, 0)
+width_curve = SubResource("Curve_6bcli")
+gradient = SubResource("Gradient_j185j")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+script = ExtResource("16_ad85a")
+max_points = 50
 
 [node name="LaserPointer" type="Sprite2D" parent="Pivot"]
 material = SubResource("ShaderMaterial_rmlkv")
