@@ -2,7 +2,7 @@ extends Area2D
 class_name Projectile
 
 
-signal projectile_collided(location: Vector2, explosion_scene: PackedScene)
+signal projectile_detonated(location: Vector2, explosion_scene: PackedScene)
 
 
 @onready var lifetime: Timer = $Lifetime
@@ -88,7 +88,7 @@ func release_target() -> void:
 
 
 func detonate():
-	projectile_collided.emit(global_position, explosion)
+	projectile_detonated.emit(global_position, explosion)
 	fade()
 
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://c71do5ssg7hpf"]
+[gd_scene load_steps=13 format=3 uid="uid://c71do5ssg7hpf"]
 
 [ext_resource type="Texture2D" uid="uid://bwjyau10kg2c7" path="res://data/assets/laser_frames.png" id="1_nd6l2"]
 [ext_resource type="Script" path="res://entities/projectiles/projectile.gd" id="1_np7nl"]
 [ext_resource type="PackedScene" uid="uid://ba0ggrxjujuhf" path="res://entities/hurtbox.tscn" id="2_scktd"]
 [ext_resource type="PackedScene" uid="uid://s1ae1sm81t5d" path="res://entities/trail.tscn" id="2_twrbb"]
+[ext_resource type="PackedScene" uid="uid://cw1rcuxypv0ly" path="res://entities/projectiles/laser_explosion.tscn" id="2_vbx0x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vl572"]
 radius = 19.105
@@ -84,6 +85,7 @@ radius = 169.579
 [node name="Laser" type="Area2D"]
 collision_layer = 8
 script = ExtResource("1_np7nl")
+explosion = ExtResource("2_vbx0x")
 initial_speed = 1000.0
 acceleration = Vector2(100, 0)
 cooldown = 0.2
