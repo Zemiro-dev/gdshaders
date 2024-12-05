@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://4rcookby6rem"]
+
+[ext_resource type="Script" path="res://utilities/area_trigger.gd" id="1_v4qv7"]
+
+[node name="AreaTrigger" type="Area2D"]
+script = ExtResource("1_v4qv7")
