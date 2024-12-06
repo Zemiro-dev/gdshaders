@@ -1,5 +1,7 @@
 extends AnimatableBody2D
+class_name Door
 
+enum States { IDLE, OPENING, OPEN }
 
 @export var triggers: Array[AreaTrigger]
 

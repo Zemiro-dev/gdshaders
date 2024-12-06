@@ -1,10 +1,67 @@
-[gd_scene load_steps=2 format=3 uid="uid://bplpl82fqafvy"]
+[gd_scene load_steps=9 format=3 uid="uid://bplpl82fqafvy"]
 
 [ext_resource type="Script" path="res://world/door.gd" id="1_37qoo"]
+[ext_resource type="Script" path="res://utilities/state_machine.gd" id="2_fks0u"]
+[ext_resource type="Script" path="res://world/door_idle.gd" id="3_1nbce"]
+[ext_resource type="Script" path="res://world/door_opening.gd" id="4_jd7jy"]
+[ext_resource type="Script" path="res://world/door_open.gd" id="5_46awb"]
+
+[sub_resource type="Animation" id="Animation_v3hqn"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_msugl"]
+resource_name = "open"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1hpoy"]
+_data = {
+"idle": SubResource("Animation_v3hqn"),
+"open": SubResource("Animation_msugl")
+}
 
 [node name="Door" type="AnimatableBody2D"]
 script = ExtResource("1_37qoo")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="TopDoor" type="Sprite2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+[node name="BottomDoor" type="Sprite2D" parent="."]
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+
+[node name="TopWell" type="Sprite2D" parent="."]
+
+[node name="BottomWell" type="Sprite2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1hpoy")
+}
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_fks0u")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_1nbce")
+
+[node name="Opening" type="Node" parent="StateMachine"]
+script = ExtResource("4_jd7jy")
+
+[node name="Open" type="Node" parent="StateMachine"]
+script = ExtResource("5_46awb")
+
+[node name="TopPath" type="Path2D" parent="."]
+
+[node name="PathFollow2D" type="PathFollow2D" parent="TopPath"]
+
+[node name="SpriteMover" type="RemoteTransform2D" parent="TopPath/PathFollow2D"]
+
+[node name="CollisionPolyMover" type="RemoteTransform2D" parent="TopPath/PathFollow2D"]
+
+[node name="BottomPath" type="Path2D" parent="."]
+
+[node name="PathFollow2D" type="PathFollow2D" parent="BottomPath"]
+
+[node name="SpriteMover" type="RemoteTransform2D" parent="BottomPath/PathFollow2D"]
+
+[node name="CollisionPolyMover" type="RemoteTransform2D" parent="BottomPath/PathFollow2D"]
