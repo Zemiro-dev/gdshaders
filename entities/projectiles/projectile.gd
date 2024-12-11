@@ -35,7 +35,17 @@ func _ready() -> void:
 	if trail != null && trail_marker != null && use_trail:
 		trail.init(trail_marker)
 		trail.visible = true
+	connect_signals()
 
+
+func connect_signals() -> void:
+	#signal setup
+	lifetime.timeout.connect(_on_lifetime_timeout)
+	body_entered.connect(_on_body_entered)
+	hurtbox.damage_dealt.connect(_on_damage_dealt)
+	if detection_area != null && use_detection_area:
+		detection_area.body_entered.connect(set_target)
+		detection_area.area_entered.connect(set_target)
 
 func _physics_process(delta: float) -> void:
 	if target != null:
@@ -61,14 +71,6 @@ func shoot(_global_transform: Transform2D, target: Node2D = null, host_velocity:
 		velocity += host_velocity
 	velocity += eject_velocity.rotated(eject_velocity.angle_to(transform.x))
 	set_target(target)
-	
-	#signal setup
-	lifetime.timeout.connect(_on_lifetime_timeout)
-	body_entered.connect(_on_body_entered)
-	hurtbox.damage_dealt.connect(_on_damage_dealt)
-	if detection_area != null && use_detection_area:
-		detection_area.body_entered.connect(set_target)
-		detection_area.area_entered.connect(set_target)
 
 func seek():
 	var steer = Vector2.ZERO

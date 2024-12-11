@@ -81,7 +81,7 @@ _data = {
 }
 
 [node name="Laser" instance=ExtResource("1_bh2l5")]
-collision_layer = 9
+collision_layer = 8
 explosion = ExtResource("2_vbx0x")
 initial_speed = 1000.0
 acceleration = Vector2(100, 0)
@@ -100,6 +100,7 @@ shape = SubResource("CapsuleShape2D_vno2k")
 debug_color = Color(0.877251, 0.313907, 0.362102, 0.42)
 
 [node name="DetectionArea" parent="." index="2"]
+visible = false
 collision_layer = 0
 collision_mask = 4
 monitoring = true

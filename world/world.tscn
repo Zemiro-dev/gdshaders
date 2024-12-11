@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://ccr7cy2xntb67"]
+[gd_scene load_steps=39 format=4 uid="uid://ccr7cy2xntb67"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_86tin"]
 [ext_resource type="PackedScene" uid="uid://k8nbtwxisbbw" path="res://entities/player/player_ship.tscn" id="2_xskq6"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://d16xo4klaujso" path="res://world/double_door.tscn" id="11_4ggu5"]
 [ext_resource type="PackedScene" uid="uid://w5m2rs6uhks4" path="res://entities/enemy/basic_turret.tscn" id="11_46175"]
 [ext_resource type="Script" path="res://world/projectile_manager.gd" id="11_s2wp7"]
+[ext_resource type="PackedScene" uid="uid://dmwk2wa8axg2t" path="res://entities/projectiles/mine.tscn" id="12_frp80"]
 [ext_resource type="PackedScene" uid="uid://4rcookby6rem" path="res://utilities/area_trigger.tscn" id="12_y2o1o"]
 [ext_resource type="PackedScene" uid="uid://dvmfgq1jgicx8" path="res://entities/projectiles/bullet.tscn" id="14_075b3"]
 [ext_resource type="Texture2D" uid="uid://dilu41cwm5suw" path="res://data/assets/ui/health_bottom.png" id="18_lk2it"]
@@ -225,6 +226,9 @@ tile_set = SubResource("TileSet_6cqnh")
 [node name="ProjectileManager" type="Node" parent="."]
 script = ExtResource("11_s2wp7")
 
+[node name="Mine" parent="ProjectileManager" instance=ExtResource("12_frp80")]
+position = Vector2(692, 64)
+
 [node name="EnemyNest" type="Node" parent="."]
 
 [node name="BasicEnemyFighter" parent="EnemyNest" instance=ExtResource("10_j7qj1")]
@@ -235,7 +239,7 @@ position = Vector2(1274, 914)
 projectile_scene = ExtResource("14_075b3")
 
 [node name="PlayerShip" parent="." instance=ExtResource("2_xskq6")]
-position = Vector2(348, 331)
+position = Vector2(422, 386)
 
 [node name="Camera2D" type="Camera2D" parent="PlayerShip"]
 script = ExtResource("3_iu3i8")
