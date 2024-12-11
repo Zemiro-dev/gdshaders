@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://1qeglhmx1apu"]
+
+[ext_resource type="Script" path="res://entities/projectiles/projectile.gd" id="1_2xw6b"]
+[ext_resource type="PackedScene" uid="uid://s1ae1sm81t5d" path="res://entities/trail.tscn" id="2_oh0ym"]
+[ext_resource type="PackedScene" uid="uid://ba0ggrxjujuhf" path="res://entities/hurtbox.tscn" id="3_75rmy"]
+
+[node name="Projectile" type="Area2D"]
+script = ExtResource("1_2xw6b")
+
+[node name="Hurtbox" parent="." instance=ExtResource("3_75rmy")]
+
+[node name="DetectionArea" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="TrailMarker" type="Marker2D" parent="."]
+
+[node name="Trail" parent="." instance=ExtResource("2_oh0ym")]
+visible = false
+points = PackedVector2Array(-152, 0, -74, 0, 0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true

@@ -19,15 +19,16 @@ _data = {
 }
 
 [node name="Door" type="AnimatableBody2D"]
+collision_mask = 0
 script = ExtResource("1_37qoo")
-
-[node name="TopDoor" type="Sprite2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 
-[node name="BottomDoor" type="Sprite2D" parent="."]
+[node name="TopDoor" type="Sprite2D" parent="."]
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+
+[node name="BottomDoor" type="Sprite2D" parent="."]
 
 [node name="TopWell" type="Sprite2D" parent="."]
 
@@ -55,13 +56,21 @@ script = ExtResource("5_46awb")
 [node name="PathFollow2D" type="PathFollow2D" parent="TopPath"]
 
 [node name="SpriteMover" type="RemoteTransform2D" parent="TopPath/PathFollow2D"]
+remote_path = NodePath("../../../TopDoor")
+update_rotation = false
 
 [node name="CollisionPolyMover" type="RemoteTransform2D" parent="TopPath/PathFollow2D"]
+remote_path = NodePath("../../../CollisionPolygon2D")
+update_rotation = false
 
 [node name="BottomPath" type="Path2D" parent="."]
 
 [node name="PathFollow2D" type="PathFollow2D" parent="BottomPath"]
 
 [node name="SpriteMover" type="RemoteTransform2D" parent="BottomPath/PathFollow2D"]
+remote_path = NodePath("../../../BottomDoor")
+update_rotation = false
 
 [node name="CollisionPolyMover" type="RemoteTransform2D" parent="BottomPath/PathFollow2D"]
+remote_path = NodePath("../../../CollisionPolygon2D2")
+update_rotation = false

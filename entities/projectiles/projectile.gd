@@ -21,8 +21,10 @@ signal projectile_detonated(location: Vector2, explosion_scene: PackedScene)
 @export var radial_spread := 0.
 @export var side_spread := 0.
 @export var cooldown := .5
-@export var add_host_velocity: bool = true
+@export var add_host_velocity: bool = false
 @export var match_rotation_to_velocity: bool = true
+@export var use_trail: bool = false
+@export var use_detection_area: bool = false
 
 
 var velocity := Vector2.ZERO
@@ -30,8 +32,9 @@ var target: Node2D
 
 
 func _ready() -> void:
-	if trail != null && trail_marker != null:
+	if trail != null && trail_marker != null && use_trail:
 		trail.init(trail_marker)
+		trail.visible = true
 
 
 func _physics_process(delta: float) -> void:
@@ -63,7 +66,7 @@ func shoot(_global_transform: Transform2D, target: Node2D = null, host_velocity:
 	lifetime.timeout.connect(_on_lifetime_timeout)
 	body_entered.connect(_on_body_entered)
 	hurtbox.damage_dealt.connect(_on_damage_dealt)
-	if detection_area != null:
+	if detection_area != null && use_detection_area:
 		detection_area.body_entered.connect(set_target)
 		detection_area.area_entered.connect(set_target)
 

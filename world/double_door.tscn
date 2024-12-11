@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://d16xo4klaujso"]
+
+[ext_resource type="PackedScene" uid="uid://bplpl82fqafvy" path="res://world/door.tscn" id="1_rxdxi"]
+[ext_resource type="Texture2D" uid="uid://l6ke5dc48n20" path="res://data/assets/door_top.png" id="2_0gscp"]
+[ext_resource type="Texture2D" uid="uid://51ettacarpk2" path="res://data/assets/door_bottom.png" id="3_7m4bh"]
+
+[sub_resource type="Curve2D" id="Curve2D_pemwh"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -256)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_4god4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 256)
+}
+point_count = 2
+
+[node name="Door" instance=ExtResource("1_rxdxi")]
+
+[node name="CollisionPolygon2D" parent="." index="0"]
+polygon = PackedVector2Array(-32, -128, 32, -128, 32, 128)
+
+[node name="TopDoor" parent="." index="1"]
+texture = ExtResource("2_0gscp")
+
+[node name="CollisionPolygon2D2" parent="." index="2"]
+polygon = PackedVector2Array(-32, -128, 32, 128, -32, 128)
+
+[node name="BottomDoor" parent="." index="3"]
+texture = ExtResource("3_7m4bh")
+
+[node name="TopPath" parent="." index="8"]
+curve = SubResource("Curve2D_pemwh")
+
+[node name="PathFollow2D" parent="TopPath" index="0"]
+rotation = -1.5708
+
+[node name="BottomPath" parent="." index="9"]
+curve = SubResource("Curve2D_4god4")
+
+[node name="PathFollow2D" parent="BottomPath" index="0"]
+rotation = 1.5708

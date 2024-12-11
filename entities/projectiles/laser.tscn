@@ -1,17 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://c71do5ssg7hpf"]
+[gd_scene load_steps=11 format=3 uid="uid://cuymcxhkpha18"]
 
+[ext_resource type="PackedScene" uid="uid://1qeglhmx1apu" path="res://entities/projectiles/projectile.tscn" id="1_bh2l5"]
 [ext_resource type="Texture2D" uid="uid://bwjyau10kg2c7" path="res://data/assets/laser_frames.png" id="1_nd6l2"]
-[ext_resource type="Script" path="res://entities/projectiles/projectile.gd" id="1_np7nl"]
-[ext_resource type="PackedScene" uid="uid://ba0ggrxjujuhf" path="res://entities/hurtbox.tscn" id="2_scktd"]
-[ext_resource type="PackedScene" uid="uid://s1ae1sm81t5d" path="res://entities/trail.tscn" id="2_twrbb"]
 [ext_resource type="PackedScene" uid="uid://cw1rcuxypv0ly" path="res://entities/projectiles/laser_explosion.tscn" id="2_vbx0x"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vl572"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_32ht5"]
 radius = 19.105
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u2hyy"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vno2k"]
 radius = 21.0
 height = 72.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bk3a6"]
+radius = 169.579
 
 [sub_resource type="Animation" id="Animation_7vtls"]
 length = 0.001
@@ -79,56 +80,42 @@ _data = {
 "start_up": SubResource("Animation_uhc6d")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_urbuq"]
-radius = 169.579
-
-[node name="Laser" type="Area2D"]
-collision_layer = 8
-script = ExtResource("1_np7nl")
+[node name="Laser" instance=ExtResource("1_bh2l5")]
+collision_layer = 9
 explosion = ExtResource("2_vbx0x")
 initial_speed = 1000.0
 acceleration = Vector2(100, 0)
 cooldown = 0.2
-add_host_velocity = false
+use_trail = true
+use_detection_area = true
 
-[node name="TrailMarker" type="Marker2D" parent="."]
-
-[node name="Trail" parent="." instance=ExtResource("2_twrbb")]
-points = PackedVector2Array(-152, 0, -74, 0, 0, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 position = Vector2(-11, 0)
-shape = SubResource("CircleShape2D_vl572")
+shape = SubResource("CircleShape2D_32ht5")
 
-[node name="Hurtbox" parent="." instance=ExtResource("2_scktd")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2(-28, 0)
 rotation = 1.57079
-shape = SubResource("CapsuleShape2D_u2hyy")
+shape = SubResource("CapsuleShape2D_vno2k")
 debug_color = Color(0.877251, 0.313907, 0.362102, 0.42)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="DetectionArea" parent="." index="2"]
+collision_layer = 0
+collision_mask = 4
+monitoring = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" index="0"]
+position = Vector2(95, 0)
+shape = SubResource("CircleShape2D_bk3a6")
+
+[node name="Sprite2D" parent="." index="5"]
 position = Vector2(-35, 0)
 texture = ExtResource("1_nd6l2")
 hframes = 4
 frame = 3
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7"]
 libraries = {
 "": SubResource("AnimationLibrary_c5plm")
 }
 autoplay = "start_up"
-
-[node name="Lifetime" type="Timer" parent="."]
-wait_time = 3.0
-autostart = true
-
-[node name="DetectionArea" type="Area2D" parent="."]
-visible = false
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(95, 0)
-shape = SubResource("CircleShape2D_urbuq")

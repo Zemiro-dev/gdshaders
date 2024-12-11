@@ -3,4 +3,6 @@
 [ext_resource type="Script" path="res://utilities/area_trigger.gd" id="1_v4qv7"]
 
 [node name="AreaTrigger" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("1_v4qv7")
