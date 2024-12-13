@@ -229,6 +229,27 @@ script = ExtResource("11_s2wp7")
 [node name="Mine" parent="ProjectileManager" instance=ExtResource("12_frp80")]
 position = Vector2(692, 64)
 
+[node name="Mine2" parent="ProjectileManager" instance=ExtResource("12_frp80")]
+position = Vector2(289, 801)
+
+[node name="Mine6" parent="ProjectileManager" instance=ExtResource("12_frp80")]
+position = Vector2(-384, 1244)
+
+[node name="Mine7" parent="ProjectileManager" instance=ExtResource("12_frp80")]
+position = Vector2(-62, 1513)
+
+[node name="Mine3" parent="ProjectileManager" instance=ExtResource("12_frp80")]
+position = Vector2(-109, 919)
+
+[node name="Mine8" parent="ProjectileManager" instance=ExtResource("12_frp80")]
+position = Vector2(262, 1244)
+
+[node name="Mine4" parent="ProjectileManager" instance=ExtResource("12_frp80")]
+position = Vector2(-219, 64)
+
+[node name="Mine5" parent="ProjectileManager" instance=ExtResource("12_frp80")]
+position = Vector2(-219, 557)
+
 [node name="EnemyNest" type="Node" parent="."]
 
 [node name="BasicEnemyFighter" parent="EnemyNest" instance=ExtResource("10_j7qj1")]

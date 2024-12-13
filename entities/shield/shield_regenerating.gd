@@ -21,6 +21,7 @@ func _execute(delta, host: Shield):
 		if regen_delay_remaining <= 0.:
 			regen_delay_remaining = host.regeneration_tick_delay
 			host.heal_damage(host.regeneration_amount)
+			host.grow()
 
 func _get_next_state(host: Shield):
 	if host.is_dead and previous_shield != 0:

@@ -27,18 +27,22 @@ func _ready() -> void:
 func take_damage(damage: int, attacker: Node2D):
 	if entity != null:
 		entity.take_damage(damage, attacker)
-		if is_dead:
-			var tween = create_tween()
-			tween.tween_property(self, "scale", Vector2.ZERO, .1)
-			monitorable = false
+
+func grow():
+	if !monitorable:
+		var tween = create_tween()
+		tween.tween_property(self, "scale", Vector2.ONE, .1)
+		monitorable = true
+
+
+func shrink():
+	if monitorable:
+		var tween = create_tween()
+		tween.tween_property(self, "scale", Vector2.ZERO, .1)
+		monitorable = false
 
 
 func heal_damage(amount: int):
 	if entity != null:
-		var was_dead = is_dead
 		entity.restore_shield(amount)
-		if was_dead and !is_dead:
-			var tween = create_tween()
-			tween.tween_property(self, "scale", Vector2.ONE, .1)
-			monitorable = true
 			

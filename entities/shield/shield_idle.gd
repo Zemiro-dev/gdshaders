@@ -9,7 +9,7 @@ func _exit(new_state, host):
 
 
 func _execute(delta, host):
-	pass
+	host.grow()
 
 func _get_next_state(host: Shield):
 	if host.is_dead:
