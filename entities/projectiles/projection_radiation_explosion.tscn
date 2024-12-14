@@ -1,0 +1,128 @@
+[gd_scene load_steps=7 format=3 uid="uid://cplrfijecqcnx"]
+
+[ext_resource type="PackedScene" uid="uid://ba0ggrxjujuhf" path="res://entities/hurtbox.tscn" id="1_df12t"]
+[ext_resource type="Texture2D" uid="uid://dlgoct1i1r8id" path="res://data/assets/projectile_explosion_spritesheet.png" id="2_r0eks"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rhcjo"]
+radius = 88.1419
+
+[sub_resource type="Animation" id="Animation_lgp6i"]
+resource_name = "boom"
+loop_mode = 1
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 1),
+"transitions": PackedFloat32Array(0.210225, 1, 1),
+"update": 0,
+"values": [0, 7, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 3.60499, 1),
+"update": 0,
+"values": [Color(1, 0.54, 0.885, 1), Color(1, 0.54, 0.885, 1), Color(1, 0.54, 0.885, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hurtbox:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.24, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.98),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_snggv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.54, 0.885, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hurtbox:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tvfde"]
+_data = {
+"RESET": SubResource("Animation_snggv"),
+"boom": SubResource("Animation_lgp6i")
+}
+
+[node name="ProjectionRadiationExplosion" type="Node2D"]
+
+[node name="Hurtbox" parent="." instance=ExtResource("1_df12t")]
+monitoring = false
+damage = 4
+one_shot = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_rhcjo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.54, 0.885, 1)
+texture = ExtResource("2_r0eks")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tvfde")
+}
+autoplay = "boom"

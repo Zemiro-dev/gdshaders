@@ -11,7 +11,7 @@ radius = 18.4391
 radius = 19.77
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tglfh"]
-radius = 172.17
+radius = 384.0
 
 [sub_resource type="Gradient" id="Gradient_4t1ih"]
 offsets = PackedFloat32Array(0.503958, 0.994723)
@@ -127,7 +127,7 @@ _data = {
 collision_layer = 8
 explosion = ExtResource("2_egfrv")
 initial_speed = 0.0
-max_speed = 50.0
+max_speed = 100.0
 steer_force = 50.0
 match_rotation_to_velocity = false
 use_trail = true
@@ -153,8 +153,8 @@ monitoring = true
 shape = SubResource("CircleShape2D_tglfh")
 
 [node name="Trail" parent="." index="4"]
+visible = true
 gradient = SubResource("Gradient_4t1ih")
-max_points = 50
 
 [node name="Sprite2D" parent="." index="5"]
 scale = Vector2(0.985646, 1.04913)

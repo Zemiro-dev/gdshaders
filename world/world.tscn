@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://ccr7cy2xntb67"]
+[gd_scene load_steps=40 format=4 uid="uid://ccr7cy2xntb67"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_86tin"]
 [ext_resource type="PackedScene" uid="uid://k8nbtwxisbbw" path="res://entities/player/player_ship.tscn" id="2_xskq6"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://world/projectile_manager.gd" id="11_s2wp7"]
 [ext_resource type="PackedScene" uid="uid://dmwk2wa8axg2t" path="res://entities/projectiles/mine.tscn" id="12_frp80"]
 [ext_resource type="PackedScene" uid="uid://4rcookby6rem" path="res://utilities/area_trigger.tscn" id="12_y2o1o"]
+[ext_resource type="PackedScene" uid="uid://cplrfijecqcnx" path="res://entities/projectiles/projection_radiation_explosion.tscn" id="13_lekfk"]
 [ext_resource type="PackedScene" uid="uid://dvmfgq1jgicx8" path="res://entities/projectiles/bullet.tscn" id="14_075b3"]
 [ext_resource type="Texture2D" uid="uid://dilu41cwm5suw" path="res://data/assets/ui/health_bottom.png" id="18_lk2it"]
 [ext_resource type="Texture2D" uid="uid://vyoub7tpogus" path="res://data/assets/ui/health_top.png" id="19_xb1nn"]
@@ -227,7 +228,7 @@ tile_set = SubResource("TileSet_6cqnh")
 script = ExtResource("11_s2wp7")
 
 [node name="Mine" parent="ProjectileManager" instance=ExtResource("12_frp80")]
-position = Vector2(692, 64)
+position = Vector2(951, -25)
 
 [node name="Mine2" parent="ProjectileManager" instance=ExtResource("12_frp80")]
 position = Vector2(289, 801)
@@ -246,9 +247,11 @@ position = Vector2(262, 1244)
 
 [node name="Mine4" parent="ProjectileManager" instance=ExtResource("12_frp80")]
 position = Vector2(-219, 64)
+explosion = ExtResource("13_lekfk")
 
 [node name="Mine5" parent="ProjectileManager" instance=ExtResource("12_frp80")]
 position = Vector2(-219, 557)
+explosion = ExtResource("13_lekfk")
 
 [node name="EnemyNest" type="Node" parent="."]
 
@@ -260,7 +263,7 @@ position = Vector2(1274, 914)
 projectile_scene = ExtResource("14_075b3")
 
 [node name="PlayerShip" parent="." instance=ExtResource("2_xskq6")]
-position = Vector2(422, 386)
+position = Vector2(370, 224)
 
 [node name="Camera2D" type="Camera2D" parent="PlayerShip"]
 script = ExtResource("3_iu3i8")
