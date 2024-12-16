@@ -8,6 +8,7 @@ var basic_bolt = preload("res://entities/player/basic_bolt.tscn")
 @export var base_impulse_tolerance := PI/2.0
 @export var front_back_impulse_deadzone: float = PI/6.0
 @export var left_right_impulse_deadzone: float = PI/4.0
+@onready var thruster_audio_player: AudioStreamPlayer = $Sounds/ThrusterAudioPlayer
 
 @onready var main_thruster_sprite: Sprite2D = $Pivot/Thrusters/MainThrusterSprite
 @onready var main_thruster_particles: GPUParticles2D = $Pivot/ThrusterParticles/MainThrusterParticles
@@ -50,9 +51,10 @@ var basic_bolt = preload("res://entities/player/basic_bolt.tscn")
 @export var angular_velocity := 0.
 @export var angular_drag := angular_impulse_acceleration
 
-@export var projectile_scene : PackedScene;
+@export var projectile_scene : PackedScene
 
 var primary_weapon_cooldown := 0.0
+var current_thruster_audio_tween: Tween 
 
 
 func _ready() -> void:
@@ -88,7 +90,12 @@ func _physics_process(delta: float) -> void:
 		else:
 			thrusters[i].visible = false
 	
-	
+	# Handle Thruster Sound
+	if impulse_on and !thruster_audio_player.playing:
+		thruster_audio_player.play()
+	else:
+		thruster_audio_player.stop()
+		
 	# General Velocity
 	if impulse_on or main_thrust_on:
 		var impulse_velocity = impulse * impulse_acceleration * delta

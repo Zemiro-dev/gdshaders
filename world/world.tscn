@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://ccr7cy2xntb67"]
+[gd_scene load_steps=41 format=4 uid="uid://ccr7cy2xntb67"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_86tin"]
 [ext_resource type="PackedScene" uid="uid://k8nbtwxisbbw" path="res://entities/player/player_ship.tscn" id="2_xskq6"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://4oknt2ycgj84" path="res://data/assets/ui/shield_top.png" id="23_cksyo"]
 [ext_resource type="Texture2D" uid="uid://betx0jexfklxm" path="res://data/assets/ui/shield_progress.png" id="24_rahc0"]
 [ext_resource type="Script" path="res://ui/resource_bar.gd" id="25_g0y7s"]
+[ext_resource type="AudioStream" uid="uid://b2pkdfneyioxm" path="res://data/sounds/Space Cadet.ogg" id="28_rmws3"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_q40wd"]
 
@@ -310,3 +311,11 @@ texture_over = ExtResource("23_cksyo")
 texture_progress = ExtResource("24_rahc0")
 texture_progress_offset = Vector2(52.305, 68.355)
 script = ExtResource("25_g0y7s")
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("28_rmws3")
+volume_db = -12.0
+autoplay = true
+parameters/looping = true
