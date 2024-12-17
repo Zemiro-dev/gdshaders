@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://vay3rf5iqb0l"]
+
+[ext_resource type="Script" path="res://entities/effect/thrust_sound.gd" id="1_a6wc4"]
+[ext_resource type="AudioStream" uid="uid://bx035beiivn2s" path="res://data/sounds/thrusterFire_002.ogg" id="1_ucqfk"]
+[ext_resource type="PackedScene" uid="uid://buio4wiqhl57k" path="res://utilities/transition_animation_player.tscn" id="2_p5i44"]
+
+[sub_resource type="Animation" id="Animation_d02jj"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-32.0]
+}
+
+[sub_resource type="Animation" id="Animation_jikgp"]
+resource_name = "transition"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-32.0, -12.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ve8ev"]
+_data = {
+"RESET": SubResource("Animation_d02jj"),
+"transition": SubResource("Animation_jikgp")
+}
+
+[node name="ThrustSound" type="AudioStreamPlayer"]
+stream = ExtResource("1_ucqfk")
+volume_db = -32.0
+parameters/looping = true
+script = ExtResource("1_a6wc4")
+
+[node name="TransitionAnimationPlayer" parent="." instance=ExtResource("2_p5i44")]
+libraries = {
+"": SubResource("AnimationLibrary_ve8ev")
+}

@@ -3,7 +3,8 @@ extends State
 func _enter(previous_state, host: TransitionAnimationPlayer):
 	if host.is_playing():
 		host.pause()
-	host.play('transition')
+	if host.has_animation('transition'):
+		host.play('transition')
 
 
 func _exit(new_state, host: TransitionAnimationPlayer):

@@ -1,7 +1,8 @@
 extends State
 
 func _enter(previous_state, host: TransitionAnimationPlayer):
-	pass
+	if host.has_animation('RESET'):
+		host.play('RESET')
 
 
 func _exit(new_state, host: TransitionAnimationPlayer):
