@@ -95,7 +95,7 @@ func _physics_process(delta: float) -> void:
 		thruster_audio_player.play()
 	else:
 		thruster_audio_player.stop()
-		
+
 	# General Velocity
 	if impulse_on or main_thrust_on:
 		var impulse_velocity = impulse * impulse_acceleration * delta

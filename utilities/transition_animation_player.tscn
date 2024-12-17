@@ -1,0 +1,42 @@
+[gd_scene load_steps=10 format=3 uid="uid://buio4wiqhl57k"]
+
+[ext_resource type="Script" path="res://utilities/transition_animation_player.gd" id="1_jl6uc"]
+[ext_resource type="Script" path="res://utilities/state_machine.gd" id="2_jn3xo"]
+[ext_resource type="Script" path="res://utilities/transition_animation_player_in.gd" id="3_8cmbg"]
+[ext_resource type="Script" path="res://utilities/transition_animation_player_out.gd" id="4_m2ipq"]
+[ext_resource type="Script" path="res://utilities/transition_animation_player_start.gd" id="5_pav8p"]
+[ext_resource type="Script" path="res://utilities/transition_animation_player_end.gd" id="6_dk50d"]
+
+[sub_resource type="Animation" id="Animation_su2hd"]
+resource_name = "RESET"
+
+[sub_resource type="Animation" id="Animation_l1g2d"]
+resource_name = "transition"
+length = 10.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tqppn"]
+_data = {
+"RESET": SubResource("Animation_su2hd"),
+"transition": SubResource("Animation_l1g2d")
+}
+
+[node name="TransitionAnimationPlayer" type="AnimationPlayer"]
+libraries = {
+"": SubResource("AnimationLibrary_tqppn")
+}
+script = ExtResource("1_jl6uc")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_jn3xo")
+
+[node name="In" type="Node" parent="StateMachine"]
+script = ExtResource("3_8cmbg")
+
+[node name="Out" type="Node" parent="StateMachine"]
+script = ExtResource("4_m2ipq")
+
+[node name="Start" type="Node" parent="StateMachine"]
+script = ExtResource("5_pav8p")
+
+[node name="End" type="Node" parent="StateMachine"]
+script = ExtResource("6_dk50d")

@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://bf2jx6ijm4fj"]
+
+[ext_resource type="Script" path="res://entities/effect/thrust.gd" id="1_wdt5d"]
+[ext_resource type="Script" path="res://utilities/transition_animation_player.gd" id="1_wgs51"]
+[ext_resource type="Material" uid="uid://djmydboyxeyur" path="res://resources/thrust_shader_material.tres" id="2_2kmi8"]
+[ext_resource type="Texture2D" uid="uid://7nknufbr1enf" path="res://icon_sq.svg" id="3_eqj38"]
+
+[sub_resource type="Animation" id="Animation_5fppw"]
+resource_name = "transition"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Line2D/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_gyfgi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Line2D/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4qyn3"]
+_data = {
+"RESET": SubResource("Animation_gyfgi"),
+"transition": SubResource("Animation_5fppw")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_n2g3o"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0)
+}
+point_count = 2
+
+[node name="Thrust" type="Node2D"]
+script = ExtResource("1_wdt5d")
+
+[node name="TransitionAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4qyn3")
+}
+script = ExtResource("1_wgs51")
+
+[node name="Line2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_n2g3o")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Line2D"]
+
+[node name="Node2D" type="Node2D" parent="Line2D/PathFollow2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Line2D/PathFollow2D/Node2D"]
+material = ExtResource("2_2kmi8")
+rotation = -1.5708
+texture = ExtResource("3_eqj38")
