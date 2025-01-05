@@ -7,17 +7,16 @@
 [ext_resource type="Script" path="res://utilities/transition_animation_player_start.gd" id="5_pav8p"]
 [ext_resource type="Script" path="res://utilities/transition_animation_player_end.gd" id="6_dk50d"]
 
-[sub_resource type="Animation" id="Animation_su2hd"]
+[sub_resource type="Animation" id="Animation_pf8yj"]
 resource_name = "RESET"
 
-[sub_resource type="Animation" id="Animation_l1g2d"]
+[sub_resource type="Animation" id="Animation_vt8by"]
 resource_name = "transition"
-length = 10.0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tqppn"]
 _data = {
-"RESET": SubResource("Animation_su2hd"),
-"transition": SubResource("Animation_l1g2d")
+"RESET": SubResource("Animation_pf8yj"),
+"transition": SubResource("Animation_vt8by")
 }
 
 [node name="TransitionAnimationPlayer" type="AnimationPlayer"]

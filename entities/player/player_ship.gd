@@ -8,7 +8,8 @@ var basic_bolt = preload("res://entities/player/basic_bolt.tscn")
 @export var base_impulse_tolerance := PI/2.0
 @export var front_back_impulse_deadzone: float = PI/6.0
 @export var left_right_impulse_deadzone: float = PI/4.0
-@onready var thruster_audio_player: AudioStreamPlayer = $Sounds/ThrusterAudioPlayer
+@onready var thrust_sound: AudioStreamPlayer = $Sounds/ThrustSound
+
 
 @onready var main_thruster_sprite: Sprite2D = $Pivot/Thrusters/MainThrusterSprite
 @onready var main_thruster_particles: GPUParticles2D = $Pivot/ThrusterParticles/MainThrusterParticles
@@ -91,10 +92,10 @@ func _physics_process(delta: float) -> void:
 			thrusters[i].visible = false
 	
 	# Handle Thruster Sound
-	if impulse_on and !thruster_audio_player.playing:
-		thruster_audio_player.play()
+	if impulse_on:
+		thrust_sound.on()
 	else:
-		thruster_audio_player.stop()
+		thrust_sound.off()
 
 	# General Velocity
 	if impulse_on or main_thrust_on:

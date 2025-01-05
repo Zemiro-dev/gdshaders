@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://k8nbtwxisbbw"]
+[gd_scene load_steps=27 format=3 uid="uid://k8nbtwxisbbw"]
 
 [ext_resource type="Script" path="res://entities/player/player_ship.gd" id="1_y4txy"]
 [ext_resource type="PackedScene" uid="uid://cuymcxhkpha18" path="res://entities/projectiles/laser.tscn" id="2_0fk5s"]
@@ -16,8 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://wnto744bhk1x" path="res://data/assets/playership.svg" id="12_xoq78"]
 [ext_resource type="Material" uid="uid://b0w2gkrybsyi4" path="res://resources/player_shield_material.tres" id="13_o7xqb"]
 [ext_resource type="Script" path="res://entities/trail.gd" id="16_ad85a"]
-[ext_resource type="PackedScene" uid="uid://1ud61pwk605m" path="res://utilities/extended_audio_stream_player.tscn" id="17_nyvkm"]
-[ext_resource type="AudioStream" uid="uid://bx035beiivn2s" path="res://data/sounds/thrusterFire_002.ogg" id="18_o51x8"]
+[ext_resource type="PackedScene" uid="uid://vay3rf5iqb0l" path="res://entities/effect/thrust_sound.tscn" id="17_ourcq"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_usad8"]
 noise_type = 3
@@ -245,8 +244,6 @@ position = Vector2(39, 0)
 
 [node name="Sounds" type="Node" parent="."]
 
-[node name="ThrusterAudioPlayer" parent="Sounds" instance=ExtResource("17_nyvkm")]
-stream = ExtResource("18_o51x8")
-volume_db = -12.0
+[node name="ThrustSound" parent="Sounds" instance=ExtResource("17_ourcq")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

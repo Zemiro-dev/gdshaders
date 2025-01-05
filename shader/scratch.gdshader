@@ -20,13 +20,13 @@ void fragment() {
 	float d = length(uv); //dist from center mapped
 	// outer fade of main shield
 	float shieldBound = 1.0 - smoothstep(.8, .85, d);
-	
+
 	uv = uv - vec2(.75, 0);
 	float ripple = hit(uv, radius, .025, .04);
-	
+
 	vec3 rippleColor = BLUE.rgb + (.08 * pow(ripple, 10.0));
-	
-	// the pow statement adds some white highlighting near the main ring   
+
+	// the pow statement adds some white highlighting near the main ring
 	//vec3 mainShieldColor = BLUE + (.08 * pow(mainShield, 10.0));
 	//COLOR = vec4(mainShieldColor, mainShield);
 	COLOR = vec4(rippleColor, ripple * shieldBound);
