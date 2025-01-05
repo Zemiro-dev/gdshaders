@@ -222,7 +222,6 @@ rotation = 1.57079
 texture = ExtResource("12_xoq78")
 
 [node name="Shield" parent="Pivot" node_paths=PackedStringArray("entity") instance=ExtResource("12_fijev")]
-visible = false
 material = ExtResource("13_o7xqb")
 entity = NodePath("../..")
 

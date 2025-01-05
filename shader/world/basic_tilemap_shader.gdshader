@@ -9,12 +9,12 @@ uniform vec4 target_color : source_color;
 uniform float tolerance : hint_range(0.0, 1.0, 0.1) = .1;
 
 varying vec2 world_pos;
- 
+
 void vertex() {
     world_pos = (MODEL_MATRIX * vec4(VERTEX, 0.0, 1.0)).xy;
 }
- 
-float get_strength(vec2 uv) {	
+
+float get_strength(vec2 uv) {
 	float noise1_strength = texture(noise1, (world_pos*.001)).r;
 	float noise2_strength = texture(noise2, (world_pos*.001)).r;
 	float strength = noise1_strength * (1.0-noise2_strength);
@@ -24,5 +24,5 @@ float get_strength(vec2 uv) {
 
 void fragment() {
 	vec4 color = texture(TEXTURE, UV);
-	COLOR = vec4(mix(color.rgb, WHITE, get_strength(UV) * .2), color.a);    
+	COLOR = vec4(mix(color.rgb, WHITE, get_strength(UV) * .2), color.a);
 }
