@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ba0ggrxjujuhf" path="res://entities/hurtbox.tscn" id="3_75rmy"]
 
 [node name="Projectile" type="Area2D"]
+z_index = 42
 script = ExtResource("1_2xw6b")
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_75rmy")]

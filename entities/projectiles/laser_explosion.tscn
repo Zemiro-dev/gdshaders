@@ -95,7 +95,7 @@ _data = {
 }
 
 [node name="LaserExplosion" type="Sprite2D"]
-z_index = 20
+z_index = 46
 scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("1_mniqr")
 

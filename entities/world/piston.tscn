@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://0m1p17u887i"]
+
+[ext_resource type="Texture2D" uid="uid://bdcvt6aau11j2" path="res://data/assets/entities/world/piston_body.png" id="1_vmnsk"]
+[ext_resource type="Texture2D" uid="uid://cyrtq32g7rdhf" path="res://data/assets/entities/world/piston_cover.png" id="2_bw8rx"]
+
+[node name="Piston" type="Node2D"]
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = ExtResource("1_vmnsk")
+
+[node name="Cover" type="Sprite2D" parent="."]
+texture = ExtResource("2_bw8rx")
