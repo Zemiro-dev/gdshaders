@@ -6,3 +6,8 @@
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_038j8")
+damage = null
+one_shot = null
+max_targets = null
+max_monitoring = null
+refactory_period = null

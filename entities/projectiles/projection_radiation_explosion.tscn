@@ -110,9 +110,11 @@ _data = {
 z_index = 46
 
 [node name="Hurtbox" parent="." instance=ExtResource("1_df12t")]
+collision_mask = 6
 monitoring = false
 damage = 4
 one_shot = false
+refactory_period = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_rhcjo")

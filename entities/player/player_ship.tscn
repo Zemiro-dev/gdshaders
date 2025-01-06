@@ -112,7 +112,7 @@ collision_layer = 2
 script = ExtResource("1_y4txy")
 projectile_scene = ExtResource("2_0fk5s")
 max_health = 5
-max_shield = 3
+max_shield = 8
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-14, 9.53674e-07)
@@ -223,6 +223,8 @@ texture = ExtResource("12_xoq78")
 [node name="Shield" parent="Pivot" node_paths=PackedStringArray("entity") instance=ExtResource("12_fijev")]
 material = ExtResource("13_o7xqb")
 entity = NodePath("../..")
+stunned_regeneration_delay = 1.0
+reactivation_delay = 1.0
 
 [node name="ShadowCaster" type="PointLight2D" parent="Pivot"]
 visible = false

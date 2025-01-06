@@ -28,6 +28,12 @@ func take_damage(damage: int, attacker: Node2D):
 	if entity != null:
 		entity.take_damage(damage, attacker)
 
+
+func get_damage_host():
+	if entity != null:
+		return entity
+	return self
+
 func grow():
 	if !monitorable:
 		var tween = create_tween()

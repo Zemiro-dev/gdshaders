@@ -1,7 +1,7 @@
 extends State
 
 func _enter(previous_state, host):
-	pass
+	print("Idle")
 
 
 func _exit(new_state, host):

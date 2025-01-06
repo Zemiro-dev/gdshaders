@@ -477,7 +477,27 @@ script = ExtResource("11_s2wp7")
 
 [node name="Mine" parent="ProjectileManager" instance=ExtResource("12_frp80")]
 z_index = 0
-position = Vector2(951, -25)
+position = Vector2(-239, -986)
+
+[node name="Mine14" parent="ProjectileManager" instance=ExtResource("12_frp80")]
+z_index = 0
+position = Vector2(605, -986)
+
+[node name="Mine15" parent="ProjectileManager" instance=ExtResource("12_frp80")]
+z_index = 0
+position = Vector2(1395, -928)
+
+[node name="Mine16" parent="ProjectileManager" instance=ExtResource("12_frp80")]
+z_index = 0
+position = Vector2(1395, -1728)
+
+[node name="Mine18" parent="ProjectileManager" instance=ExtResource("12_frp80")]
+z_index = 0
+position = Vector2(2265, -1763)
+
+[node name="Mine17" parent="ProjectileManager" instance=ExtResource("12_frp80")]
+z_index = 0
+position = Vector2(541, -1763)
 
 [node name="Mine2" parent="ProjectileManager" instance=ExtResource("12_frp80")]
 z_index = 0
@@ -501,7 +521,32 @@ position = Vector2(262, 1244)
 
 [node name="Mine4" parent="ProjectileManager" instance=ExtResource("12_frp80")]
 z_index = 0
-position = Vector2(-219, 64)
+position = Vector2(-995, -314)
+explosion = ExtResource("13_lekfk")
+
+[node name="Mine9" parent="ProjectileManager" instance=ExtResource("12_frp80")]
+z_index = 0
+position = Vector2(-1765, -314)
+explosion = ExtResource("13_lekfk")
+
+[node name="Mine10" parent="ProjectileManager" instance=ExtResource("12_frp80")]
+z_index = 0
+position = Vector2(-1765, 432)
+explosion = ExtResource("13_lekfk")
+
+[node name="Mine11" parent="ProjectileManager" instance=ExtResource("12_frp80")]
+z_index = 0
+position = Vector2(-1021, 458)
+explosion = ExtResource("13_lekfk")
+
+[node name="Mine12" parent="ProjectileManager" instance=ExtResource("12_frp80")]
+z_index = 0
+position = Vector2(-1084, 1177)
+explosion = ExtResource("13_lekfk")
+
+[node name="Mine13" parent="ProjectileManager" instance=ExtResource("12_frp80")]
+z_index = 0
+position = Vector2(-1882, 1244)
 explosion = ExtResource("13_lekfk")
 
 [node name="Mine5" parent="ProjectileManager" instance=ExtResource("12_frp80")]
@@ -519,7 +564,7 @@ position = Vector2(1274, 914)
 projectile_scene = ExtResource("14_075b3")
 
 [node name="PlayerShip" parent="." instance=ExtResource("2_xskq6")]
-position = Vector2(-2010, -1912)
+position = Vector2(-1264, -1148)
 
 [node name="Camera2D" type="Camera2D" parent="PlayerShip"]
 script = ExtResource("3_iu3i8")

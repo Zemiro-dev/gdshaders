@@ -7,6 +7,7 @@ var reactivation_delay := 0.
 func _enter(previous_state, host: Shield):
 	reactivation_delay = host.reactivation_delay
 	host.shrink()
+	print("dead")
 
 
 func _exit(new_state, host):
