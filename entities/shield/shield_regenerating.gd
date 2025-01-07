@@ -15,7 +15,6 @@ func _exit(new_state, host):
 
 
 func _execute(delta, host: Shield):
-	print(host.entity.current_shield)
 	if host.can_regenerate and previous_shield <= host.entity.current_shield:
 		regen_delay_remaining -= delta
 		previous_shield = host.entity.current_shield

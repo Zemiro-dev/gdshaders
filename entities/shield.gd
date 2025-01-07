@@ -29,7 +29,7 @@ func take_damage(damage: int, attacker: Node2D):
 		entity.take_damage(damage, attacker)
 
 
-func get_damage_host():
+func get_hurtbox_blacklist_node() -> Node2D:
 	if entity != null:
 		return entity
 	return self

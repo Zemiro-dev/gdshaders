@@ -131,9 +131,6 @@ collision_mask = 6
 monitoring = false
 monitorable = false
 script = ExtResource("2_b70pl")
-damage = 3
-one_shot = false
-refactory_period = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_op1ed")

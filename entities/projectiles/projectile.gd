@@ -110,7 +110,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 func _on_damage_dealt(body: Node2D) -> void:
-	if hurtbox.spent:
+	if !hurtbox.active_scan and hurtbox.current_total_targets >= hurtbox.max_total_targets:
 		detonate()
 
 

@@ -80,7 +80,7 @@ tracks/2/path = NodePath("Hurtbox:monitoring")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.24, 0.9),
+"times": PackedFloat32Array(0, 0.1, 0.9),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -112,9 +112,9 @@ z_index = 46
 [node name="Hurtbox" parent="." instance=ExtResource("1_df12t")]
 collision_mask = 6
 monitoring = false
-damage = 4
-one_shot = false
-refactory_period = 10.0
+damage = 2
+max_total_targets = 0
+blacklist_time = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_rhcjo")
