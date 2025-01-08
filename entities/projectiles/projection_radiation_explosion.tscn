@@ -112,9 +112,10 @@ z_index = 46
 [node name="Hurtbox" parent="." instance=ExtResource("1_df12t")]
 collision_mask = 6
 monitoring = false
-damage = 2
-max_total_targets = 0
-blacklist_time = 0.1
+damage = 1
+active_scan = true
+use_blacklist = true
+blacklist_time = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_rhcjo")

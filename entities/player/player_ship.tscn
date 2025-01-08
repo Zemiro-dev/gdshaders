@@ -224,7 +224,7 @@ texture = ExtResource("12_xoq78")
 material = ExtResource("13_o7xqb")
 entity = NodePath("../..")
 stunned_regeneration_delay = 1.0
-reactivation_delay = 1.0
+reactivation_delay = 0.5
 
 [node name="ShadowCaster" type="PointLight2D" parent="Pivot"]
 visible = false

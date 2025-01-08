@@ -9,6 +9,7 @@ z_index = 42
 script = ExtResource("1_2xw6b")
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_75rmy")]
+use_blacklist = true
 
 [node name="DetectionArea" type="Area2D" parent="."]
 monitoring = false

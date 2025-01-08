@@ -1,0 +1,414 @@
+[gd_scene load_steps=16 format=3 uid="uid://b8i5mxlon4qpj"]
+
+[ext_resource type="PackedScene" uid="uid://ba0ggrxjujuhf" path="res://entities/hurtbox.tscn" id="1_85erd"]
+[ext_resource type="Texture2D" uid="uid://d0s1fxsrrb8rr" path="res://data/assets/circles.png" id="2_7rjhl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_46ah2"]
+radius = 64.0078
+
+[sub_resource type="Animation" id="Animation_nlv72"]
+resource_name = "test"
+length = 10.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BounceNonActive/Hurtbox:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BounceNonActive/Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BounceNonActive/Hurtbox")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reset_blacklist"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_c25t1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BounceNonActive/Hurtbox:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BounceNonActive/Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f2rwe"]
+_data = {
+"RESET": SubResource("Animation_c25t1"),
+"test": SubResource("Animation_nlv72")
+}
+
+[sub_resource type="Animation" id="Animation_hsi2u"]
+resource_name = "test"
+length = 10.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BounceNonActiveFast/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BounceNonActiveFast/Hurtbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BounceNonActiveFast/Hurtbox")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reset_blacklist"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_dlhms"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BounceNonActiveFast/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BounceNonActiveFast/Hurtbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vv2h6"]
+_data = {
+"RESET": SubResource("Animation_dlhms"),
+"test": SubResource("Animation_hsi2u")
+}
+
+[sub_resource type="Animation" id="Animation_bgnsb"]
+resource_name = "test"
+length = 10.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hurtbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_2im5p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hurtbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_av5fs"]
+_data = {
+"RESET": SubResource("Animation_2im5p"),
+"test": SubResource("Animation_bgnsb")
+}
+
+[sub_resource type="Animation" id="Animation_cjssu"]
+resource_name = "test"
+length = 2.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_jkqq1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ovk8r"]
+_data = {
+"RESET": SubResource("Animation_jkqq1"),
+"test": SubResource("Animation_cjssu")
+}
+
+[node name="HurtboxTest" type="Node2D"]
+
+[node name="StaticNonActive" type="Node2D" parent="."]
+
+[node name="Hurtbox" parent="StaticNonActive" instance=ExtResource("1_85erd")]
+collision_mask = 6
+damage = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticNonActive/Hurtbox"]
+shape = SubResource("CircleShape2D_46ah2")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticNonActive"]
+texture = ExtResource("2_7rjhl")
+hframes = 4
+
+[node name="Label" type="Label" parent="StaticNonActive"]
+offset_left = -69.0
+offset_top = -101.0
+offset_right = 71.0
+offset_bottom = -78.0
+text = "On Enter Always"
+
+[node name="BounceNonActive" type="Node2D" parent="."]
+position = Vector2(0, 200)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BounceNonActive"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_f2rwe")
+}
+autoplay = "test"
+
+[node name="Hurtbox" parent="BounceNonActive" instance=ExtResource("1_85erd")]
+collision_mask = 6
+monitoring = false
+damage = 5
+use_blacklist = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BounceNonActive/Hurtbox"]
+shape = SubResource("CircleShape2D_46ah2")
+
+[node name="Sprite2D" type="Sprite2D" parent="BounceNonActive"]
+texture = ExtResource("2_7rjhl")
+hframes = 4
+frame = 3
+
+[node name="Label" type="Label" parent="BounceNonActive"]
+offset_left = -69.0
+offset_top = -101.0
+offset_right = 71.0
+offset_bottom = -78.0
+text = "Bounce BL Reset"
+
+[node name="BounceNonActiveFast" type="Node2D" parent="."]
+position = Vector2(0, 407)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BounceNonActiveFast"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_vv2h6")
+}
+autoplay = "test"
+speed_scale = 10.0
+
+[node name="Hurtbox" parent="BounceNonActiveFast" instance=ExtResource("1_85erd")]
+collision_mask = 6
+monitoring = false
+damage = 1
+use_blacklist = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BounceNonActiveFast/Hurtbox"]
+shape = SubResource("CircleShape2D_46ah2")
+
+[node name="Sprite2D" type="Sprite2D" parent="BounceNonActiveFast"]
+texture = ExtResource("2_7rjhl")
+hframes = 4
+frame = 3
+
+[node name="Label" type="Label" parent="BounceNonActiveFast"]
+offset_left = -69.0
+offset_top = -101.0
+offset_right = 71.0
+offset_bottom = -78.0
+scale = Vector2(0.990924, 1.01171)
+text = "Bounce BL Reset Fast
+"
+
+[node name="BounceNoBlacklist" type="Node2D" parent="."]
+position = Vector2(257, 407)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BounceNoBlacklist"]
+libraries = {
+"": SubResource("AnimationLibrary_av5fs")
+}
+autoplay = "test"
+speed_scale = 10.0
+
+[node name="Hurtbox" parent="BounceNoBlacklist" instance=ExtResource("1_85erd")]
+collision_mask = 6
+monitoring = false
+damage = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BounceNoBlacklist/Hurtbox"]
+shape = SubResource("CircleShape2D_46ah2")
+
+[node name="Sprite2D" type="Sprite2D" parent="BounceNoBlacklist"]
+texture = ExtResource("2_7rjhl")
+hframes = 4
+frame = 3
+
+[node name="Label" type="Label" parent="BounceNoBlacklist"]
+offset_left = -69.0
+offset_top = -101.0
+offset_right = 71.0
+offset_bottom = -78.0
+scale = Vector2(0.990924, 1.01171)
+text = "Bounce no BL
+"
+
+[node name="Pulse5" type="Node2D" parent="."]
+position = Vector2(225, 0)
+
+[node name="Hurtbox" parent="Pulse5" instance=ExtResource("1_85erd")]
+collision_mask = 6
+damage = 1
+active_scan = true
+use_blacklist = true
+blacklist_time = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pulse5/Hurtbox"]
+shape = SubResource("CircleShape2D_46ah2")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pulse5"]
+texture = ExtResource("2_7rjhl")
+hframes = 4
+frame = 1
+
+[node name="Label" type="Label" parent="Pulse5"]
+offset_left = -31.0
+offset_top = -101.0
+offset_right = 32.0
+offset_bottom = -78.0
+text = "5s Pulse
+"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pulse5"]
+libraries = {
+"": SubResource("AnimationLibrary_ovk8r")
+}
+autoplay = "test"

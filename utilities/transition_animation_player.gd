@@ -8,7 +8,6 @@ const IN: String = 'IN'
 const OUT: String = 'OUT'
 
 @onready var state_machine: StateMachine = $StateMachine
-@onready var node_2d: Node2D = $Node2D
 
 var direction := OUT
 

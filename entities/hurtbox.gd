@@ -19,18 +19,23 @@ signal damage_dealt(node: Node2D)
 ## for non-active scan hurtboxes this
 ## determines the total target count
 ## for the life time of the hurtbox.
-@export var max_total_targets: int = 1
+## A target is anything the hurtbox
+## has damaged. It will prefer
+## to damage targets again
+## during active scan if possible
+@export var max_total_targets: int = 0
 
-## Amount of time to keep a target
+## Should the hurtbox maintain a list
+## of hurt nodes and not damage
+## nodes again until they are removed
+## from the blacklist
+@export var use_blacklist: bool = false
+
+## Amount of time to keep a node
 ## blacklisted before damage
 ## can be dealt to it again. Use
-## 0 to not blacklist at all
+## 0 to blacklist forever
 @export var blacklist_time: float = 0
-
-## Target count over the life space of the
-## hurtbox. Includes occurances of losing
-## and regaining the same target
-var current_total_targets: int = 0
 
 var blacklist: Array[Node2D] = []
 var targets: Array[Node2D] = []
@@ -50,8 +55,18 @@ func _on_area_entered(area: Node2D) -> void:
 
 func _physics_process(delta: float) -> void:
 	if active_scan and monitoring:
-		var overlaps: Array[Node2D] = get_overlapping_nodes()
-		pass
+		var nodes: Array[Node2D] = get_overlapping_nodes() 
+		var targets_lost: Array[Node2D] = []
+		targets = targets.filter(
+			func(target):
+				var within := nodes.find(target) > -1
+				var blacklist_node := get_blacklist_node(target)
+				var blacklisted := is_node_blacklisted(blacklist_node)
+				return !within and !blacklisted
+				
+		)
+		for node in nodes:
+			process_node_for_pain(node)
 
 
 func get_overlapping_nodes() -> Array[Node2D]:
@@ -60,23 +75,29 @@ func get_overlapping_nodes() -> Array[Node2D]:
 	return result
 
 
+## If the target array is less than the max total allowed
 func can_acquire_more_targets() -> bool:
-	return max_total_targets == 0 || current_total_targets < max_total_targets
+	return targets.size() < max_total_targets
+	
 
 func is_node_damageable(node: Node2D) -> bool:
 	return node.has_method('take_damage') and !node.get('is_dead')
 
 
 func is_node_blacklisted(blacklist_node: Node2D) -> bool:
-	return blacklist.find(blacklist_node) > -1
+	return false if !use_blacklist else blacklist.find(blacklist_node) > -1
 
 
+## True if the node is in the targets array or if we have no max
 func is_node_targeted(node: Node2D) -> bool:
-	return targets.find(node) > -1
+	return true if !should_acquire_targets() else targets.find(node) > -1
+
+
+func should_acquire_targets() -> bool:
+	return max_total_targets != 0
 
 
 func target(node: Node2D) -> void:
-	current_total_targets += 1
 	targets.append(node)
 	
 
@@ -89,30 +110,40 @@ func untarget(node: Node2D) -> void:
 func hurt(node: Node2D, blacklist_node: Node2D) -> void:
 	node.take_damage(damage, get_owner())
 	damage_dealt.emit(node)
-	blacklistNode(blacklist_node)
+	add_to_blacklist(blacklist_node)
 
 
 func get_blacklist_node(node: Node2D) -> Node2D:
 	return node if !node.has_method('get_hurtbox_blacklist_node') else node.get_hurtbox_blacklist_node()
 	
 
-func blacklistNode(node: Node2D) -> void:
-	if !is_zero_approx(blacklist_time):
+func add_to_blacklist(node: Node2D) -> void:
+	if use_blacklist:
 		blacklist.append(node)
-		await get_tree().create_timer(blacklist_time).timeout
-		var idx: int = blacklist.find(node)
-		if idx > -1:
-			blacklist.remove_at(idx)
+		if !is_zero_approx(blacklist_time) and blacklist_time > 0.:
+			await get_tree().create_timer(blacklist_time).timeout
+			var idx: int = blacklist.find(node)
+			if idx > -1:
+				blacklist.remove_at(idx)
 
 
-func on_enter(node: Node2D) -> void:
-	## Can we target anything at all
-	if can_acquire_more_targets():
-		## Can we damage the node so it's worth targeting
+func reset_blacklist() -> void:
+	blacklist = []
+
+
+func process_node_for_pain(node: Node2D) -> void:
+	## Can we target or is it already a target
+	var is_targeted := is_node_targeted(node)
+	if is_targeted or can_acquire_more_targets():
+		## Can we damage the node so it's worth looking at
 		if is_node_damageable(node):
 			## Get blacklistable node and see if we've already damaged the node
 			var blacklist_node = get_blacklist_node(node)
 			if !is_node_blacklisted(blacklist_node):
-				if !is_node_targeted(node):
+				if !is_targeted:
 					target(node)
-					hurt(node, blacklist_node)
+				hurt(node, blacklist_node)	
+
+
+func on_enter(node: Node2D) -> void:
+	process_node_for_pain(node)
