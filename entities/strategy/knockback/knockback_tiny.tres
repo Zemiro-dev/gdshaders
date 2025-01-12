@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="KnockbackBaseStrategy" load_steps=2 format=3 uid="uid://dfxia8lv5t1gk"]
+
+[ext_resource type="Script" path="res://entities/strategy/knockback/knockback_base_strategy.gd" id="1_xj8et"]
+
+[resource]
+script = ExtResource("1_xj8et")
+knockback_strength = 2.0
+camera_shake_strength = 400.0
+camera_shake_duration = 0.1

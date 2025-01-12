@@ -1,13 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://ba0ggrxjujuhf"]
+[gd_scene load_steps=3 format=3 uid="uid://ba0ggrxjujuhf"]
 
 [ext_resource type="Script" path="res://entities/hurtbox.gd" id="1_038j8"]
+[ext_resource type="Resource" uid="uid://c4nmx3o8hadri" path="res://entities/strategy/knockback/knockback_default.tres" id="2_ubghl"]
 
 [node name="Hurtbox" type="Area2D"]
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_038j8")
-damage = null
-one_shot = null
-max_targets = null
-max_monitoring = null
-refactory_period = null
+knockback_strategy = ExtResource("2_ubghl")

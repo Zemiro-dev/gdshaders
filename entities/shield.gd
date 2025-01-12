@@ -24,9 +24,9 @@ func _ready() -> void:
 	state_machine.initialize(self, States.IDLE)
 	
 # Called when the node enters the scene tree for the first time.
-func take_damage(damage: int, attacker: Node2D):
+func take_damage(damage: int, attacker: Node2D, hurtbox: Hurtbox):
 	if entity != null:
-		entity.take_damage(damage, attacker)
+		entity.take_damage(damage, attacker, hurtbox)
 
 
 func get_hurtbox_blacklist_node() -> Node2D:

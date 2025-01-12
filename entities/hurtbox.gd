@@ -3,8 +3,12 @@ class_name Hurtbox
 
 signal damage_dealt(node: Node2D)
 
+@export var knockback_strategy: KnockbackBaseStrategy
+
 ## Damage per tick
 @export var damage: int = 1
+
+@export var damage_source: Node2D
 
 ## Should this hurtbox actively scan
 ## its overlapping bodies and areas
@@ -43,6 +47,8 @@ var targets: Array[Node2D] = []
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	area_entered.connect(_on_area_entered)
+	if damage_source == null:
+		damage_source = get_owner()
 
 
 func _on_body_entered(body: Node2D) -> void:
@@ -108,7 +114,7 @@ func untarget(node: Node2D) -> void:
 
 
 func hurt(node: Node2D, blacklist_node: Node2D) -> void:
-	node.take_damage(damage, get_owner())
+	node.take_damage(damage, get_owner(), self)
 	damage_dealt.emit(node)
 	add_to_blacklist(blacklist_node)
 

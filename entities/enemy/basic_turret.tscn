@@ -10,15 +10,17 @@
 radius = 19.105
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1pvr"]
-radius = 800.0
+radius = 1230.47
 
 [node name="BasicTurret" type="CharacterBody2D"]
 light_mask = 2
 collision_layer = 4
 script = ExtResource("1_ucdna")
+ignore_range = 1500
 projectile_scene = ExtResource("2_auix6")
 max_health = 5
 max_shield = 5
+allow_knockback = false
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_svmu5")

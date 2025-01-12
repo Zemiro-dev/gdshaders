@@ -14,4 +14,4 @@ void fragment() {
 	ink = ink - ship - cockpit;
 
 	COLOR = vec4(vec3(ship) * BLUE.rgb + vec3(cockpit) * WHITE + ink * PURPLE_BLACK.rgb, ship + cockpit + ink );
-} 
+}

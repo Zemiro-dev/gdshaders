@@ -18,6 +18,10 @@ var current_shield := 0
 @export var max_invulnerability_time := 0.0
 var remaining_invulnerability_time := 0.0
 
+@export var allow_knockback := true
+@export var knockback_decay_rate := .1
+var current_knockback: Vector2 = Vector2.ZERO
+
 var shield : Shield
 var is_dead := false
 
@@ -32,12 +36,22 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if remaining_invulnerability_time > 0.0:
 		remaining_invulnerability_time -= delta
+	if !current_knockback.is_zero_approx():
+		velocity += current_knockback
+		current_knockback = current_knockback.lerp(Vector2.ZERO, knockback_decay_rate)
 
 
-func take_damage(damage: int, attacker: Node2D):
+func is_invulnerable():
+	return remaining_invulnerability_time > 0;
+
+
+func can_knockback():
+	return !is_invulnerable() and allow_knockback
+
+
+func take_damage(damage: int, attacker: Node2D, hurtbox: Hurtbox):
 	if is_dead or remaining_invulnerability_time > 0:
 		return
-	print(current_health, current_shield)
 	if current_shield > 0:
 		current_shield -= damage
 		if current_shield <= 0:
@@ -50,6 +64,9 @@ func take_damage(damage: int, attacker: Node2D):
 		on_health_changed.emit(current_health, max_health)
 	
 	on_damage_taken.emit(attacker)
+	if can_knockback():
+		hurtbox.knockback_strategy.knockback(self, hurtbox.damage_source)
+		
 	if should_trigger_hitstop:
 		GlobalSignals.hitstop_requested.emit(hitstop_time_ms)
 

@@ -107,4 +107,4 @@ autoplay = "explode"
 
 [node name="ExtendedAudioStreamPlayer" parent="." instance=ExtResource("2_ehdn1")]
 stream = ExtResource("3_tex02")
-volume_db = -12.0
+volume_db = -16.0

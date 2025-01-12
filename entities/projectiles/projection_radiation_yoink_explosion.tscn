@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cplrfijecqcnx"]
+[gd_scene load_steps=8 format=3 uid="uid://dh6o5x7cjmh5w"]
 
-[ext_resource type="PackedScene" uid="uid://ba0ggrxjujuhf" path="res://entities/hurtbox.tscn" id="1_df12t"]
-[ext_resource type="Texture2D" uid="uid://dlgoct1i1r8id" path="res://data/assets/projectile_explosion_spritesheet.png" id="2_r0eks"]
-[ext_resource type="Resource" uid="uid://bnouh0h50we1m" path="res://entities/strategy/knockback/knockback_pull_small.tres" id="2_s03ed"]
+[ext_resource type="PackedScene" uid="uid://ba0ggrxjujuhf" path="res://entities/hurtbox.tscn" id="1_fsb7j"]
+[ext_resource type="Resource" uid="uid://djnu85llxn6ee" path="res://entities/strategy/knockback/knockback_pull_strong.tres" id="2_8n1pf"]
+[ext_resource type="Texture2D" uid="uid://dlgoct1i1r8id" path="res://data/assets/projectile_explosion_spritesheet.png" id="3_iijam"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rhcjo"]
 radius = 88.1419
@@ -31,7 +31,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 0.54, 0.885, 1)]
+"values": [Color(0.386758, 0.837776, 0.516142, 1)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -72,7 +72,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 3.60499, 1),
 "update": 0,
-"values": [Color(1, 0.54, 0.885, 1), Color(1, 0.54, 0.885, 1), Color(1, 0.54, 0.885, 0)]
+"values": [Color(0.388235, 0.839216, 0.517647, 1), Color(0.388235, 0.839216, 0.517647, 1), Color(0.3864, 0.84, 0.51492, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -110,10 +110,10 @@ _data = {
 [node name="ProjectionRadiationExplosion" type="Node2D"]
 z_index = 46
 
-[node name="Hurtbox" parent="." instance=ExtResource("1_df12t")]
+[node name="Hurtbox" parent="." instance=ExtResource("1_fsb7j")]
 collision_mask = 6
 monitoring = false
-knockback_strategy = ExtResource("2_s03ed")
+knockback_strategy = ExtResource("2_8n1pf")
 damage = 10
 active_scan = true
 use_blacklist = true
@@ -123,8 +123,8 @@ blacklist_time = 0.3
 shape = SubResource("CircleShape2D_rhcjo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0.54, 0.885, 1)
-texture = ExtResource("2_r0eks")
+modulate = Color(0.386758, 0.837776, 0.516142, 1)
+texture = ExtResource("3_iijam")
 hframes = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -6,6 +6,33 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_46ah2"]
 radius = 64.0078
 
+[sub_resource type="Animation" id="Animation_c25t1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BounceNonActive/Hurtbox:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BounceNonActive/Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
 [sub_resource type="Animation" id="Animation_nlv72"]
 resource_name = "test"
 length = 10.0
@@ -50,37 +77,37 @@ tracks/2/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_c25t1"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f2rwe"]
+_data = {
+"RESET": SubResource("Animation_c25t1"),
+"test": SubResource("Animation_nlv72")
+}
+
+[sub_resource type="Animation" id="Animation_dlhms"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BounceNonActive/Hurtbox:monitoring")
+tracks/0/path = NodePath("BounceNonActiveFast/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [3]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BounceNonActive/Sprite2D:frame")
+tracks/1/path = NodePath("BounceNonActiveFast/Hurtbox:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [3]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_f2rwe"]
-_data = {
-"RESET": SubResource("Animation_c25t1"),
-"test": SubResource("Animation_nlv72")
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_hsi2u"]
@@ -127,12 +154,18 @@ tracks/2/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_dlhms"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vv2h6"]
+_data = {
+"RESET": SubResource("Animation_dlhms"),
+"test": SubResource("Animation_hsi2u")
+}
+
+[sub_resource type="Animation" id="Animation_2im5p"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BounceNonActiveFast/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -144,7 +177,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BounceNonActiveFast/Hurtbox:monitoring")
+tracks/1/path = NodePath("Hurtbox:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -152,12 +185,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vv2h6"]
-_data = {
-"RESET": SubResource("Animation_dlhms"),
-"test": SubResource("Animation_hsi2u")
 }
 
 [sub_resource type="Animation" id="Animation_bgnsb"]
@@ -190,7 +217,13 @@ tracks/1/keys = {
 "values": [false, true]
 }
 
-[sub_resource type="Animation" id="Animation_2im5p"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_av5fs"]
+_data = {
+"RESET": SubResource("Animation_2im5p"),
+"test": SubResource("Animation_bgnsb")
+}
+
+[sub_resource type="Animation" id="Animation_jkqq1"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -202,25 +235,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [3]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hurtbox:monitoring")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_av5fs"]
-_data = {
-"RESET": SubResource("Animation_2im5p"),
-"test": SubResource("Animation_bgnsb")
+"values": [1]
 }
 
 [sub_resource type="Animation" id="Animation_cjssu"]
@@ -241,21 +256,6 @@ tracks/0/keys = {
 "values": [1, 2]
 }
 
-[sub_resource type="Animation" id="Animation_jkqq1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ovk8r"]
 _data = {
 "RESET": SubResource("Animation_jkqq1"),
@@ -266,9 +266,10 @@ _data = {
 
 [node name="StaticNonActive" type="Node2D" parent="."]
 
-[node name="Hurtbox" parent="StaticNonActive" instance=ExtResource("1_85erd")]
+[node name="Hurtbox" parent="StaticNonActive" node_paths=PackedStringArray("damage_source") instance=ExtResource("1_85erd")]
 collision_mask = 6
 damage = 5
+damage_source = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticNonActive/Hurtbox"]
 shape = SubResource("CircleShape2D_46ah2")
@@ -294,10 +295,11 @@ libraries = {
 }
 autoplay = "test"
 
-[node name="Hurtbox" parent="BounceNonActive" instance=ExtResource("1_85erd")]
+[node name="Hurtbox" parent="BounceNonActive" node_paths=PackedStringArray("damage_source") instance=ExtResource("1_85erd")]
 collision_mask = 6
 monitoring = false
 damage = 5
+damage_source = NodePath("..")
 use_blacklist = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BounceNonActive/Hurtbox"]
@@ -326,10 +328,10 @@ libraries = {
 autoplay = "test"
 speed_scale = 10.0
 
-[node name="Hurtbox" parent="BounceNonActiveFast" instance=ExtResource("1_85erd")]
+[node name="Hurtbox" parent="BounceNonActiveFast" node_paths=PackedStringArray("damage_source") instance=ExtResource("1_85erd")]
 collision_mask = 6
 monitoring = false
-damage = 1
+damage_source = NodePath("..")
 use_blacklist = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BounceNonActiveFast/Hurtbox"]
@@ -359,10 +361,10 @@ libraries = {
 autoplay = "test"
 speed_scale = 10.0
 
-[node name="Hurtbox" parent="BounceNoBlacklist" instance=ExtResource("1_85erd")]
+[node name="Hurtbox" parent="BounceNoBlacklist" node_paths=PackedStringArray("damage_source") instance=ExtResource("1_85erd")]
 collision_mask = 6
 monitoring = false
-damage = 1
+damage_source = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BounceNoBlacklist/Hurtbox"]
 shape = SubResource("CircleShape2D_46ah2")
@@ -384,9 +386,9 @@ text = "Bounce no BL
 [node name="Pulse5" type="Node2D" parent="."]
 position = Vector2(225, 0)
 
-[node name="Hurtbox" parent="Pulse5" instance=ExtResource("1_85erd")]
+[node name="Hurtbox" parent="Pulse5" node_paths=PackedStringArray("damage_source") instance=ExtResource("1_85erd")]
 collision_mask = 6
-damage = 1
+damage_source = NodePath("..")
 active_scan = true
 use_blacklist = true
 blacklist_time = 5.0

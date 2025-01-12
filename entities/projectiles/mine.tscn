@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmwk2wa8axg2t"]
+[gd_scene load_steps=13 format=3 uid="uid://dmwk2wa8axg2t"]
 
 [ext_resource type="PackedScene" uid="uid://1qeglhmx1apu" path="res://entities/projectiles/projectile.tscn" id="1_6uusy"]
 [ext_resource type="Texture2D" uid="uid://c1luh0fhuhifv" path="res://data/assets/mine_spritesheet.png" id="2_aydty"]
 [ext_resource type="PackedScene" uid="uid://dq3e8vq2vbcfr" path="res://entities/projectiles/projectile_explosion.tscn" id="2_egfrv"]
+[ext_resource type="Resource" uid="uid://o018dm0dhpbh" path="res://entities/strategy/knockback/knockback_small.tres" id="3_tc6yn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ekgl5"]
 radius = 18.4391
@@ -137,9 +138,10 @@ use_detection_area = true
 shape = SubResource("CircleShape2D_ekgl5")
 
 [node name="Hurtbox" parent="." index="1"]
+position = Vector2(8, -8)
 collision_mask = 2
 monitorable = false
-damage = 1
+knockback_strategy = ExtResource("3_tc6yn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" index="0"]
 shape = SubResource("CircleShape2D_nxv5w")
