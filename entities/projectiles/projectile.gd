@@ -26,9 +26,22 @@ signal projectile_detonated(location: Vector2, explosion_scene: PackedScene)
 @export var use_trail: bool = false
 @export var use_detection_area: bool = false
 
+## Difficulty in targeting this projectile 0-10
+@export var detection_difficulty: int = 5
+
+@export var target_strategy: TargetBaseStrategy
+
+## Max health this projectile will take before exploding.
+@export var max_health: int = 1
+var current_health: int
+
+## Is this projectile able to take damage
+var is_dead: bool = false
 
 var velocity := Vector2.ZERO
 var target: Node2D
+
+var shooter: Node2D
 
 
 func _ready() -> void:
@@ -36,6 +49,7 @@ func _ready() -> void:
 		trail.init(trail_marker)
 		trail.visible = true
 	connect_signals()
+	current_health = max_health
 
 
 func connect_signals() -> void:
@@ -59,7 +73,7 @@ func _physics_process(delta: float) -> void:
 	position += velocity * delta
 
 
-func shoot(_global_transform: Transform2D, target: Node2D = null, host_velocity: Vector2 = Vector2.ZERO):
+func shoot(_global_transform: Transform2D, attacker: Node2D, target: Node2D = null, host_velocity: Vector2 = Vector2.ZERO):
 	global_transform = _global_transform
 	rotation += randf_range(-radial_spread, radial_spread)
 	var spread: Vector2 = Vector2(0., randf_range(-side_spread, side_spread))
@@ -71,6 +85,7 @@ func shoot(_global_transform: Transform2D, target: Node2D = null, host_velocity:
 		velocity += host_velocity
 	velocity += eject_velocity.rotated(eject_velocity.angle_to(transform.x))
 	set_target(target)
+	shooter = attacker
 
 func seek():
 	var steer = Vector2.ZERO
@@ -82,7 +97,7 @@ func seek():
 # sets target 
 func set_target(body:Node2D, overwrite: bool = false) -> void:
 	if target == null || overwrite:
-		if body != null && !body.get("is_dead"):
+		if body != null and !body.get("is_dead") and (target_strategy == null or target_strategy.can_target(self, body)):
 			target = body
 			if target.has_signal("on_death"):	
 				target.on_death.connect(release_target)	
@@ -90,6 +105,15 @@ func set_target(body:Node2D, overwrite: bool = false) -> void:
 
 func release_target() -> void:
 	target = null
+
+
+func take_damage(damage: int, attacker: Node2D, hurtbox: Hurtbox):
+	current_health -= damage
+	if current_health <= 0:
+		current_health = 0
+		is_dead = true
+		monitorable = false
+		detonate()
 
 
 func detonate():

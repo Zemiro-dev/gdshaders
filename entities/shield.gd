@@ -22,8 +22,8 @@ func _ready() -> void:
 	state_machine.add_state(States.REGENERATING, $StateMachine/Regenerating)
 	state_machine.add_state(States.DEAD, $StateMachine/Dead)
 	state_machine.initialize(self, States.IDLE)
-	
-# Called when the node enters the scene tree for the first time.
+
+
 func take_damage(damage: int, attacker: Node2D, hurtbox: Hurtbox):
 	if entity != null:
 		entity.take_damage(damage, attacker, hurtbox)

@@ -419,81 +419,99 @@ script = ExtResource("11_s2wp7")
 [node name="Mine" parent="ProjectileManager" instance=ExtResource("12_frp80")]
 z_index = 0
 position = Vector2(-1756, -86)
+target_strategy = null
 
 [node name="Mine14" parent="ProjectileManager" instance=ExtResource("12_frp80")]
 z_index = 0
 position = Vector2(-1748, 578)
+target_strategy = null
 
 [node name="Mine15" parent="ProjectileManager" instance=ExtResource("12_frp80")]
 z_index = 0
-position = Vector2(-1402, -572)
+position = Vector2(-1693, -719)
+target_strategy = null
 
 [node name="Mine16" parent="ProjectileManager" instance=ExtResource("12_frp80")]
 z_index = 0
-position = Vector2(-989, -190)
+position = Vector2(-2828, 805)
+target_strategy = null
 
 [node name="Mine18" parent="ProjectileManager" instance=ExtResource("12_frp80")]
 z_index = 0
 position = Vector2(-1905, 1241)
+target_strategy = null
 
 [node name="Mine17" parent="ProjectileManager" instance=ExtResource("12_frp80")]
 z_index = 0
-position = Vector2(-764, -716)
+position = Vector2(-2356, -505)
+target_strategy = null
 
 [node name="Mine2" parent="ProjectileManager" instance=ExtResource("12_frp80")]
 z_index = 0
 position = Vector2(1395, 1133)
+target_strategy = null
 
 [node name="Mine6" parent="ProjectileManager" instance=ExtResource("12_frp80")]
 z_index = 0
 position = Vector2(1432, 321)
+target_strategy = null
 
 [node name="Mine7" parent="ProjectileManager" instance=ExtResource("12_frp80")]
 z_index = 0
 position = Vector2(1901, 385)
+target_strategy = null
 
 [node name="Mine3" parent="ProjectileManager" instance=ExtResource("12_frp80")]
 z_index = 0
 position = Vector2(1641, 1487)
+target_strategy = null
 
 [node name="Mine8" parent="ProjectileManager" instance=ExtResource("12_frp80")]
 z_index = 0
 position = Vector2(1920, 1241)
+target_strategy = null
 
 [node name="Mine4" parent="ProjectileManager" instance=ExtResource("12_frp80")]
 z_index = 0
 position = Vector2(803, 167)
 explosion = ExtResource("16_3w0il")
+target_strategy = null
 
 [node name="Mine9" parent="ProjectileManager" instance=ExtResource("12_frp80")]
 z_index = 0
-position = Vector2(-1216, 326)
+position = Vector2(-2500, 224)
 explosion = ExtResource("13_lekfk")
+target_strategy = null
 
 [node name="Mine10" parent="ProjectileManager" instance=ExtResource("12_frp80")]
 z_index = 0
 position = Vector2(-1402, 990)
 explosion = ExtResource("13_lekfk")
+target_strategy = null
 
 [node name="Mine11" parent="ProjectileManager" instance=ExtResource("12_frp80")]
 z_index = 0
 position = Vector2(803, 1470)
 explosion = ExtResource("16_3w0il")
+target_strategy = null
 
 [node name="Mine12" parent="ProjectileManager" instance=ExtResource("12_frp80")]
 z_index = 0
 position = Vector2(803, 741)
 explosion = ExtResource("16_3w0il")
+target_strategy = null
 
 [node name="Mine13" parent="ProjectileManager" instance=ExtResource("12_frp80")]
 z_index = 0
 position = Vector2(-926, 998)
 explosion = ExtResource("13_lekfk")
+target_strategy = null
 
 [node name="Mine5" parent="ProjectileManager" instance=ExtResource("12_frp80")]
 z_index = 0
 position = Vector2(1641, -78)
 explosion = ExtResource("13_lekfk")
+target_strategy = null
 
 [node name="EnemyNest" type="Node" parent="."]
 
@@ -509,7 +527,7 @@ position = Vector2(2041, -32)
 projectile_scene = ExtResource("14_075b3")
 
 [node name="PlayerShip" parent="." instance=ExtResource("2_xskq6")]
-position = Vector2(-2552, 313)
+position = Vector2(0, -967)
 
 [node name="Camera2D" type="Camera2D" parent="PlayerShip"]
 script = ExtResource("3_iu3i8")

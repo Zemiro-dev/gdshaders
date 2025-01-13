@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cw1rcuxypv0ly"]
+[gd_scene load_steps=10 format=3 uid="uid://cw1rcuxypv0ly"]
 
 [ext_resource type="Texture2D" uid="uid://c2b8n5l1wfv8j" path="res://data/assets/laser_explosion.png" id="1_mniqr"]
 [ext_resource type="PackedScene" uid="uid://1ud61pwk605m" path="res://utilities/extended_audio_stream_player.tscn" id="2_ehdn1"]
 [ext_resource type="AudioStream" uid="uid://crqt3mi7r0ovt" path="res://data/sounds/explosion4.ogg" id="3_tex02"]
+[ext_resource type="PackedScene" uid="uid://ba0ggrxjujuhf" path="res://entities/hurtbox.tscn" id="4_5r70y"]
+[ext_resource type="Resource" uid="uid://cwfdrekx1c86w" path="res://entities/strategy/target/target_full_detection.tres" id="5_doiuk"]
 
 [sub_resource type="Animation" id="Animation_xpvka"]
 length = 0.001
@@ -29,6 +31,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hurtbox:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_f8xq3"]
@@ -87,12 +101,27 @@ tracks/3/keys = {
 "method": &"play_at_random_pitch"
 }]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hurtbox:monitoring")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uj25v"]
 _data = {
 "RESET": SubResource("Animation_xpvka"),
 "explode": SubResource("Animation_f8xq3")
 }
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fnm0e"]
+radius = 44.7323
 
 [node name="LaserExplosion" type="Sprite2D"]
 z_index = 46
@@ -108,3 +137,14 @@ autoplay = "explode"
 [node name="ExtendedAudioStreamPlayer" parent="." instance=ExtResource("2_ehdn1")]
 stream = ExtResource("3_tex02")
 volume_db = -16.0
+
+[node name="Hurtbox" parent="." instance=ExtResource("4_5r70y")]
+collision_mask = 16
+monitoring = false
+monitorable = false
+target_strategy = ExtResource("5_doiuk")
+use_blacklist = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_fnm0e")
+debug_color = Color(0.652364, 0.512942, 0.217287, 0.42)

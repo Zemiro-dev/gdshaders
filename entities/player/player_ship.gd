@@ -144,7 +144,7 @@ func _physics_process(delta: float) -> void:
 		var projectile: Projectile = projectile_scene.instantiate()
 		primary_weapon_cooldown = projectile.cooldown
 		GlobalSignals.projectile_spawn_requested.emit(projectile)
-		projectile.shoot(main_cannon_marker.global_transform, null, velocity)
+		projectile.shoot(main_cannon_marker.global_transform, self, null, velocity)
 	
 	# Maintain Timers
 	if primary_weapon_cooldown > 0.0:

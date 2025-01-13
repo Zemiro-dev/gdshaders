@@ -111,7 +111,7 @@ _data = {
 z_index = 46
 
 [node name="Hurtbox" parent="." instance=ExtResource("1_fsb7j")]
-collision_mask = 6
+collision_mask = 30
 monitoring = false
 knockback_strategy = ExtResource("2_8n1pf")
 damage = 10

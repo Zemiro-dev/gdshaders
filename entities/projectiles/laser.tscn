@@ -1,13 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://cuymcxhkpha18"]
+[gd_scene load_steps=15 format=3 uid="uid://cuymcxhkpha18"]
 
 [ext_resource type="PackedScene" uid="uid://1qeglhmx1apu" path="res://entities/projectiles/projectile.tscn" id="1_bh2l5"]
 [ext_resource type="Texture2D" uid="uid://bwjyau10kg2c7" path="res://data/assets/laser_frames.png" id="1_nd6l2"]
 [ext_resource type="PackedScene" uid="uid://cw1rcuxypv0ly" path="res://entities/projectiles/laser_explosion.tscn" id="2_vbx0x"]
+[ext_resource type="Script" path="res://entities/strategy/target/target_base_strategy.gd" id="3_balpj"]
 [ext_resource type="PackedScene" uid="uid://1ud61pwk605m" path="res://utilities/extended_audio_stream_player.tscn" id="4_06xc1"]
 [ext_resource type="AudioStream" uid="uid://blpw47cvltt0s" path="res://data/sounds/laserLarge_000.ogg" id="5_tao2h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_32ht5"]
 radius = 19.105
+
+[sub_resource type="Resource" id="Resource_r4cxb"]
+resource_local_to_scene = true
+script = ExtResource("3_balpj")
+can_target_self = false
+can_target_owner = false
+can_target_shooters_projectiles = false
+detection_strength = 5
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vno2k"]
 radius = 21.0
@@ -97,7 +106,6 @@ _data = {
 }
 
 [node name="Laser" instance=ExtResource("1_bh2l5")]
-collision_layer = 8
 explosion = ExtResource("2_vbx0x")
 initial_speed = 1000.0
 acceleration = Vector2(100, 0)
@@ -109,6 +117,10 @@ use_detection_area = true
 position = Vector2(-11, 0)
 shape = SubResource("CircleShape2D_32ht5")
 
+[node name="Hurtbox" parent="." index="1"]
+collision_mask = 20
+target_strategy = SubResource("Resource_r4cxb")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2(-28, 0)
 rotation = 1.57079
@@ -118,7 +130,7 @@ debug_color = Color(0.877251, 0.313907, 0.362102, 0.42)
 [node name="DetectionArea" parent="." index="2"]
 visible = false
 collision_layer = 0
-collision_mask = 4
+collision_mask = 20
 monitoring = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" index="0"]

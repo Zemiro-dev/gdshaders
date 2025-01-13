@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cplrfijecqcnx"]
+[gd_scene load_steps=9 format=3 uid="uid://cplrfijecqcnx"]
 
 [ext_resource type="PackedScene" uid="uid://ba0ggrxjujuhf" path="res://entities/hurtbox.tscn" id="1_df12t"]
 [ext_resource type="Texture2D" uid="uid://dlgoct1i1r8id" path="res://data/assets/projectile_explosion_spritesheet.png" id="2_r0eks"]
 [ext_resource type="Resource" uid="uid://bnouh0h50we1m" path="res://entities/strategy/knockback/knockback_pull_small.tres" id="2_s03ed"]
+[ext_resource type="Resource" uid="uid://cwfdrekx1c86w" path="res://entities/strategy/target/target_full_detection.tres" id="3_5u5ky"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rhcjo"]
 radius = 88.1419
@@ -111,9 +112,10 @@ _data = {
 z_index = 46
 
 [node name="Hurtbox" parent="." instance=ExtResource("1_df12t")]
-collision_mask = 6
+collision_mask = 30
 monitoring = false
 knockback_strategy = ExtResource("2_s03ed")
+target_strategy = ExtResource("3_5u5ky")
 damage = 10
 active_scan = true
 use_blacklist = true

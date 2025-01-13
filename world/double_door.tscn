@@ -17,6 +17,7 @@ _data = {
 point_count = 2
 
 [node name="Door" instance=ExtResource("1_rxdxi")]
+progress_speed = 0.3
 
 [node name="CollisionPolygon2D" parent="." index="0"]
 polygon = PackedVector2Array(-32, -128, 32, -128, 32, 128)

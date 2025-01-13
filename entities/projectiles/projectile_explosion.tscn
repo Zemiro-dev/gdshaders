@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dq3e8vq2vbcfr"]
+[gd_scene load_steps=11 format=3 uid="uid://dq3e8vq2vbcfr"]
 
 [ext_resource type="Texture2D" uid="uid://dlgoct1i1r8id" path="res://data/assets/projectile_explosion_spritesheet.png" id="1_2065x"]
 [ext_resource type="Resource" uid="uid://c4nmx3o8hadri" path="res://entities/strategy/knockback/knockback_default.tres" id="2_48qwy"]
 [ext_resource type="Script" path="res://entities/hurtbox.gd" id="2_b70pl"]
+[ext_resource type="Resource" uid="uid://cwfdrekx1c86w" path="res://entities/strategy/target/target_full_detection.tres" id="3_540jb"]
 [ext_resource type="PackedScene" uid="uid://1ud61pwk605m" path="res://utilities/extended_audio_stream_player.tscn" id="3_aeghy"]
 [ext_resource type="AudioStream" uid="uid://c0jhrakgugc3k" path="res://data/sounds/explosion2.ogg" id="4_ua3xu"]
 
@@ -128,11 +129,12 @@ z_index = 46
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 6
+collision_mask = 30
 monitoring = false
 monitorable = false
 script = ExtResource("2_b70pl")
 knockback_strategy = ExtResource("2_48qwy")
+target_strategy = ExtResource("3_540jb")
 damage = 30
 active_scan = true
 use_blacklist = true

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TargetBaseStrategy" load_steps=2 format=3 uid="uid://cwfdrekx1c86w"]
+
+[ext_resource type="Script" path="res://entities/strategy/target/target_base_strategy.gd" id="1_dy1wk"]
+
+[resource]
+script = ExtResource("1_dy1wk")
+can_target_self = false
+can_target_owner = false
+can_target_shooters_projectiles = false
+detection_strength = 10

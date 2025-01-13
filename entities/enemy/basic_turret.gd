@@ -54,7 +54,7 @@ func shoot() -> void:
 			var red_orb_instance = projectile_scene.instantiate()
 			primary_weapon_cooldown = red_orb_instance.cooldown
 			GlobalSignals.projectile_spawn_requested.emit(red_orb_instance)
-			red_orb_instance.shoot(main_cannon_marker.global_transform)
+			red_orb_instance.shoot(main_cannon_marker.global_transform, self)
 
 
 func _on_detection_zone_entered(body: Node2D) -> void:

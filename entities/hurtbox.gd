@@ -3,7 +3,12 @@ class_name Hurtbox
 
 signal damage_dealt(node: Node2D)
 
+## Strategy for knockback and on_damage after effects
 @export var knockback_strategy: KnockbackBaseStrategy
+
+## Targeting strategy for this hitbox to determine
+## What it can do damage to
+@export var target_strategy: TargetBaseStrategy
 
 ## Damage per tick
 @export var damage: int = 1
@@ -99,6 +104,10 @@ func is_node_targeted(node: Node2D) -> bool:
 	return true if !should_acquire_targets() else targets.find(node) > -1
 
 
+func allowed_to_target(node: Node2D) -> bool:
+	return target_strategy == null or target_strategy.can_target(self, node)
+
+
 func should_acquire_targets() -> bool:
 	return max_total_targets != 0
 
@@ -142,7 +151,7 @@ func process_node_for_pain(node: Node2D) -> void:
 	var is_targeted := is_node_targeted(node)
 	if is_targeted or can_acquire_more_targets():
 		## Can we damage the node so it's worth looking at
-		if is_node_damageable(node):
+		if is_node_damageable(node) and allowed_to_target(node):
 			## Get blacklistable node and see if we've already damaged the node
 			var blacklist_node = get_blacklist_node(node)
 			if !is_node_blacklisted(blacklist_node):

@@ -14,7 +14,7 @@ radius = 5.0
 height = 14.0
 
 [node name="Bullet" type="Area2D"]
-collision_layer = 8
+collision_layer = 16
 script = ExtResource("1_yekjk")
 initial_speed = 2000.0
 max_speed = 2000.0
@@ -22,6 +22,7 @@ radial_spread = 0.1
 side_spread = 10.0
 cooldown = 0.01
 match_rotation_to_velocity = false
+detection_difficulty = 10
 
 [node name="Lifetime" type="Timer" parent="."]
 
